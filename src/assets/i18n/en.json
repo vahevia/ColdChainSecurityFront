@@ -1,0 +1,63 @@
+{
+    "LOGIN": {
+        "coldChain": "Cold Chain Security",
+        "user": "Username",
+        "password": "Password",
+        "signIn": "Sign In",
+        "logout": "Log Out",
+        "language": "Change language"
+    },
+    "DASHBOARD": {
+        "dashboard": "Map",
+        "activeUnit": "Active unit",
+        "activeUnits": "Active units",
+        "unit": "Unit {{number}}",
+        "temp": "Temperature",
+        "hour": "Hour",
+        "legend": "Legend",
+        "averageTemp": "Average temperature",
+        "blockChain": "BlockChain",
+        "blockChainDesc": "Number of blocks: {{number}} \n Other relevant information" ,
+        "cancel": "cancel"       
+    },
+    "USERS": {
+        "users": "Users",
+        "name": "Name",
+        "lastname": "Lastname",
+        "id": "ID",
+        "position": "Position",
+        "edit": "Edit",
+        "delete": "Delete",
+        "addUser": "Create User",
+        "choose": "Choose one",
+        "add": "Add",
+        "update": "Update",
+        "updateTitle": "Update Users",
+        "roleUser": "User",
+        "roleAdmin": "Administrator"
+    },
+    "WAREHOUSE": {
+        "warehouse": "Warehouse",
+        "wname": "Name",
+        "address": "Address",
+        "numberUnit": "Number of units",
+        "addWareh": "Create Warehouse",
+        "editTitle": "Edit Warehouse",
+        "state": "State",
+        "country": "Country"
+    },
+    "TRUCKS": {
+        "truckTitle": "Trucks",
+        "truck": "Unit",
+        "driverName": "Driver",
+        "brand": "Brand",
+        "model": "Model",
+        "plate": "Plate",
+        "year": "Year",
+        "capacity": "Capacity",
+        "route": "Route",
+        "wareHouse": "Warehouse",
+        "addTruck": "Create Truck",
+        "editTitle": "Edit Truck"
+    }
+}

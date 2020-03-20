@@ -1,0 +1,63 @@
+{
+    "LOGIN": {
+        "coldChain": "Cadena de Frío",
+        "user": "Usuario",
+        "password": "Contraseña",
+        "signIn": "Iniciar sesión",
+        "logout": "Cerrar sesión",
+        "language": "Cambiar idioma"
+    },
+    "DASHBOARD": {
+        "dashboard": "Mapa",
+        "activeUnit": "Unidad activa",
+        "activeUnits": "Unidades activas",
+        "unit": "Unidad {{number}}",
+        "temp": "Temperatura",
+        "hour": "Hora",
+        "legend": "Leyenda",
+        "averageTemp": "Temperatura promedio",
+        "blockChain": "BlockChain",
+        "blockChainDesc": "Número de bloques: {{number}} \n Informacion relevante",
+        "cancel": "cancelar"        
+    },
+    "USERS": {
+        "users": "Usuarios",
+        "name": "Nombre",
+        "lastname": "Apellido",
+        "id": "Cédula",
+        "position": "Cargo",
+        "edit": "Editar",
+        "delete": "Eliminar",
+        "addUser": "Crear usuario",
+        "choose": "Elige uno",
+        "add": "Agregar",
+        "update": "Actualizar",
+        "updateTitle": "Actualizar Usuario",
+        "roleUser": "Usuario",
+        "roleAdmin": "Administrador"
+    },
+    "WAREHOUSE": {
+        "warehouse": "Almacen",
+        "wname": "Nombre",
+        "address": "Dirección",
+        "numberUnit": "Número de unidades",
+        "addWareh": "Crear almacen",
+        "editTitle": "Editar almacen",
+        "state": "Estado",
+        "country": "Pais"
+    },
+    "TRUCKS": {
+        "truckTitle": "Unidades",
+        "truck": "Unidad",
+        "driverName": "Conductor",
+        "brand": "Marca",
+        "model": "Modelo",
+        "plate": "Placa",
+        "year": "Año",
+        "capacity": "Capacidad",
+        "rute": "Ruta",
+        "wareHouse": "Almacen",
+        "addTruck": "Crear Unidad",
+        "editTitle": "Editar Unidad"
+    }
+}

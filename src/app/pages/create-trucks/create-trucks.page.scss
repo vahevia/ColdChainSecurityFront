@@ -1,0 +1,26 @@
+#rounded {
+    width: 100%;
+    height: 1/4;
+    --ion-border-radius: 10px;
+    margin-bottom: 10px; 
+    --highlight-height: 0;
+}
+
+#container {
+    width: 400px; 
+    margin-left:auto; 
+    margin-right: auto;
+    justify-items: center;
+}
+
+#bottom-border{
+    --highlight-height: 2px;
+}
+
+#button{
+    text-align: center;
+}
+
+#padding{
+    padding: 15px;
+}

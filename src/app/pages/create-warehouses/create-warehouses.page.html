@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button color="secondary"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+        <ion-text color="light">
+          <ion-text color="light" class="fw700">Create Warehouse</ion-text>
+        </ion-text>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div id="container">
+    
+    <ion-item id="rounded" lines=none>
+      <ion-label position="fixed">{{ 'WAREHOUSE.wname' | translate }}</ion-label>
+        <ion-item id="bottom-border">
+          <ion-input placeholder="{{ 'WAREHOUSE.wname' | translate }}" [(ngModel)]="nombre"></ion-input>
+        </ion-item>
+    </ion-item>
+
+    <ion-item id="rounded" lines=none>
+      <ion-label position="fixed">{{ 'WAREHOUSE.numberUnit' | translate }}</ion-label>
+        <ion-item id="bottom-border">
+          <ion-input placeholder="{{ 'WAREHOUSE.numberUnit' | translate }}" [(ngModel)]="cantUnid"></ion-input>
+        </ion-item>
+    </ion-item>
+
+    <ion-item id="rounded" lines=none>
+      <ion-label position="fixed">{{ 'WAREHOUSE.address' | translate }}</ion-label>
+        <ion-item id="bottom-border">
+          <ion-input placeholder="{{ 'WAREHOUSE.address' | translate }}" [(ngModel)]="direccion"></ion-input>
+        </ion-item>
+    </ion-item>
+
+    <ion-item id="rounded" lines=none>
+      <ion-label position="fixed">{{ 'WAREHOUSE.country' | translate }}</ion-label>
+          <ion-select placeholder="{{ 'WAREHOUSE.choose' | translate }}" [(ngModel)]="country"
+            okText="Ok" cancelText="{{ 'DASHBOARD.cancel' | translate }}">
+            <ion-select-option value="Usuario">{{ 'WAREHOUSE.country' | translate }}</ion-select-option>
+            <ion-select-option value="country1">country1</ion-select-option>
+          </ion-select>
+    </ion-item>
+
+    <ion-item id="rounded" lines=none>
+      <ion-label position="fixed">{{ 'WAREHOUSE.state' | translate }}</ion-label>
+          <ion-select placeholder="{{ 'WAREHOUSE.choose' | translate }}" [(ngModel)]="state"
+            okText="Ok" cancelText="{{ 'DASHBOARD.cancel' | translate }}">
+            <ion-select-option value="Usuario">{{ 'WAREHOUSE.state' | translate }}</ion-select-option>
+            <ion-select-option value="state1">state1</ion-select-option>
+          </ion-select>
+    </ion-item>
+  </div>
+    <div id="padding"></div>
+
+    <ion-button size="large" expand="full" *ngIf="editando"; else showThat (click)="crearUsuario()" color='warning' no-margin>{{ 'USERS.update' | translate }}</ion-button>
+  <ion-button size="large" expand="full" #showThat (click)="crearUsuario()" color='warning' no-margin>{{ 'WAREHOUSE.addWareh' | translate }}</ion-button>
+</ion-content>

@@ -1,0 +1,25 @@
+:host {
+    ion-content {
+        --background: var(--ion-color-light);
+    }
+
+    ion-item {
+        border-radius: 0;
+        border-bottom: 1px dotted var(--ion-color-medium);
+    }
+
+    ion-card {
+        &.no-radius {
+            border-radius: 0;
+        }
+    }
+}
+.map {
+    height: 50%;
+    width: 50%;
+  }
+
+.map-container{
+    border-radius: 10px;
+    margin: auto;
+}

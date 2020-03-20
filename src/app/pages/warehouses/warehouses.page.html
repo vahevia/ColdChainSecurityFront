@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button color="secondary"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+        <ion-text color="light">
+          <ion-text color="light" class="fw700">Warehouses</ion-text>
+        </ion-text>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ngx-datatable 
+      [rows]="rows"
+      [ngClass]="tableStyle"
+      [rowHeight]="auto"
+      [headerHeight]="50"
+      [columnMode]="force"
+      [scrollbarH]="true">
+
+        <ngx-datatable-column name="{{ 'WAREHOUSE.wname' | translate }}" >
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.nombre}}
+          </ng-template>
+        </ngx-datatable-column>
+
+      <ngx-datatable-column name="{{ 'WAREHOUSE.numberUnit' | translate }}">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.cantUnid}}
+          </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="{{ 'WAREHOUSE.address' | translate }}">
+        <ng-template  let-row="row" ngx-datatable-cell-template>
+          <span style="white-space: normal;">
+            {{row.direccion}}
+          </span> 
+        </ng-template>
+      </ngx-datatable-column>
+
+        <ngx-datatable-column name="{{ 'USERS.edit' | translate }}" sortable="false" prop="numero">
+          <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
+            <ion-button md-icon-button color="warning" (click)="editarWareHouse(value)">
+              <ion-icon name="create"></ion-icon>
+            </ion-button>
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="{{ 'USERS.delete' | translate }}" sortable="false" prop="cedula">
+          <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
+            <ion-button md-icon-button color="warning" (click)="borrarWareHouse(value)" > 
+              <ion-icon name="trash"></ion-icon>
+            </ion-button>
+          </ng-template>
+        </ngx-datatable-column>
+
+      </ngx-datatable>
+    <ion-button size="large" expand="full" color="dark" (click)="createWareh()" no-margin>Add warehouse</ion-button>
+</ion-content>

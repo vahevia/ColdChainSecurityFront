@@ -1,12 +1,12 @@
 {
-  "name": "ionic4-start-theme",
-  "description": "Ionic 4 Start Theme",
-  "version": "1.0.0",
-  "author": "Ionic Theme",
-  "homepage": "https://ionictheme.com",
+  "name": "cold-chain-security",
+  "description": "",
+  "version": "",
+  "author": "Ionic Framework",
+  "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

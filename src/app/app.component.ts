@@ -35,7 +35,7 @@ export class AppComponent {
         icon: 'people'
       },
       {
-        title: 'Trucks',
+        title: 'Units',
         url: '/trucks',
         direct: 'forward',
         icon: 'car'

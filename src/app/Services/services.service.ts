@@ -58,4 +58,10 @@ export class ServicesService {
   getWareHouseByName(name) {
     return this.http.request('get', this.urlWareHBN, { body: { "nombre": name } })
   }
+  getCountries() {
+    return this.http.get(`https://coldchainsecurity.herokuapp.com/pais`);
+  }
+  getStateByCountry(pais) {
+    return this.http.request('get', 'https://coldchainsecurity.herokuapp.com/estado', { body: { "pais": pais } })
+  }
 }

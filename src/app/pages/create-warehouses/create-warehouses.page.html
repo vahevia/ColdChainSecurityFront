@@ -39,8 +39,7 @@
       <ion-label position="fixed">{{ 'WAREHOUSE.country' | translate }}</ion-label>
           <ion-select placeholder="{{ 'WAREHOUSE.choose' | translate }}" [(ngModel)]="country"
             okText="Ok" cancelText="{{ 'DASHBOARD.cancel' | translate }}">
-            <ion-select-option value="Usuario">{{ 'WAREHOUSE.country' | translate }}</ion-select-option>
-            <ion-select-option value="country1">country1</ion-select-option>
+            <ion-select-option *ngFor="let country of countries" value="{{country}}">{{country.country}}</ion-select-option>
           </ion-select>
     </ion-item>
 
@@ -48,8 +47,7 @@
       <ion-label position="fixed">{{ 'WAREHOUSE.state' | translate }}</ion-label>
           <ion-select placeholder="{{ 'WAREHOUSE.choose' | translate }}" [(ngModel)]="state"
             okText="Ok" cancelText="{{ 'DASHBOARD.cancel' | translate }}">
-            <ion-select-option value="Usuario">{{ 'WAREHOUSE.state' | translate }}</ion-select-option>
-            <ion-select-option value="state1">state1</ion-select-option>
+            <ion-select-option *ngFor="let state of states" value="{{state}}">{{state.state}}</ion-select-option>
           </ion-select>
     </ion-item>
   </div>

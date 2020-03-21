@@ -47,7 +47,7 @@
         "country": "Country"
     },
     "TRUCKS": {
-        "truckTitle": "Trucks",
+        "truckTitle": "Units",
         "truck": "Unit",
         "driverName": "Driver",
         "brand": "Brand",
@@ -55,9 +55,9 @@
         "plate": "Plate",
         "year": "Year",
         "capacity": "Capacity",
-        "route": "Route",
+        "routee": "Route",
         "wareHouse": "Warehouse",
-        "addTruck": "Create Truck",
-        "editTitle": "Edit Truck"
+        "addTruck": "Create Unit",
+        "editTitle": "Edit Unit"
     }
 }

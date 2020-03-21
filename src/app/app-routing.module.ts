@@ -8,7 +8,6 @@ const routes: Routes = [
   { path: 'settings', loadChildren: './pages/settings/settings.module#SettingsPageModule' },
   { path: 'edit-profile', loadChildren: './pages/edit-profile/edit-profile.module#EditProfilePageModule' },
   { path: 'home-results', loadChildren: './pages/home-results/home-results.module#HomeResultsPageModule' },
-  { path: 'usuarios', loadChildren: './pages/users/users.module#UsersPageModule' },
   { path: 'users', loadChildren: './pages/users/users.module#UsersPageModule' },
   { path: 'trucks', loadChildren: './pages/trucks/trucks.module#TrucksPageModule' },
   { path: 'warehouses', loadChildren: './pages/warehouses/warehouses.module#WarehousesPageModule' },

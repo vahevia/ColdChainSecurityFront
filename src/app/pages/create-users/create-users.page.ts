@@ -22,7 +22,9 @@ export class CreateUsersPage implements OnInit {
 
   constructor(private route: ActivatedRoute, 
     private router: Router, private usuarioService: ServicesService, 
-    private navCtrl: NavController, private translateConfigService: TranslateConfigService) { }
+    private navCtrl: NavController, private translateConfigService: TranslateConfigService) {
+      this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
+     }
 
   ngOnInit() {
   }

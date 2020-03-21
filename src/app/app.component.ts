@@ -46,19 +46,19 @@ export class AppComponent {
         direct: 'forward',
         icon: 'home'
       },
-      {
-        title: 'About',
-        url: '/about',
-        direct: 'forward',
-        icon: 'information-circle-outline'
-      },
+      // {
+      //   title: 'About',
+      //   url: '/about',
+      //   direct: 'forward',
+      //   icon: 'information-circle-outline'
+      // },
 
-      {
-        title: 'App Settings',
-        url: '/settings',
-        direct: 'forward',
-        icon: 'cog'
-      },
+      // {
+      //   title: 'App Settings',
+      //   url: '/settings',
+      //   direct: 'forward',
+      //   icon: 'cog'
+      // },
       {
         title: 'Log Out',
         url: '/',

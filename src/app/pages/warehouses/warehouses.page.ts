@@ -22,7 +22,9 @@ export class WarehousesPage implements OnInit {
     public navCtrl: NavController,
     private router: Router,
     private translateConfigService: TranslateConfigService
-    ) { }
+    ) {
+      this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
+     }
 
   ngOnInit() {
     this.warehouseServices.getWareHouses()

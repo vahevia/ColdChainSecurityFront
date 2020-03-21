@@ -26,7 +26,9 @@ export class UsersPage implements OnInit {
     private usuarioService: ServicesService, 
     public navCtrl: NavController,
     private router: Router,
-    private translateConfigService: TranslateConfigService) { }
+    private translateConfigService: TranslateConfigService) {
+      this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
+    }
 
   ngOnInit() {
     this.usuarioService.getUsers()

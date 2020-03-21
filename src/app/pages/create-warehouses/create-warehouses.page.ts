@@ -11,11 +11,15 @@ import { TranslateConfigService } from '../../translate-config.service';
 })
 export class CreateWarehousesPage implements OnInit {
 
+  selectedLanguage: any;
+  
   constructor(
     private route: ActivatedRoute, 
     private router: Router, private usuarioService: ServicesService, 
     private navCtrl: NavController, private translateConfigService: TranslateConfigService
-  ) { }
+  ) {
+    this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
+   }
 
   ngOnInit() {
   }

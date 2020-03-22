@@ -20,7 +20,8 @@ export class CreateWarehousesPage implements OnInit {
   constructor(
     private route: ActivatedRoute, 
     private router: Router, private warehouseService: ServicesService, 
-    private navCtrl: NavController, private translateConfigService: TranslateConfigService
+    private navCtrl: NavController, 
+    private translateConfigService: TranslateConfigService
   ) {
     this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
    }

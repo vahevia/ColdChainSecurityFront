@@ -16,26 +16,25 @@
     <ion-item lines="none" color="medium">
       <ion-label>
         <h2 no-margin class="fw500 no-margin">
-          <ion-text color="dark">Alert / Toast test</ion-text>
+          <ion-text color="dark">{{ 'DASHBOARD.activeUnit' | translate }}</ion-text>
         </h2>
-
       </ion-label>
-      <ion-button shape="round" fill="outline" size="small" color="primary" (click)="alertLocation()">
-        Location
-        <ion-icon name="locate"></ion-icon>
-      </ion-button>
+      <ion-select placeholder="{{ 'DASHBOARD.activeUnit' | translate }}" [(ngModel)]="unit"
+        okText="OK" cancelText="{{ 'DASHBOARD.cancel' | translate }}">
+        <ion-select-option *ngFor="let unit of units" value="{{unit.name}}">{{unit.name}}</ion-select-option>
+      </ion-select>
     </ion-item>
   </ion-card>
 
-   
-      <ion-content class="map-container" >
+      <ion-content class="no-scroll" >
         <div #mapElement class="map"></div>
-      </ion-content>
-    
-    
-      <ion-content>
+
+        <div id="padding"></div>
+
+        <!-- <canvas #lineCanvas></canvas> -->
           <ngx-charts-line-chart
-                [view]=""
+                [view]="view"
+                (window:resize)="onResize($event)"
                 [scheme]="colorScheme"
                 [showXAxisLabel]="showXAxisLabel"
                 [showYAxisLabel]="showYAxisLabel"
@@ -43,13 +42,46 @@
                 [yAxis]="yAxis"
                 [xAxisLabel]="xAxisLabel"
                 [yAxisLabel]="yAxisLabel"
+                [trimXAxisTicks]="false"
+                [autoScale]="true"
                 [timeline]="timeline"
                 [results]="multi"
                 (select)="onSelect($event)"
                 (activate)="onActivate($event)"
-                (deactivate)="onDeactivate($event)">
+                (deactivate)="onDeactivate($event)"
+                [legendPosition]="below">
           </ngx-charts-line-chart> 
+
+        <div id="padding"></div>
       </ion-content>
+    
+      <div id="padding"></div>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-card >
+              <ion-card-header color="primary">
+                <ion-card-title>{{ 'DASHBOARD.activeUnits' | translate }}</ion-card-title>
+              </ion-card-header>
+            
+              <ion-card-content>
+                <p style="font-size: larger">2</p>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+          <ion-col>
+            <ion-card>
+              <ion-card-header color="primary">
+                <ion-card-title>{{ 'DASHBOARD.averageTemp' | translate }}</ion-card-title>
+              </ion-card-header>
+            
+              <ion-card-content>
+                <p style="font-size: larger">27</p>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+    </ion-grid>
     
 </ion-content>
   

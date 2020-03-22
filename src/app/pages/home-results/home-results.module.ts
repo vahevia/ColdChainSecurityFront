@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { PopmenuComponent } from './../../components/popmenu/popmenu.component';
 
@@ -23,6 +24,7 @@ const routes: Routes = [
     NgxChartsModule,
     ReactiveFormsModule,
     IonicModule,
+    TranslateModule.forChild(),
     RouterModule.forChild(routes)
   ],
   declarations: [HomeResultsPage, PopmenuComponent]

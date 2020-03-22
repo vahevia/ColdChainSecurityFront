@@ -207,3 +207,17 @@ ion-item {
       margin-bottom: -2px;
     }
   }
+
+  .no-scroll {
+    --overflow: hidden;
+  }
+
+  // .datatable-header{
+  //   background-color: #ccd1e1;
+  // }
+
+  // .datatable-header-cell{
+  //   display: flex !important;
+  //   align-items: center !important;
+  //   justify-content: center;
+  // }

@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterContentInit, Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {
   NavController,
   AlertController,
@@ -6,12 +6,13 @@ import {
   ToastController,
   PopoverController,
   ModalController } from '@ionic/angular';
+import { TranslateConfigService } from '../../translate-config.service';
+import { Chart } from 'chart.js';
 
 // Modals
 import { SearchFilterPage } from '../../pages/modal/search-filter/search-filter.page';
 import { ImagePage } from './../modal/image/image.page';
-// Call notifications test by Popover and Custom Component.
-import { NotificationsComponent } from './../../components/notifications/notifications.component';
+
 declare var google;
 
 @Component({
@@ -24,11 +25,23 @@ declare var google;
 export class HomeResultsPage implements AfterContentInit {
 
   map;
+  @ViewChild("lineCanvas") lineCanvas: ElementRef;
   @ViewChild('mapElement') mapElement;
   
+  private lineChart: Chart;
+
+  selectedLanguage: any;
   searchKey = '';
   yourLocation = '123 Test Street';
   themeCover = 'assets/img/ionic4-Start-Theme-cover.jpg';
+  units: Array<any>=[
+    {
+      name: 'Unit 1'
+    },
+    {
+      name: 'Unit 2'
+    }
+  ];
 
   marks: Array<any>=[
     {
@@ -51,9 +64,44 @@ export class HomeResultsPage implements AfterContentInit {
     public popoverCtrl: PopoverController,
     public alertCtrl: AlertController,
     public modalCtrl: ModalController,
-    public toastCtrl: ToastController
+    public toastCtrl: ToastController,
+    private translateConfigService: TranslateConfigService
   ) {
+    this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
+    this.view = [innerWidth*0.90,innerHeight*0.6]
+  }
 
+  ngOnInit(){
+    this.lineChart = new Chart(this.lineCanvas.nativeElement, {
+      type: "line",
+      data: {
+        labels: ["January", "February", "March", "April", "May", "June", "July"],
+        datasets: [
+          {
+            label: "My First dataset",
+            fill: false,
+            lineTension: 0.1,
+            backgroundColor: "rgba(75,192,192,0.4)",
+            borderColor: "rgba(75,192,192,1)",
+            borderCapStyle: "butt",
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: "miter",
+            pointBorderColor: "rgba(75,192,192,1)",
+            pointBackgroundColor: "#fff",
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "rgba(75,192,192,1)",
+            pointHoverBorderColor: "rgba(220,220,220,1)",
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data: [65, 59, 80, 81, 56, 55, 40],
+            spanGaps: false
+          }
+        ]
+      }
+    });
   }
 
   ngAfterContentInit(): void {
@@ -64,7 +112,7 @@ export class HomeResultsPage implements AfterContentInit {
         this.mapElement.nativeElement,
         {
           center: pos,
-          zoom: 15
+          zoom: 20
         });
         const marker = new google.maps.Marker({
           position: pos,
@@ -127,8 +175,11 @@ export class HomeResultsPage implements AfterContentInit {
       ]
     },
     ];
-  view: any[] = [100,100];
+  view: any[]
 
+  onResize(event) {
+    this.view = [event.target.innerWidth * 0.90, event.target.innerHeight * 0.50];
+  }
   // options
   legend: boolean = true;
   showLabels: boolean = true;
@@ -153,46 +204,7 @@ export class HomeResultsPage implements AfterContentInit {
     this.navCtrl.navigateForward('settings');
   }
 
-  async alertLocation() {
-    const changeLocation = await this.alertCtrl.create({
-      header: 'Change Location',
-      message: 'Type your Address.',
-      inputs: [
-        {
-          name: 'location',
-          placeholder: 'Enter your new Location',
-          type: 'text'
-        },
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          handler: data => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: 'Change',
-          handler: async (data) => {
-            console.log('Change clicked', data);
-            this.yourLocation = data.location;
-            const toast = await this.toastCtrl.create({
-              message: 'Location was change successfully',
-              duration: 3000,
-              position: 'top',
-              closeButtonText: 'OK',
-              showCloseButton: true
-            });
-
-            toast.present();
-          }
-        }
-      ]
-    });
-    changeLocation.present();
-  }
-
-  
+ 
 
   async presentImage(image: any) {
     const modal = await this.modalCtrl.create({

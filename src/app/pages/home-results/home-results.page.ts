@@ -71,7 +71,6 @@ export class HomeResultsPage implements AfterContentInit {
     private translateConfigService: TranslateConfigService
   ) {
     this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
-    this.view = [innerWidth*0.90,innerHeight*0.6]
   }
 
   ngOnInit(){
@@ -178,13 +177,11 @@ export class HomeResultsPage implements AfterContentInit {
       ]
     },
     ];
-  view: any[]
+  
 
-  onResize(event) {
-    this.view = [event.target.innerWidth * 0.90, event.target.innerHeight * 0.50];
-  }
+  
   // options
-  legend: boolean = true;
+  view: any[];
   showLabels: boolean = true;
   animations: boolean = true;
   xAxis: boolean = true;

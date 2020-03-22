@@ -32,9 +32,8 @@
         <div id="padding"></div>
 
         <!-- <canvas #lineCanvas></canvas> -->
+        <div class="graph">
           <ngx-charts-line-chart
-                [view]="view"
-                (window:resize)="onResize($event)"
                 [scheme]="colorScheme"
                 [showXAxisLabel]="showXAxisLabel"
                 [showYAxisLabel]="showYAxisLabel"
@@ -49,13 +48,11 @@
                 (select)="onSelect($event)"
                 (activate)="onActivate($event)"
                 (deactivate)="onDeactivate($event)"
-                [legendPosition]="below">
+                >
           </ngx-charts-line-chart> 
-
-        <div id="padding"></div>
+        </div>
       </ion-content>
     
-      <div id="padding"></div>
       <ion-grid>
         <ion-row>
           <ion-col>

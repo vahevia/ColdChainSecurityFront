@@ -40,6 +40,9 @@ export class HomeResultsPage implements AfterContentInit {
     },
     {
       name: 'Unit 2'
+    },
+    {
+      name: 'Unit 3'
     }
   ];
 

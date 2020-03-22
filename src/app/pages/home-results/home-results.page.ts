@@ -22,7 +22,7 @@ declare var google;
 })
 
 
-export class HomeResultsPage implements AfterContentInit {
+export class HomeResultsPage implements OnInit {
 
   map;
   @ViewChild("lineCanvas") lineCanvas: ElementRef;
@@ -73,40 +73,40 @@ export class HomeResultsPage implements AfterContentInit {
     this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
   }
 
-  ngOnInit(){
-    this.lineChart = new Chart(this.lineCanvas.nativeElement, {
-      type: "line",
-      data: {
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
-        datasets: [
-          {
-            label: "My First dataset",
-            fill: false,
-            lineTension: 0.1,
-            backgroundColor: "rgba(75,192,192,0.4)",
-            borderColor: "rgba(75,192,192,1)",
-            borderCapStyle: "butt",
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: "miter",
-            pointBorderColor: "rgba(75,192,192,1)",
-            pointBackgroundColor: "#fff",
-            pointBorderWidth: 1,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: "rgba(75,192,192,1)",
-            pointHoverBorderColor: "rgba(220,220,220,1)",
-            pointHoverBorderWidth: 2,
-            pointRadius: 1,
-            pointHitRadius: 10,
-            data: [65, 59, 80, 81, 56, 55, 40],
-            spanGaps: false
-          }
-        ]
-      }
-    });
-  }
+  // ngOnInit(){
+  //   this.lineChart = new Chart(this.lineCanvas.nativeElement, {
+  //     type: "line",
+  //     data: {
+  //       labels: ["January", "February", "March", "April", "May", "June", "July"],
+  //       datasets: [
+  //         {
+  //           label: "My First dataset",
+  //           fill: false,
+  //           lineTension: 0.1,
+  //           backgroundColor: "rgba(75,192,192,0.4)",
+  //           borderColor: "rgba(75,192,192,1)",
+  //           borderCapStyle: "butt",
+  //           borderDash: [],
+  //           borderDashOffset: 0.0,
+  //           borderJoinStyle: "miter",
+  //           pointBorderColor: "rgba(75,192,192,1)",
+  //           pointBackgroundColor: "#fff",
+  //           pointBorderWidth: 1,
+  //           pointHoverRadius: 5,
+  //           pointHoverBackgroundColor: "rgba(75,192,192,1)",
+  //           pointHoverBorderColor: "rgba(220,220,220,1)",
+  //           pointHoverBorderWidth: 2,
+  //           pointRadius: 1,
+  //           pointHitRadius: 10,
+  //           data: [65, 59, 80, 81, 56, 55, 40],
+  //           spanGaps: false
+  //         }
+  //       ]
+  //     }
+  //   });
+  // }
 
-  ngAfterContentInit(): void {
+  ngOnInit(): void {
     const pos = {
       lat: 10.482390, lng: -66.818895
     }

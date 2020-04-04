@@ -129,33 +129,113 @@ export class HomeResultsPage implements OnInit {
         "name":"Unidad 1",
         "series": [
           {
-            "name":"2 pm",
-            "value": 27
+            "name":"12 pm",
+            "value": 22
           },
           {
-            "name":"3 pm",
+            "name":"12:10 pm",
+            "value": 23
+          },
+          {
+            "name":"12:20 pm",
             "value": 28
           },
           {
-          "name":"4 pm",
-          "value": 29
-        }
+            "name":"12:30 pm",
+            "value": 26
+          },
+          {
+            "name":"12:40 pm",
+            "value": 27
+          },
+          {
+            "name":"12:50 pm",
+            "value": 29
+          },
+          {
+            "name":"1 pm",
+            "value": 27
+          },
+          {
+            "name":"1:10 pm",
+            "value": 23
+          },
+          {
+            "name":"1:20 pm",
+            "value": 28
+          },
+          {
+            "name":"1:30 pm",
+            "value": 26
+          },
+          {
+            "name":"1:40 pm",
+            "value": 27
+          },
+          {
+            "name":"1:50 pm",
+            "value": 29
+          },
+          {
+            "name":"2 pm",
+            "value": 27
+          }
         ]
       },
       {
       "name":"Unidad 2",
       "series": [
         {
-          "name":"2 pm",
-          "value": 25
+          "name":"12 pm",
+          "value": 22
         },
         {
-          "name":"3 pm",
+          "name":"12:10 pm",
           "value": 24
         },
         {
-          "name":"4 pm",
+          "name":"12:20 pm",
           "value": 23
+        },
+        {
+          "name":"12:30 pm",
+          "value": 24
+        },
+        {
+          "name":"12:40 pm",
+          "value": 25
+        },
+        {
+          "name":"12:50 pm",
+          "value": 28
+        },
+        {
+          "name":"1 pm",
+          "value": 22
+        },
+        {
+          "name":"1:10 pm",
+          "value": 24
+        },
+        {
+          "name":"1:20 pm",
+          "value": 23
+        },
+        {
+          "name":"1:30 pm",
+          "value": 24
+        },
+        {
+          "name":"1:40 pm",
+          "value": 25
+        },
+        {
+          "name":"1:50 pm",
+          "value": 28
+        },
+        {
+          "name":"2 pm",
+          "value": 29
         }
       ]
     },
@@ -163,16 +243,56 @@ export class HomeResultsPage implements OnInit {
       "name":"Unidad 3",
       "series": [
         {
-          "name":"2 pm",
+          "name":"12 pm",
+          "value": 20
+        },
+        {
+          "name":"12:10 pm",
           "value": 22
         },
         {
-          "name":"3 pm",
+          "name":"12:20 pm",
           "value": 21
         },
         {
-          "name":"4 pm",
+          "name":"12:30 pm",
+          "value": 23
+        },
+        {
+          "name":"12:40 pm",
+          "value": 25
+        },
+        {
+          "name":"12:50 pm",
+          "value": 24
+        },
+        {
+          "name":"1 pm",
           "value": 20
+        },
+        {
+          "name":"1:10 pm",
+          "value": 22
+        },
+        {
+          "name":"1:20 pm",
+          "value": 21
+        },
+        {
+          "name":"1:30 pm",
+          "value": 23
+        },
+        {
+          "name":"1:40 pm",
+          "value": 25
+        },
+        {
+          "name":"1:50 pm",
+          "value": 24
+        },
+        {
+          "name":"2 pm",
+          "value": 26
         }
       ]
     },
@@ -181,8 +301,6 @@ export class HomeResultsPage implements OnInit {
 
   
   // options
-  view: any[];
-  showLabels: boolean = true;
   animations: boolean = true;
   xAxis: boolean = true;
   yAxis: boolean = true;

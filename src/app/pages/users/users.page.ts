@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, } from '@angular/core';
 import { ServicesService } from '../../Services/services.service';
 import { Platform, NavController } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TranslateConfigService } from '../../translate-config.service';
+import { ColumnMode } from '@swimlane/ngx-datatable';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.page.html',
   styleUrls: ['./users.page.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class UsersPage implements OnInit {
+
+  ColumnMode = ColumnMode;
 
   rows: Array<any>=[];
   tableStyle='material';

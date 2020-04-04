@@ -13,34 +13,35 @@
 
 <ion-content padding>
   
-      <ngx-datatable 
+      <ngx-datatable
+        class="material" 
         [rows]="rows"
-        [ngClass]="tableStyle"
         [rowHeight]="auto"
         [headerHeight]="50"
-        [columnMode]="flex"
+        [footerHeight]="50"
+        [columnMode]="ColumnMode.flex"
         [scrollbarH]="true"
         >
 
-      <ngx-datatable-column name="{{ 'USERS.name' | translate }}" >
+      <ngx-datatable-column name="{{ 'USERS.name' | translate }}" [flexGrow]="5/2">
         <ng-template let-row="row" ngx-datatable-cell-template>
           {{row.nombre}}
         </ng-template>
       </ngx-datatable-column>
 
-     <ngx-datatable-column name="{{ 'USERS.lastname' | translate }}">
+     <ngx-datatable-column name="{{ 'USERS.lastname' | translate }}" [flexGrow]="5/2">
         <ng-template let-row="row" ngx-datatable-cell-template>
           {{row.apellido}}
         </ng-template>
      </ngx-datatable-column>
 
-     <ngx-datatable-column name="{{ 'USERS.id' | translate }}">
+     <ngx-datatable-column name="{{ 'USERS.id' | translate }}" [flexGrow]="2">
       <ng-template let-row="row" ngx-datatable-cell-template>
         {{row.cedula}}
       </ng-template>
      </ngx-datatable-column>
 
-      <ngx-datatable-column name="{{ 'USERS.position' | translate }}">
+      <ngx-datatable-column name="{{ 'USERS.position' | translate }}" [flexGrow]="2">
         <ng-template let-row="row" ngx-datatable-cell-template>
           {{row.cargo}}
         </ng-template>
@@ -52,24 +53,24 @@
         </ng-template>
       </ngx-datatable-column> -->
 
-      <ngx-datatable-column name="{{ 'USERS.edit' | translate }}" sortable="false" prop="numero">
-        <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
+      <ngx-datatable-column name="{{ 'USERS.edit' | translate }}" sortable="false" prop="numero" [flexGrow]="1">
+        <ng-template let-row="data" let-value="value"  ngx-datatable-cell-template>
           <ion-button md-icon-button color="warning" (click)="editarUsuario(value)">
             <ion-icon name="create"></ion-icon>
           </ion-button>
         </ng-template>
       </ngx-datatable-column>
 
-      <ngx-datatable-column name="{{ 'USERS.delete' | translate }}" sortable="false" prop="cedula">
+      <ngx-datatable-column name="{{ 'USERS.delete' | translate }}" sortable="false" prop="cedula" [flexGrow]="1">
         <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
-          <ion-button md-icon-button color="warning" (click)="borrarUsuario(value)" > 
-            <ion-icon name="trash"></ion-icon>
-          </ion-button>
+            <ion-button md-icon-button color="warning" (click)="borrarUsuario(value)" > 
+              <ion-icon name="trash"></ion-icon>
+            </ion-button>
         </ng-template>
       </ngx-datatable-column>
 
     </ngx-datatable>
-    
 
-  <ion-button size="large" expand="full" color="dark" (click)="createUser()" no-margin>Add user</ion-button>
+    <div id="padding"></div>
+  <ion-button size="large" expand="full" color="primary" (click)="createUser()" no-margin>Add user</ion-button>
 </ion-content>

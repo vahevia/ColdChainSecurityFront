@@ -11,6 +11,7 @@
         "dashboard": "Map",
         "activeUnit": "Active unit",
         "activeUnits": "Active units",
+        "chartTitle": "Temperature of the units per hour",
         "unit": "Unit {{number}}",
         "temp": "Temperature",
         "hour": "Hour",

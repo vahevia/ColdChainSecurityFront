@@ -13,10 +13,10 @@
 
 <ion-content>
   <ion-card no-margin class="no-radius">
-    <ion-item lines="none" color="medium">
+    <ion-item lines="none" color="tertiary">
       <ion-label>
         <h2 no-margin class="fw500 no-margin">
-          <ion-text color="dark">{{ 'DASHBOARD.activeUnit' | translate }}</ion-text>
+          <ion-text color="light">{{ 'DASHBOARD.activeUnit' | translate }}</ion-text>
         </h2>
       </ion-label>
       <ion-select placeholder="{{ 'DASHBOARD.activeUnit' | translate }}" [(ngModel)]="unit"
@@ -26,34 +26,43 @@
     </ion-item>
   </ion-card>
 
-      <ion-content class="no-scroll" >
-        <div #mapElement class="map"></div>
 
-        <div id="padding"></div>
+      <div #mapElement class="map"></div>
 
-        <!-- <canvas #lineCanvas></canvas> -->
-        <div class="graph">
-          <ngx-charts-line-chart
-                [scheme]="colorScheme"
-                [showXAxisLabel]="showXAxisLabel"
-                [showYAxisLabel]="showYAxisLabel"
-                [xAxis]="xAxis"
-                [yAxis]="yAxis"
-                [xAxisLabel]="xAxisLabel"
-                [yAxisLabel]="yAxisLabel"
-                [trimXAxisTicks]="false"
-                [autoScale]="true"
-                [timeline]="timeline"
-                [results]="multi"
-                (select)="onSelect($event)"
-                (activate)="onActivate($event)"
-                (deactivate)="onDeactivate($event)"
-                >
-          </ngx-charts-line-chart> 
-        </div>
-      </ion-content>
-    
-      <ion-grid>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-card >
+                <ion-card-header color="primary">
+                  <ion-card-title>{{ 'DASHBOARD.chartTitle' | translate }}</ion-card-title>
+                </ion-card-header>
+              
+                <ion-card-content>
+                  <div class="graph">
+                    <ngx-charts-line-chart
+                      [scheme]="colorScheme"
+                      [showXAxisLabel]="showXAxisLabel"
+                      [showYAxisLabel]="showYAxisLabel"
+                      [xAxis]="xAxis"
+                      [yAxis]="yAxis"
+                      [xAxisLabel]="xAxisLabel"
+                      [yAxisLabel]="yAxisLabel"
+                      [trimXAxisTicks]="false"
+                      [autoScale]="true"
+                      [timeline]="timeline"
+                      [results]="multi"
+                      (select)="onSelect($event)"
+                      (activate)="onActivate($event)"
+                      (deactivate)="onDeactivate($event)"
+                      >
+                    </ngx-charts-line-chart> 
+                  </div>
+                  <div class="padding"></div>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>    
+      
         <ion-row>
           <ion-col>
             <ion-card >

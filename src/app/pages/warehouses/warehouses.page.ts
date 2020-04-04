@@ -3,6 +3,7 @@ import { ServicesService } from '../../Services/services.service';
 import { Platform, NavController } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TranslateConfigService } from '../../translate-config.service';
+import { ColumnMode } from '@swimlane/ngx-datatable';
 
 @Component({
   selector: 'app-warehouses',
@@ -11,6 +12,8 @@ import { TranslateConfigService } from '../../translate-config.service';
 })
 export class WarehousesPage implements OnInit {
 
+  ColumnMode = ColumnMode;
+  
   rows: Array<any>=[];
   tableStyle='material';
   nombre: string;

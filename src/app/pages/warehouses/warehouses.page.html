@@ -12,27 +12,30 @@
 </ion-header>
 
 <ion-content padding>
+  
+  <div >
   <ngx-datatable 
       [rows]="rows"
-      [ngClass]="tableStyle"
+      class="material"
       [rowHeight]="auto"
       [headerHeight]="50"
-      [columnMode]="force"
+      [footerHeight]="50"
+      [columnMode]="ColumnMode.flex"
       [scrollbarH]="true">
 
-        <ngx-datatable-column name="{{ 'WAREHOUSE.wname' | translate }}" >
+        <ngx-datatable-column name="{{ 'WAREHOUSE.wname' | translate }}" [flexGrow]="2">
           <ng-template let-row="row" ngx-datatable-cell-template>
             {{row.nombre}}
           </ng-template>
         </ngx-datatable-column>
 
-      <ngx-datatable-column name="{{ 'WAREHOUSE.numberUnit' | translate }}">
+      <ngx-datatable-column name="{{ 'WAREHOUSE.numberUnit' | translate }}" [flexGrow]="1">
           <ng-template let-row="row" ngx-datatable-cell-template>
             {{row.cantUnid}}
           </ng-template>
       </ngx-datatable-column>
 
-      <ngx-datatable-column name="{{ 'WAREHOUSE.address' | translate }}">
+      <ngx-datatable-column name="{{ 'WAREHOUSE.address' | translate }}" [flexGrow]="3">
         <ng-template  let-row="row" ngx-datatable-cell-template>
           <span style="white-space: normal;">
             {{row.direccion}}
@@ -40,7 +43,7 @@
         </ng-template>
       </ngx-datatable-column>
 
-        <ngx-datatable-column name="{{ 'USERS.edit' | translate }}" sortable="false" prop="numero">
+        <ngx-datatable-column name="{{ 'USERS.edit' | translate }}" sortable="false" prop="numero" [flexGrow]="1">
           <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
             <ion-button md-icon-button color="warning" (click)="editarWareHouse(value)">
               <ion-icon name="create"></ion-icon>
@@ -48,7 +51,7 @@
           </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column name="{{ 'USERS.delete' | translate }}" sortable="false" prop="cedula">
+        <ngx-datatable-column name="{{ 'USERS.delete' | translate }}" sortable="false" prop="cedula" [flexGrow]="1">
           <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
             <ion-button md-icon-button color="warning" (click)="borrarWareHouse(value)" > 
               <ion-icon name="trash"></ion-icon>
@@ -57,5 +60,8 @@
         </ngx-datatable-column>
 
       </ngx-datatable>
-    <ion-button size="large" expand="full" color="dark" (click)="createWareh()" no-margin>Add warehouse</ion-button>
-</ion-content>
+
+      <div id="padding"></div>
+    <ion-button size="large" expand="full" color="primary" (click)="createWareh()" no-margin>Add warehouse</ion-button>
+  </div>
+  </ion-content>

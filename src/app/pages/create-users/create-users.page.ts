@@ -53,7 +53,7 @@ export class CreateUsersPage implements OnInit {
     }
     this.editando = false;
     console.log('editando ', this.editando)
-    this.navCtrl.navigateRoot('/menu/usuarios')
+    this.navCtrl.navigateRoot('/users')
     console.log(usuario)
   }
 

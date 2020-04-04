@@ -61,4 +61,17 @@ export class UsersPage implements OnInit {
     this.navCtrl.navigateForward('create-users');
   }
 
+  deleteUser(value){
+    console.log('cedula a borrar', value)
+    this.usuarioService.deleteUser(value)
+    .subscribe(
+      (response) => {
+        console.log(response)
+      },
+      (error) => {
+        console.error(error);
+      }
+    )
+  }
+
 }

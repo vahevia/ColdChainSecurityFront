@@ -23,9 +23,9 @@ export class ServicesService {
     return this.http.get(`${this.url}`);
   }
 
+  // Users
   getUsers(){  
     return this.http.get(`${this.url}`);
-    
   }
 
   addNewUser( usuario ){
@@ -44,6 +44,7 @@ export class ServicesService {
     return this.http.request('get', this.url2, { body: { "cedula": cedula } })
   }
 
+  // Trucks
   getTrucks() {
     return this.http.get(`${this.urlTruck}`);
   }
@@ -52,6 +53,15 @@ export class ServicesService {
     return this.http.request('get', this.urlTruckBP, { body: { "placa": plate } })
   }
 
+  addNewTruck(truck) {
+    return this.http.post(this.urlTruck, truck);
+  }
+
+  updateTruck(truck) {
+    return this.http.put(this.urlTruck, truck);
+  }
+
+  // Warehouses 
   getWareHouses() {
     return this.http.get(`${this.urlWareH}`);
   }

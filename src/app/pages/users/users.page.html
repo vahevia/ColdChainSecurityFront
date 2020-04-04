@@ -63,7 +63,7 @@
 
       <ngx-datatable-column name="{{ 'USERS.delete' | translate }}" sortable="false" prop="cedula" [flexGrow]="1">
         <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
-            <ion-button md-icon-button color="warning" (click)="borrarUsuario(value)" > 
+            <ion-button md-icon-button color="warning" (click)="deleteUser(value)" > 
               <ion-icon name="trash"></ion-icon>
             </ion-button>
         </ng-template>

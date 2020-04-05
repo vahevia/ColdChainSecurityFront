@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServicesService } from '../../Services/services.service';
 import { Platform, NavController } from '@ionic/angular';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { TranslateConfigService } from '../../translate-config.service';
 
 @Component({
@@ -59,6 +59,28 @@ export class TrucksPage implements OnInit {
 
   createTruck() {
     this.navCtrl.navigateForward('create-trucks');
+  }
+
+  editTruck(plate){
+    let navigationExtras: NavigationExtras = {
+      state: {
+        editando: true,
+        id: plate 
+      }
+    }
+    this.router.navigate(['create-trucks'], navigationExtras); 
+  }
+
+  deleteTruck(value){
+    this.truckServices.deleteTruck(value)
+    .subscribe(
+      (response) => {
+        console.log(response)
+      },
+      (error) => {
+        console.error(error);
+      }
+    )
   }
 
 }

@@ -45,7 +45,15 @@
         "addWareh": "Create Warehouse",
         "editTitle": "Edit Warehouse",
         "state": "State",
-        "country": "Country"
+        "country": "Country",
+        "avenue": "Avenue",
+        "street": "Street",
+        "zone": "Zone",
+        "building": "Building",
+        "apartment": "Apartment",
+        "apartmentNumber": "Apartment Number",
+        "house": "House",
+        "houseNumber": "House Number"
     },
     "TRUCKS": {
         "truckTitle": "Units",

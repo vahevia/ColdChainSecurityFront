@@ -13,20 +13,46 @@ export class CreateUsersPage implements OnInit {
 
   nombre: string;
   apellido: string;
-  cedula: number;
+  cedula: string = '';
   cargo: string;
   username: string;
   password: string;
-  editando: boolean;
+  editando: boolean = false;
   selectedLanguage: string;
+  
 
   constructor(private route: ActivatedRoute, 
     private router: Router, private usuarioService: ServicesService, 
     private navCtrl: NavController, private translateConfigService: TranslateConfigService) {
       this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
-     }
+      this.route.queryParams.subscribe(params => {
+        if (this.router.getCurrentNavigation().extras.state) {
+          this.editando = this.router.getCurrentNavigation().extras.state.editando;
+          if (this.editando === true) {
+            this.cedula = this.router.getCurrentNavigation().extras.state.id;
+          }
+        }
+      })
+    }
 
   ngOnInit() {
+    console.log('edit', this.editando)
+    if (this.editando === true) {
+      this.usuarioService.getUserbyId(this.cedula)
+      .subscribe(
+        (user) => {
+          console.log('USER', user);
+          this.nombre = user[0].usu_nombre,
+          this.apellido = user[0].usu_apellido,
+          this.cargo = user[0].usu_cargo,
+          this.username = user[0].usu_usuario,
+          this.password = user[0].usu_contrasena
+        },
+        (error) => {
+          console.log(error)
+        }
+      )
+    }
   }
 
   crearUsuario(event){
@@ -38,18 +64,26 @@ export class CreateUsersPage implements OnInit {
       username: this.username,
       password: this.password
     }
-    if (this.editando) {
+    if (this.editando === true) {
       this.usuarioService.updateUser(usuario)
       .subscribe(
         (response) => {
           console.log(response)
-        })
+        },
+        (error) => {
+          console.log(error)
+        }
+      )
     } else {
-    this.usuarioService.addNewUser(usuario)
-    .subscribe(
-      (response) => {
-        console.log(response)
-      })
+      this.usuarioService.addNewUser(usuario)
+      .subscribe(
+        (response) => {
+          console.log(response)
+        },
+        (error) => {
+          console.log(error)
+        }
+      )
     }
     this.editando = false;
     console.log('editando ', this.editando)

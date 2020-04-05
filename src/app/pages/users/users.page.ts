@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation, } from '@angular/core';
 import { ServicesService } from '../../Services/services.service';
 import { Platform, NavController } from '@ionic/angular';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { TranslateConfigService } from '../../translate-config.service';
 import { ColumnMode } from '@swimlane/ngx-datatable';
 
@@ -59,6 +59,25 @@ export class UsersPage implements OnInit {
 
   createUser() {
     this.navCtrl.navigateForward('create-users');
+  }
+
+  editUser(cedula) {
+    let navigationExtras: NavigationExtras = {
+      state: {
+        editando: true,
+        id: cedula 
+      }
+    }
+    this.router.navigate(['create-users'], navigationExtras); 
+    this.usuarioService.getUserbyId(cedula)
+    .subscribe(
+      (usuario) => {
+        console.log(usuario);
+      },
+      (error) => {
+        console.log(error)
+      }
+    )
   }
 
   deleteUser(value){

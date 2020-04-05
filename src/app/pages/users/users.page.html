@@ -53,9 +53,9 @@
         </ng-template>
       </ngx-datatable-column> -->
 
-      <ngx-datatable-column name="{{ 'USERS.edit' | translate }}" sortable="false" prop="numero" [flexGrow]="1">
+      <ngx-datatable-column name="{{ 'USERS.edit' | translate }}" sortable="false" prop="cedula" [flexGrow]="1">
         <ng-template let-row="data" let-value="value"  ngx-datatable-cell-template>
-          <ion-button md-icon-button color="warning" (click)="editarUsuario(value)">
+          <ion-button md-icon-button color="warning" (click)="editUser(value)">
             <ion-icon name="create"></ion-icon>
           </ion-button>
         </ng-template>
@@ -73,4 +73,5 @@
 
     <div id="padding"></div>
   <ion-button size="large" expand="full" color="primary" (click)="createUser()" no-margin>Add user</ion-button>
+  <div id="padding"></div>
 </ion-content>

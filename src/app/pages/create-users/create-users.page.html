@@ -63,6 +63,6 @@
   
  </div>
 
-  <ion-button size="large" expand="full" *ngIf="editando"; else showThat (click)="crearUsuario()" color='warning' no-margin>{{ 'USERS.update' | translate }}</ion-button>
-  <ion-button size="large" expand="full" #showThat (click)="crearUsuario()" color='warning' no-margin>{{ 'USERS.addUser' | translate }}</ion-button>
+  <ion-button size="large" expand="full" *ngIf="editando"  (click)="crearUsuario()" color='warning' no-margin>{{ 'USERS.update' | translate }}</ion-button>
+  <ion-button size="large" expand="full" *ngIf="!editando" (click)="crearUsuario()" color='warning' no-margin>{{ 'USERS.addUser' | translate }}</ion-button>
 </ion-content>

@@ -72,17 +72,17 @@
       </ng-template>
      </ngx-datatable-column>
 
-      <ngx-datatable-column name="{{ 'USERS.edit' | translate }}" sortable="false" prop="numero">
+      <ngx-datatable-column name="{{ 'USERS.edit' | translate }}" sortable="false" prop="plate">
         <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
-          <ion-button md-icon-button color="warning" (click)="editarTruck(value)">
+          <ion-button md-icon-button color="warning" (click)="editTruck(value)">
             <ion-icon name="create"></ion-icon>
           </ion-button>
         </ng-template>
       </ngx-datatable-column>
 
-      <ngx-datatable-column name="{{ 'USERS.delete' | translate }}" sortable="false" prop="cedula">
+      <ngx-datatable-column name="{{ 'USERS.delete' | translate }}" sortable="false" prop="plate">
         <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
-          <ion-button md-icon-button color="warning" (click)="borrarTruck(value)" > 
+          <ion-button md-icon-button color="warning" (click)="deleteTruck(value)" > 
             <ion-icon name="trash"></ion-icon>
           </ion-button>
         </ng-template>
@@ -92,4 +92,5 @@
 
     <div id="padding"></div>
     <ion-button size="large" expand="full" color="primary" (click)="createTruck()" no-margin>Add unit</ion-button>
-</ion-content>
+    <div id="padding"></div>
+  </ion-content>

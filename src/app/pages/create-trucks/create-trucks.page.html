@@ -64,14 +64,22 @@
 
   <ion-item id="rounded" lines=none>
     <ion-label position="fixed">{{ 'TRUCKS.wareHouse' | translate }}</ion-label>
+        <ion-select placeholder="{{ 'TRUCKS.wareHouse' | translate }}" [(ngModel)]="warehouse"
+          okText="Ok" cancelText="{{ 'DASHBOARD.cancel' | translate }}">
+          <ion-select-option *ngFor="let almacen of almacenes" value="{{almacen.nombre}}">{{almacen.nombre}}</ion-select-option>
+        </ion-select>
+  </ion-item>
+
+  <!-- <ion-item id="rounded" lines=none>
+    <ion-label position="fixed">{{ 'TRUCKS.wareHouse' | translate }}</ion-label>
       <ion-item id="bottom-border">
         <ion-input placeholder="{{ 'TRUCKS.wareHouse' | translate }}" [(ngModel)]="warehouse"></ion-input>
       </ion-item>
-  </ion-item>
+  </ion-item> -->
 
 </div>
   <div id="padding"></div>
 
-  <ion-button size="large" expand="full" *ngIf="editando"; else showThat (click)="crearUnidad()" color='warning' no-margin>{{ 'USERS.update' | translate }}</ion-button>
-  <ion-button size="large" expand="full" #showThat (click)="crearUnidad()" color='warning' no-margin>{{ 'TRUCKS.addTruck' | translate }}</ion-button>
+  <ion-button size="large" expand="full" *ngIf="editando" (click)="createTruck()" color='warning' no-margin>{{ 'USERS.update' | translate }}</ion-button>
+  <ion-button size="large" expand="full" *ngIf="!editando" (click)="createTruck()" color='warning' no-margin>{{ 'TRUCKS.addTruck' | translate }}</ion-button>
 </ion-content>

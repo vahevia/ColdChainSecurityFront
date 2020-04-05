@@ -45,7 +45,15 @@
         "addWareh": "Crear almacen",
         "editTitle": "Editar almacen",
         "state": "Estado",
-        "country": "Pais"
+        "country": "Pais",
+        "avenue": "Avenida",
+        "street": "Calle",
+        "zone": "Zona",
+        "building": "Edificio",
+        "apartment": "Apartamento",
+        "apartmentNumber": "Número de Apartamento",
+        "house": "Casa",
+        "houseNumber": "Número de casa"
     },
     "TRUCKS": {
         "truckTitle": "Unidades",

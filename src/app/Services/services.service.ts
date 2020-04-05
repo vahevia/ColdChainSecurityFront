@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServicesService {
   url = 'https://coldchainsecurity.herokuapp.com/usuario';
-  url2 = 'https://coldchainsecurity.herokuapp.com/usuarioID';
   urlTruck = 'https://coldchainsecurity.herokuapp.com/unidad';
   urlTruckBP = 'https://coldchainsecurity.herokuapp.com/unidadPlaca';
   urlWareH = 'https://coldchainsecurity.herokuapp.com/almacen';
   urlWareHBN = 'https://coldchainsecurity.herokuapp.com/almacenNombre';
+  urlState = 'https://coldchainsecurity.herokuapp.com/estado';
   
 
   constructor(private http: HttpClient) { }
@@ -40,8 +41,8 @@ export class ServicesService {
     return this.http.put(this.url, usuario)
   }
 
-  getUserbyId( cedula ){
-    return this.http.request('get', this.url2, { body: { "cedula": cedula } })
+  getUserbyId( cedula ): Observable<any>{
+    return this.http.get<any>(this.url + '/'+ cedula)
   }
 
   // Trucks
@@ -49,8 +50,12 @@ export class ServicesService {
     return this.http.get(`${this.urlTruck}`);
   }
 
-  getTruckByPlate(plate) {
-    return this.http.request('get', this.urlTruckBP, { body: { "placa": plate } })
+  getTruckByPlate(plate): Observable<any>{
+    return this.http.get<any>(this.urlTruck + '/'+ plate)
+  }
+
+  deleteTruck(plate){
+    return this.http.request('delete', this.urlTruck, { body: { "placa": plate } });
   }
 
   addNewTruck(truck) {
@@ -65,13 +70,26 @@ export class ServicesService {
   getWareHouses() {
     return this.http.get(`${this.urlWareH}`);
   }
-  getWareHouseByName(name) {
-    return this.http.request('get', this.urlWareHBN, { body: { "nombre": name } })
+  getWareHouseByName(name): Observable<any>{
+    return this.http.get<any>(this.urlWareH + '/'+ name)
   }
+
+  deleteWareHouse(name){
+    return this.http.request('delete', this.urlWareH, { body: { "almacen": name } });
+  }
+
+  addNewWarehouse(warehouse) {
+    return this.http.post(this.urlWareH, warehouse);
+  }
+
+  updateWareHouse(warehouse) {
+    return this.http.put(this.urlWareH, warehouse);
+  }
+
   getCountries() {
     return this.http.get(`https://coldchainsecurity.herokuapp.com/pais`);
   }
-  getStateByCountry(pais) {
-    return this.http.request('get', 'https://coldchainsecurity.herokuapp.com/estado', { body: { "pais": pais } })
+  getStateByCountry(pais): Observable<any>{
+    return this.http.get<any>(this.urlState + '/'+ pais)
   }
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { NavController, MenuController, ToastController, AlertController, LoadingController } from '@ionic/angular';
+import { TranslateConfigService } from '../../translate-config.service';
+import { AuthService } from 'src/app/Services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +10,9 @@ import { NavController, MenuController, ToastController, AlertController, Loadin
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+
   public onLoginForm: FormGroup;
+  selectedLanguage: String;
 
   constructor(
     public navCtrl: NavController,
@@ -16,75 +20,32 @@ export class LoginPage implements OnInit {
     public toastCtrl: ToastController,
     public alertCtrl: AlertController,
     public loadingCtrl: LoadingController,
-    private formBuilder: FormBuilder
-  ) { }
+    private translateConfigService: TranslateConfigService,
+    private authService: AuthService
+  ) { 
+    this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
+  }
 
   ionViewWillEnter() {
     this.menuCtrl.enable(false);
-  }
+  } 
 
   ngOnInit() {
-
-    this.onLoginForm = this.formBuilder.group({
-      'user': [null, Validators.compose([
-        Validators.required
-      ])],
-      'password': [null, Validators.compose([
-        Validators.required
-      ])]
-    });
   }
 
-  // async forgotPass() {
-  //   const alert = await this.alertCtrl.create({
-  //     header: 'Forgot Password?',
-  //     message: 'Enter you email address to send a reset link password.',
-  //     inputs: [
-  //       {
-  //         name: 'email',
-  //         type: 'email',
-  //         placeholder: 'Email'
-  //       }
-  //     ],
-  //     buttons: [
-  //       {
-  //         text: 'Cancel',
-  //         role: 'cancel',
-  //         cssClass: 'secondary',
-  //         handler: () => {
-  //           console.log('Confirm Cancel');
-  //         }
-  //       }, {
-  //         text: 'Confirm',
-  //         handler: async () => {
-  //           const loader = await this.loadingCtrl.create({
-  //             duration: 2000
-  //           });
-
-  //           loader.present();
-  //           loader.onWillDismiss().then(async l => {
-  //             const toast = await this.toastCtrl.create({
-  //               showCloseButton: true,
-  //               message: 'Email was sended successfully.',
-  //               duration: 3000,
-  //               position: 'bottom'
-  //             });
-
-  //             toast.present();
-  //           });
-  //         }
-  //       }
-  //     ]
-  //   });
-
-  //   await alert.present();
-  // }
-
-  // // //
-  
-
-  goToHome() {
+  iniciarSesion(form: NgForm) {
     this.navCtrl.navigateRoot('/home-results');
+    // this.authService.login(form.value.user, form.value.password).subscribe(
+    //   data => {
+    //     console.log("Logged In");
+    //   },
+    //   error => {
+    //     console.log(error);
+    //   },
+    //   () => {
+    //     this.navCtrl.navigateRoot('/home-results');
+    //   }
+    // );
   }
 
 }

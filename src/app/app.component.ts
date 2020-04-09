@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Platform, NavController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-
+import { AuthService } from './services/auth.service';
 import { Pages } from './interfaces/pages';
 
 @Component({
@@ -19,7 +19,8 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    private authService: AuthService
   ) {
     this.appPages = [
       {
@@ -46,19 +47,6 @@ export class AppComponent {
         direct: 'forward',
         icon: 'home'
       },
-      // {
-      //   title: 'About',
-      //   url: '/about',
-      //   direct: 'forward',
-      //   icon: 'information-circle-outline'
-      // },
-
-      // {
-      //   title: 'App Settings',
-      //   url: '/settings',
-      //   direct: 'forward',
-      //   icon: 'cog'
-      // },
       {
         title: 'Log Out',
         url: '/',
@@ -73,15 +61,21 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
-      this.splashScreen.hide();
+      this.authService.getToken();
     }).catch(() => {});
   }
 
-  goToEditProgile() {
-    this.navCtrl.navigateForward('edit-profile');
-  }
-
   logout() {
-    this.navCtrl.navigateRoot('/');
+    this.authService.logout().subscribe(
+      data => {
+        //this.alertService.presentToast(data['message']);        
+      },
+      error => {
+        console.log(error);
+      },
+      () => {
+        this.navCtrl.navigateRoot('/');
+      }
+    );
   }
 }

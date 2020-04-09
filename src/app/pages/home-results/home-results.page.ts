@@ -1,13 +1,10 @@
 import { AfterContentInit, Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import {
-  NavController,
-  AlertController,
-  MenuController,
-  ToastController,
-  PopoverController,
-  ModalController } from '@ionic/angular';
+import { NavController, AlertController, MenuController, ToastController,
+        PopoverController, ModalController } from '@ionic/angular';
 import { TranslateConfigService } from '../../translate-config.service';
 import { Chart } from 'chart.js';
+import { AuthService } from 'src/app/services/auth.service';
+import { User } from 'src/app/models/user';
 
 // Modals
 import { SearchFilterPage } from '../../pages/modal/search-filter/search-filter.page';
@@ -21,9 +18,9 @@ declare var google;
   styleUrls: ['./home-results.page.scss']
 })
 
-
 export class HomeResultsPage implements OnInit {
 
+  user: User;
   map;
   @ViewChild("lineCanvas") lineCanvas: ElementRef;
   @ViewChild('mapElement') mapElement;
@@ -68,9 +65,15 @@ export class HomeResultsPage implements OnInit {
     public alertCtrl: AlertController,
     public modalCtrl: ModalController,
     public toastCtrl: ToastController,
+    private authService: AuthService,
     private translateConfigService: TranslateConfigService
   ) {
     this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
+    this.authService.user().subscribe(
+      user => {
+        this.user = user;
+      }
+    );
   }
 
   // ngOnInit(){

@@ -22,37 +22,86 @@
     </ion-item>
 
     <ion-item id="rounded" lines=none>
-      <ion-label position="fixed">{{ 'WAREHOUSE.numberUnit' | translate }}</ion-label>
+      <ion-label position="fixed">{{ 'WAREHOUSE.avenue' | translate }}</ion-label>
         <ion-item id="bottom-border">
-          <ion-input placeholder="{{ 'WAREHOUSE.numberUnit' | translate }}" [(ngModel)]="cantUnid"></ion-input>
+          <ion-input placeholder="{{ 'WAREHOUSE.avenue' | translate }}" [(ngModel)]="avenida"></ion-input>
         </ion-item>
     </ion-item>
 
     <ion-item id="rounded" lines=none>
-      <ion-label position="fixed">{{ 'WAREHOUSE.address' | translate }}</ion-label>
+      <ion-label position="fixed">{{ 'WAREHOUSE.street' | translate }}</ion-label>
         <ion-item id="bottom-border">
-          <ion-input placeholder="{{ 'WAREHOUSE.address' | translate }}" [(ngModel)]="direccion"></ion-input>
+          <ion-input placeholder="{{ 'WAREHOUSE.street' | translate }}" [(ngModel)]="calle"></ion-input>
+        </ion-item>
+    </ion-item>
+
+    <ion-item id="rounded" lines=none>
+      <ion-label position="fixed">{{ 'WAREHOUSE.zone' | translate }}</ion-label>
+        <ion-item id="bottom-border">
+          <ion-input placeholder="{{ 'WAREHOUSE.zone' | translate }}" [(ngModel)]="zona"></ion-input>
+        </ion-item>
+    </ion-item>
+
+    <ion-item id="rounded" lines=none>
+      <ion-label position="fixed">{{ 'WAREHOUSE.building' | translate }}</ion-label>
+        <ion-item id="bottom-border">
+          <ion-input placeholder="{{ 'WAREHOUSE.building' | translate }}" [(ngModel)]="edificio"></ion-input>
+        </ion-item>
+    </ion-item>
+
+    <ion-item id="rounded" lines=none>
+      <ion-label position="fixed">{{ 'WAREHOUSE.apartment' | translate }}</ion-label>
+        <ion-item id="bottom-border">
+          <ion-input placeholder="{{ 'WAREHOUSE.apartment' | translate }}" [(ngModel)]="apartamento"></ion-input>
+        </ion-item>
+    </ion-item>
+
+    <ion-item id="rounded" lines=none>
+      <ion-label position="fixed">{{ 'WAREHOUSE.apartmentNumber' | translate }}</ion-label>
+        <ion-item id="bottom-border">
+          <ion-input placeholder="{{ 'WAREHOUSE.apartmentNumber' | translate }}" [(ngModel)]="nroApartamento"></ion-input>
+        </ion-item>
+    </ion-item>
+
+    <ion-item id="rounded" lines=none>
+      <ion-label position="fixed">{{ 'WAREHOUSE.house' | translate }}</ion-label>
+        <ion-item id="bottom-border">
+          <ion-input placeholder="{{ 'WAREHOUSE.house' | translate }}" [(ngModel)]="casa"></ion-input>
+        </ion-item>
+    </ion-item>
+
+    <ion-item id="rounded" lines=none>
+      <ion-label position="fixed">{{ 'WAREHOUSE.houseNumber' | translate }}</ion-label>
+        <ion-item id="bottom-border">
+          <ion-input placeholder="{{ 'WAREHOUSE.houseNumber' | translate }}" [(ngModel)]="nroCasa"></ion-input>
         </ion-item>
     </ion-item>
 
     <ion-item id="rounded" lines=none>
       <ion-label position="fixed">{{ 'WAREHOUSE.country' | translate }}</ion-label>
-          <ion-select placeholder="{{ 'WAREHOUSE.choose' | translate }}" [(ngModel)]="country"
-            okText="Ok" cancelText="{{ 'DASHBOARD.cancel' | translate }}">
-            <ion-select-option *ngFor="let country of countries" value="{{country}}">{{country.country}}</ion-select-option>
+          <ion-select placeholder="{{ 'WAREHOUSE.choose' | translate }}" [(ngModel)]="pais" interface="popover" (ionChange)="onChangeCountry()">
+            <ion-select-option *ngFor="let country of countries" value="{{country.lugar_nombre}}">{{country.lugar_nombre}}</ion-select-option>
           </ion-select>
     </ion-item>
 
     <ion-item id="rounded" lines=none>
       <ion-label position="fixed">{{ 'WAREHOUSE.state' | translate }}</ion-label>
-          <ion-select placeholder="{{ 'WAREHOUSE.choose' | translate }}" [(ngModel)]="state"
-            okText="Ok" cancelText="{{ 'DASHBOARD.cancel' | translate }}">
-            <ion-select-option *ngFor="let state of states" value="{{state}}">{{state.state}}</ion-select-option>
+          <ion-select placeholder="{{ 'WAREHOUSE.choose' | translate }}" [(ngModel)]="estado" interface="popover" (ionChange)="onChangeState()">
+            <ion-select-option *ngFor="let state of states" value="{{state.estado}}">{{state.estado}}</ion-select-option>
           </ion-select>
     </ion-item>
+
+    <!-- <ion-item id="rounded" lines=none>
+      <ion-label position="fixed">{{ 'WAREHOUSE.city' | translate }}</ion-label>
+          <ion-select placeholder="{{ 'WAREHOUSE.choose' | translate }}" [(ngModel)]="ciudad" interface="popover">
+            <ion-select-option *ngFor="let city of cities" value="{{city.ciudad}}">{{city.ciudad}}</ion-select-option>
+          </ion-select>
+    </ion-item> -->
+
   </div>
     <div id="padding"></div>
 
-    <ion-button size="large" expand="full" *ngIf="editando"; else showThat (click)="crearUsuario()" color='warning' no-margin>{{ 'USERS.update' | translate }}</ion-button>
-  <ion-button size="large" expand="full" #showThat (click)="crearUsuario()" color='warning' no-margin>{{ 'WAREHOUSE.addWareh' | translate }}</ion-button>
+    <ion-button size="large" expand="full" *ngIf="editando" (click)="createWareHouse()" color='warning' no-margin>{{ 'USERS.update' | translate }}</ion-button>
+  <ion-button size="large" expand="full" *ngIf="!editando" (click)="createWareHouse()" color='warning' no-margin>{{ 'WAREHOUSE.addWareh' | translate }}</ion-button>
+  <div id="padding"></div>
 </ion-content>

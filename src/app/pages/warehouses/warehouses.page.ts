@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServicesService } from '../../Services/services.service';
 import { Platform, NavController } from '@ionic/angular';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { TranslateConfigService } from '../../translate-config.service';
 import { ColumnMode } from '@swimlane/ngx-datatable';
 
@@ -71,6 +71,28 @@ export class WarehousesPage implements OnInit {
 
   createWareh(){
     this.navCtrl.navigateForward('create-warehouses');
+  }
+
+  editWareh(name){
+    let navigationExtras: NavigationExtras = {
+      state: {
+        editando: true,
+        id: name 
+      }
+    }
+    this.router.navigate(['create-warehouses'], navigationExtras);
+  }
+
+  deleteWareh(name){
+    this.warehouseServices.deleteWareHouse(name)
+    .subscribe(
+      (response) => {
+        console.log(response)
+      },
+      (error) => {
+        console.error(error);
+      }
+    )
   }
 
 }

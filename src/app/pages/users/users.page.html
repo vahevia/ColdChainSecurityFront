@@ -25,25 +25,25 @@
 
       <ngx-datatable-column name="{{ 'USERS.name' | translate }}" [flexGrow]="5/2">
         <ng-template let-row="row" ngx-datatable-cell-template>
-          {{row.nombre}}
+          {{row.usu_nombre}}
         </ng-template>
       </ngx-datatable-column>
 
      <ngx-datatable-column name="{{ 'USERS.lastname' | translate }}" [flexGrow]="5/2">
         <ng-template let-row="row" ngx-datatable-cell-template>
-          {{row.apellido}}
+          {{row.usu_apellido}}
         </ng-template>
      </ngx-datatable-column>
 
      <ngx-datatable-column name="{{ 'USERS.id' | translate }}" [flexGrow]="2">
       <ng-template let-row="row" ngx-datatable-cell-template>
-        {{row.cedula}}
+        {{row.usu_cedula}}
       </ng-template>
      </ngx-datatable-column>
 
       <ngx-datatable-column name="{{ 'USERS.position' | translate }}" [flexGrow]="2">
         <ng-template let-row="row" ngx-datatable-cell-template>
-          {{row.cargo}}
+          {{row.usu_cargo}}
         </ng-template>
      </ngx-datatable-column>
 
@@ -53,7 +53,7 @@
         </ng-template>
       </ngx-datatable-column> -->
 
-      <ngx-datatable-column name="{{ 'USERS.edit' | translate }}" sortable="false" prop="cedula" [flexGrow]="1">
+      <ngx-datatable-column name="{{ 'USERS.edit' | translate }}" sortable="false" prop="usu_cedula" [flexGrow]="1">
         <ng-template let-row="data" let-value="value"  ngx-datatable-cell-template>
           <ion-button md-icon-button color="warning" (click)="editUser(value)">
             <ion-icon name="create"></ion-icon>
@@ -61,7 +61,7 @@
         </ng-template>
       </ngx-datatable-column>
 
-      <ngx-datatable-column name="{{ 'USERS.delete' | translate }}" sortable="false" prop="cedula" [flexGrow]="1">
+      <ngx-datatable-column name="{{ 'USERS.delete' | translate }}" sortable="false" prop="usu_cedula" [flexGrow]="1">
         <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
             <ion-button md-icon-button color="warning" (click)="deleteUser(value)" > 
               <ion-icon name="trash"></ion-icon>

@@ -36,10 +36,9 @@
         </ion-item>
     </ion-item>
 
-    <ion-item id="rounded" lines=none>
+    <ion-item lines=none>
       <ion-label position="fixed">{{ 'USERS.position' | translate }}</ion-label>
-          <ion-select placeholder="{{ 'USERS.choose' | translate }}" [(ngModel)]="cargo"
-            okText="Ok" cancelText="{{ 'DASHBOARD.cancel' | translate }}">
+          <ion-select placeholder="{{ 'USERS.choose' | translate }}" [(ngModel)]="cargo" interface="popover">
             <ion-select-option value="Usuario">{{ 'USERS.roleUser' | translate }}</ion-select-option>
             <ion-select-option value="Administrador">{{ 'USERS.roleAdmin' | translate }}</ion-select-option>
           </ion-select>

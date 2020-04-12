@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { tap, catchError, map} from 'rxjs/operators';
+import { User } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +18,11 @@ export class ServicesService {
 
   constructor(private http: HttpClient) { }
 
+  private handleError(error: any) {
+    console.log(error);
+    return throwError(error);
+  }
+
   getInfo(){  
     return this.http.get(`${this.url}`);
   }
@@ -25,8 +32,11 @@ export class ServicesService {
   }
 
   // Users
-  getUsers(){  
-    return this.http.get(`${this.url}`);
+  getUsers(): Observable<any> {  
+    return this.http.get(`${this.url}`).pipe(
+      tap(data => console.log(data)),
+      catchError(this.handleError)
+    );
   }
 
   addNewUser( usuario ){
@@ -70,6 +80,11 @@ export class ServicesService {
   getWareHouses() {
     return this.http.get(`${this.urlWareH}`);
   }
+
+  getWareHousesNames() {
+    return this.http.get(`https://coldchainsecurity.herokuapp.com/almacenes`)
+  }
+
   getWareHouseByName(name): Observable<any>{
     return this.http.get<any>(this.urlWareH + '/'+ name)
   }

@@ -50,7 +50,6 @@ export class CreateWarehousesPage implements OnInit {
     this.warehouseService.getCountries()
     .subscribe(
       (paises) => {
-        console.log('PAISES', paises);
         this.countries = paises;
     },
       (error) => {
@@ -91,7 +90,6 @@ export class CreateWarehousesPage implements OnInit {
           (estados) => {
             this.states = estados;
             this.cities = null;
-            console.log('estados', this.states);
           },
           (error) => {
             console.error(error);
@@ -139,18 +137,17 @@ export class CreateWarehousesPage implements OnInit {
       .subscribe(
         (response) => {
           console.log(response)
+          this.navCtrl.navigateRoot('/warehouses')
         })
     } else {
     this.warehouseService.addNewWarehouse(warehouse)
     .subscribe(
       (response) => {
         console.log(response)
+        this.navCtrl.navigateRoot('/warehouses')
       })
     }
     this.editando = false;
-    console.log('editando ', this.editando)
-    this.navCtrl.navigateRoot('/warehouses')
-    console.log(warehouse)
   }
 
 }

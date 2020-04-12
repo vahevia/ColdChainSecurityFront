@@ -11,7 +11,7 @@ import { TranslateConfigService } from '../../translate-config.service';
 })
 export class TrucksPage implements OnInit {
 
-  rows: Array<any>=[];
+  rows: {};
   tableStyle='material';
   plate: string;
   brand: number;
@@ -33,23 +33,19 @@ export class TrucksPage implements OnInit {
     }
 
   ngOnInit() {
+    this.getTrucks();
+  }
+  
+  ionViewWillEnter() {
+    this.getTrucks();
+  }
+
+  getTrucks(){
     this.truckServices.getTrucks()
     .subscribe(
       (trucks) => {
-        for(let data in trucks){
-          this.rows.push({
-            plate: trucks[data].unidad_placa,
-            brand: trucks[data].unidad_marca,
-            model: trucks[data].unidad_modelo,
-            year: trucks[data].unidad_ano,
-            capacity: trucks[data].unidad_capacidad,
-            driver: trucks[data].unidad_conductor,
-            route: trucks[data].unidad_ruta,
-            warehouse: trucks[data].unidad_almacen
-          });
-          this.rows=[...this.rows]
-      }
-      console.log(this.rows);
+        this.rows = trucks
+        console.log(this.rows);
     },
       (error) => {
         console.error(error);
@@ -75,6 +71,7 @@ export class TrucksPage implements OnInit {
     this.truckServices.deleteTruck(value)
     .subscribe(
       (response) => {
+        this.getTrucks();
         console.log(response)
       },
       (error) => {

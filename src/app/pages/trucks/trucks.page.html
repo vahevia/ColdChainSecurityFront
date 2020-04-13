@@ -24,55 +24,55 @@
 
       <ngx-datatable-column name="{{ 'TRUCKS.plate' | translate }}" >
         <ng-template let-row="row" ngx-datatable-cell-template>
-          {{row.plate}}
+          {{row.unidad_placa}}
         </ng-template>
       </ngx-datatable-column>
 
      <ngx-datatable-column name="{{ 'TRUCKS.brand' | translate }}">
         <ng-template let-row="row" ngx-datatable-cell-template>
-          {{row.brand}}
+          {{row.unidad_marca}}
         </ng-template>
      </ngx-datatable-column>
 
      <ngx-datatable-column name="{{ 'TRUCKS.model' | translate }}">
       <ng-template let-row="row" ngx-datatable-cell-template>
-        {{row.model}}
+        {{row.unidad_modelo}}
       </ng-template>
      </ngx-datatable-column>
 
      <ngx-datatable-column name="{{ 'TRUCKS.year' | translate }}">
       <ng-template let-row="row" ngx-datatable-cell-template>
-        {{row.year}}
+        {{row.unidad_ano}}
       </ng-template>
      </ngx-datatable-column>
 
      <ngx-datatable-column name="{{ 'TRUCKS.capacity' | translate }}">
       <ng-template let-row="row" ngx-datatable-cell-template>
-        {{row.capacity}}
+        {{row.unidad_capacidad}}
       </ng-template>
      </ngx-datatable-column>
 
      <ngx-datatable-column name="{{ 'TRUCKS.driverName' | translate }}">
       <ng-template let-row="row" ngx-datatable-cell-template>
-        {{row.driver}}
+        {{row.unidad_conductor}}
       </ng-template>
      </ngx-datatable-column>
 
      <ngx-datatable-column name="{{ 'TRUCKS.routee' | translate }}">
       <ng-template let-row="row" ngx-datatable-cell-template>
         <span style="white-space: normal;">
-          {{row.route}}
+          {{row.unidad_ruta}}
         </span>
       </ng-template>
      </ngx-datatable-column>
 
      <ngx-datatable-column name="{{ 'TRUCKS.wareHouse' | translate  }}">
       <ng-template let-row="row" ngx-datatable-cell-template>
-        {{row.warehouse}}
+        {{row.unidad_almacen}}
       </ng-template>
      </ngx-datatable-column>
 
-      <ngx-datatable-column name="{{ 'USERS.edit' | translate }}" sortable="false" prop="plate">
+      <ngx-datatable-column name="{{ 'USERS.edit' | translate }}" sortable="false" prop="unidad_placa">
         <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
           <ion-button md-icon-button color="warning" (click)="editTruck(value)">
             <ion-icon name="create"></ion-icon>
@@ -80,7 +80,7 @@
         </ng-template>
       </ngx-datatable-column>
 
-      <ngx-datatable-column name="{{ 'USERS.delete' | translate }}" sortable="false" prop="plate">
+      <ngx-datatable-column name="{{ 'USERS.delete' | translate }}" sortable="false" prop="unidad_placa">
         <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
           <ion-button md-icon-button color="warning" (click)="deleteTruck(value)" > 
             <ion-icon name="trash"></ion-icon>

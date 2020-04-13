@@ -25,13 +25,13 @@
 
         <ngx-datatable-column name="{{ 'WAREHOUSE.wname' | translate }}" [flexGrow]="2">
           <ng-template let-row="row" ngx-datatable-cell-template>
-            {{row.nombre}}
+            {{row.almacen_nombre}}
           </ng-template>
         </ngx-datatable-column>
 
       <ngx-datatable-column name="{{ 'WAREHOUSE.numberUnit' | translate }}" [flexGrow]="1">
           <ng-template let-row="row" ngx-datatable-cell-template>
-            {{row.cantUnid}}
+            {{row.almacen_cantidad_unidades}}
           </ng-template>
       </ngx-datatable-column>
 
@@ -43,17 +43,17 @@
         </ng-template>
       </ngx-datatable-column>
 
-        <ngx-datatable-column name="{{ 'USERS.edit' | translate }}" sortable="false" prop="numero" [flexGrow]="1">
+        <ngx-datatable-column name="{{ 'USERS.edit' | translate }}" sortable="false" prop="almacen_nombre" [flexGrow]="1">
           <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
-            <ion-button md-icon-button color="warning" (click)="editarWareHouse(value)">
+            <ion-button md-icon-button color="warning" (click)="editWareh(value)">
               <ion-icon name="create"></ion-icon>
             </ion-button>
           </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column name="{{ 'USERS.delete' | translate }}" sortable="false" prop="cedula" [flexGrow]="1">
+        <ngx-datatable-column name="{{ 'USERS.delete' | translate }}" sortable="false" prop="almacen_nombre" [flexGrow]="1">
           <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
-            <ion-button md-icon-button color="warning" (click)="borrarWareHouse(value)" > 
+            <ion-button md-icon-button color="warning" (click)="deleteWareh(value)" > 
               <ion-icon name="trash"></ion-icon>
             </ion-button>
           </ng-template>
@@ -63,5 +63,6 @@
 
       <div id="padding"></div>
     <ion-button size="large" expand="full" color="primary" (click)="createWareh()" no-margin>Add warehouse</ion-button>
+    <div id="padding"></div>
   </div>
   </ion-content>

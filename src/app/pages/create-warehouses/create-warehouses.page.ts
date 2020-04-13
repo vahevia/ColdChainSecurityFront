@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { ServicesService } from '../../Services/services.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -11,10 +11,22 @@ import { TranslateConfigService } from '../../translate-config.service';
 })
 export class CreateWarehousesPage implements OnInit {
 
-  countries:  Array<any>=[];
-  states:  Array<any>=[];
-  country: String;
-  state: String;
+  editando: Boolean;
+  nombre: String;
+  avenida: String;
+  calle: String;
+  zona: String;
+  edificio: String;
+  apartamento: String;
+  nroApartamento: String;
+  casa: String;
+  nroCasa: String;
+  countries: {};
+  states: {};
+  cities: {};
+  pais: string;
+  estado: String;
+  ciudad: string;
   selectedLanguage: any;
   
   constructor(
@@ -24,40 +36,118 @@ export class CreateWarehousesPage implements OnInit {
     private translateConfigService: TranslateConfigService
   ) {
     this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
+    this.route.queryParams.subscribe(params => {
+      if (this.router.getCurrentNavigation().extras.state) {
+        this.editando = this.router.getCurrentNavigation().extras.state.editando;
+        if (this.editando === true) {
+          this.nombre = this.router.getCurrentNavigation().extras.state.id;
+        }
+      }
+    })
    }
 
   ngOnInit() {
     this.warehouseService.getCountries()
     .subscribe(
       (paises) => {
-        for(let data in paises){
-          this.countries.push({
-            country: paises[data].lugar_nombre
-          });
-          this.countries=[...this.countries]
-      }
-      console.log(this.countries);
+        this.countries = paises;
     },
       (error) => {
         console.error(error);
       }
     );
 
-    this.warehouseService.getStateByCountry('Venezuela')
+
+    if (this.editando === true) {
+      this.warehouseService.getWareHouseByName(this.nombre)
+      .subscribe(
+        (warehouse) => {
+          this.nombre = warehouse[0].almacen_nombre,
+          this.avenida = warehouse[0].almacen_direccion_avenida, 
+          this.calle = warehouse[0].almacen_direccion_calle, 
+          this.zona = warehouse[0].almacen_direccion_zona , 
+          this.edificio = warehouse[0].almacen_direccion_edificio ,
+          this.apartamento = warehouse[0].almacen_direccion_apartamento , 
+          this.nroApartamento = warehouse[0].almacen_direccion_nro_apartamento ,
+          this.casa = warehouse[0].almacen_direccion_casa , 
+          this.nroCasa = warehouse[0].almacen_direccion_nro_casa ,
+          this.estado = warehouse[0].almacen_direccion_lugar_estado , 
+          this.pais = warehouse[0].almacen_direccion_lugar_pais
+        },
+        (error) => {
+          console.log(error)
+        }
+      )
+    }
+  }
+
+
+  onChangeCountry(){
+    console.log('COUNTRY', this.pais)
+    if (this.pais){
+      this.warehouseService.getStateByCountry(this.pais)
+        .subscribe(
+          (estados) => {
+            this.states = estados;
+            this.cities = null;
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
+    }else {
+      this.states = null;
+      this.cities = null;
+    }
+  }
+
+  onChangeState() {
+    console.log('STATE', this.estado)
+    // if (this.estado){
+    //   this.warehouseService.getCitiesByState(this.estado)
+    //     .subscribe(
+    //       (ciudades) => {
+    //         this.cities = ciudades;
+    //         console.log('ciudades', this.cities);
+    //       },
+    //       (error) => {
+    //         console.error(error);
+    //       }
+    //     );
+    // }else {
+    //   this.cities = null;
+    // }
+  }
+
+  createWareHouse(event) {
+    var warehouse = {
+      nombre: this.nombre,
+      avenida: this.avenida,
+      calle: this.calle,
+      zona: this.zona,
+      edificio: this.edificio,
+      apartamento: this.apartamento,
+      nro_apartamento: this.nroApartamento,
+      casa: this.casa,
+      nro_casa: this.nroCasa,
+      lugar: this.estado
+    }
+    if (this.editando) {
+      this.warehouseService.updateWareHouse(warehouse)
+      .subscribe(
+        (response) => {
+          console.log(response)
+          this.navCtrl.navigateRoot('/warehouses')
+        })
+    } else {
+    this.warehouseService.addNewWarehouse(warehouse)
     .subscribe(
-      (estados) => {
-        for(let data in estados){
-          this.states.push({
-            state: estados[data].estado
-          });
-          this.states=[...this.states]
-      }
-      console.log(this.states);
-    },
-      (error) => {
-        console.error(error);
-      }
-    );
+      (response) => {
+        console.log(response)
+        this.navCtrl.navigateRoot('/warehouses')
+      })
+    }
+    this.editando = false;
   }
 
 }

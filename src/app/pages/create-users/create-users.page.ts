@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { ServicesService } from '../../Services/services.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { TranslateConfigService } from '../../translate-config.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class CreateUsersPage implements OnInit {
   cargo: string;
   username: string;
   password: string;
-  editando: boolean = false;
+  editando: boolean;
   selectedLanguage: string;
   
 
@@ -69,6 +69,8 @@ export class CreateUsersPage implements OnInit {
       .subscribe(
         (response) => {
           console.log(response)
+          this.navCtrl.navigateRoot('/users')
+          console.log(usuario)
         },
         (error) => {
           console.log(error)
@@ -79,6 +81,8 @@ export class CreateUsersPage implements OnInit {
       .subscribe(
         (response) => {
           console.log(response)
+          this.navCtrl.navigateRoot('/users')
+          console.log(usuario)
         },
         (error) => {
           console.log(error)
@@ -86,9 +90,6 @@ export class CreateUsersPage implements OnInit {
       )
     }
     this.editando = false;
-    console.log('editando ', this.editando)
-    this.navCtrl.navigateRoot('/users')
-    console.log(usuario)
   }
 
 }

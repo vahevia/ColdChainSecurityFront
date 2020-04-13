@@ -58,7 +58,7 @@ export class CreateTrucksPage implements OnInit {
       )
     }
 
-    this.truckService.getWareHouses()
+    this.truckService.getWareHousesNames()
       .subscribe(
         (wh) => {
           for(let data in wh){
@@ -67,7 +67,6 @@ export class CreateTrucksPage implements OnInit {
             });
             this.almacenes=[...this.almacenes]
         }
-        console.log('ALMACENES', this.almacenes);
       },
         (error) => {
           console.error(error);
@@ -91,19 +90,20 @@ export class CreateTrucksPage implements OnInit {
         this.truckService.updateTruck(truck)
         .subscribe(
           (response) => {
+            this.navCtrl.navigateRoot('/trucks')
+            console.log(truck)
             console.log(response)
           })
       } else {
       this.truckService.addNewTruck(truck)
       .subscribe(
         (response) => {
+          this.navCtrl.navigateRoot('/trucks')
+          console.log(truck)
           console.log(response)
         })
       }
-      this.editando = false;
-      console.log('editando ', this.editando)
-      this.navCtrl.navigateRoot('/trucks')
-      console.log(truck)
+      this.editando = false;     
   }
 
 }

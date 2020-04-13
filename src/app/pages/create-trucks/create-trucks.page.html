@@ -64,8 +64,7 @@
 
   <ion-item id="rounded" lines=none>
     <ion-label position="fixed">{{ 'TRUCKS.wareHouse' | translate }}</ion-label>
-        <ion-select placeholder="{{ 'TRUCKS.wareHouse' | translate }}" [(ngModel)]="warehouse"
-          okText="Ok" cancelText="{{ 'DASHBOARD.cancel' | translate }}">
+        <ion-select placeholder="{{ 'TRUCKS.wareHouse' | translate }}" [(ngModel)]="warehouse" interface="popover">
           <ion-select-option *ngFor="let almacen of almacenes" value="{{almacen.nombre}}">{{almacen.nombre}}</ion-select-option>
         </ion-select>
   </ion-item>
@@ -82,4 +81,5 @@
 
   <ion-button size="large" expand="full" *ngIf="editando" (click)="createTruck()" color='warning' no-margin>{{ 'USERS.update' | translate }}</ion-button>
   <ion-button size="large" expand="full" *ngIf="!editando" (click)="createTruck()" color='warning' no-margin>{{ 'TRUCKS.addTruck' | translate }}</ion-button>
+  <div id="padding"></div>
 </ion-content>

@@ -21,6 +21,9 @@
         "blockChainDesc": "Number of blocks: {{number}} \n Other relevant information" ,
         "cancel": "cancel"       
     },
+    "REPORTS": {
+        
+    },
     "USERS": {
         "users": "Users",
         "name": "Name",
@@ -44,6 +47,7 @@
         "numberUnit": "Number of units",
         "addWareh": "Create Warehouse",
         "editTitle": "Edit Warehouse",
+        "city": "City",
         "state": "State",
         "country": "Country",
         "avenue": "Avenue",

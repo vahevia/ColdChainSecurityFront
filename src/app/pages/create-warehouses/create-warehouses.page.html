@@ -17,7 +17,14 @@
     <ion-item id="rounded" lines=none>
       <ion-label position="fixed">{{ 'WAREHOUSE.wname' | translate }}</ion-label>
         <ion-item id="bottom-border">
-          <ion-input placeholder="{{ 'WAREHOUSE.wname' | translate }}" [(ngModel)]="nombre"></ion-input>
+          <ion-input placeholder="{{ 'WAREHOUSE.wname' | translate }}" [(ngModel)]="nombre" [disabled]="isdisabled"></ion-input>
+        </ion-item>
+    </ion-item>
+
+    <ion-item id="rounded" lines=none *ngIf="editando">
+      <ion-label position="fixed">{{ 'WAREHOUSE.wnewname' | translate }}</ion-label>
+        <ion-item id="bottom-border">
+          <ion-input placeholder="{{ 'WAREHOUSE.wnewname' | translate }}" [(ngModel)]="nuevoNombre"></ion-input>
         </ion-item>
     </ion-item>
 

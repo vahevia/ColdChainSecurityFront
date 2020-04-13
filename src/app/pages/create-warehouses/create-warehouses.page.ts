@@ -13,6 +13,7 @@ export class CreateWarehousesPage implements OnInit {
 
   editando: Boolean;
   nombre: String;
+  nuevoNombre: String;
   avenida: String;
   calle: String;
   zona: String;
@@ -28,6 +29,7 @@ export class CreateWarehousesPage implements OnInit {
   estado: String;
   ciudad: string;
   selectedLanguage: any;
+  isdisabled: boolean = false;
   
   constructor(
     private route: ActivatedRoute, 
@@ -41,6 +43,7 @@ export class CreateWarehousesPage implements OnInit {
         this.editando = this.router.getCurrentNavigation().extras.state.editando;
         if (this.editando === true) {
           this.nombre = this.router.getCurrentNavigation().extras.state.id;
+          this.isdisabled = true;
         }
       }
     })
@@ -130,7 +133,8 @@ export class CreateWarehousesPage implements OnInit {
       nro_apartamento: this.nroApartamento,
       casa: this.casa,
       nro_casa: this.nroCasa,
-      lugar: this.estado
+      lugar: this.estado,
+      nuevoNombre: this.nuevoNombre
     }
     if (this.editando) {
       this.warehouseService.updateWareHouse(warehouse)
@@ -138,6 +142,7 @@ export class CreateWarehousesPage implements OnInit {
         (response) => {
           console.log(response)
           this.navCtrl.navigateRoot('/warehouses')
+          this.editando = false;
         })
     } else {
     this.warehouseService.addNewWarehouse(warehouse)
@@ -145,9 +150,10 @@ export class CreateWarehousesPage implements OnInit {
       (response) => {
         console.log(response)
         this.navCtrl.navigateRoot('/warehouses')
+        this.editando = false;
       })
     }
-    this.editando = false;
+    
   }
 
 }

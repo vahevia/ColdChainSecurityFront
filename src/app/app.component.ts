@@ -4,7 +4,8 @@ import { Platform, NavController } from '@ionic/angular';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AuthenticationService } from './Services/authentication.service';
 import { Role } from './models/role';
-import { User } from './models/user'
+import { User } from './models/user';
+import { TranslateConfigService } from './translate-config.service';
 
 import { Pages } from './interfaces/pages';
 
@@ -17,14 +18,17 @@ export class AppComponent {
 
   public appPages: Array<Pages>;
   currentUser: User;
+  selectedLanguage: any;
 
   constructor(
     private platform: Platform,
     private statusBar: StatusBar,
     public navCtrl: NavController,
     private router: Router,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private translateConfigService: TranslateConfigService
   ) {
+    this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
     this.appPages = [
       {
@@ -50,12 +54,6 @@ export class AppComponent {
         url: '/warehouses',
         direct: 'forward',
         icon: 'home'
-      },
-      {
-        title: 'Log Out',
-        url: '/',
-        direct: 'forward',
-        icon: 'log-out'
       }
     ];
 
@@ -72,7 +70,10 @@ export class AppComponent {
     return this.currentUser && this.currentUser.cargo === Role.Admin;
   }
 
+
   logout() {
+    console.log('el que tal')
     this.authenticationService.logout();
+    this.router.navigate(['/'])
   }
 }

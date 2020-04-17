@@ -37,6 +37,12 @@
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
+          <ion-item button color="dark" (click)= "logout()">
+            <ion-icon slot="start" [name]="log-out" color="light"></ion-icon>
+            <ion-label>
+              {{ 'LOGIN.logout' | translate }}
+            </ion-label>
+          </ion-item>
         </ion-list>
       </ion-content>
     </ion-menu>

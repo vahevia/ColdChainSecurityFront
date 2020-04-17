@@ -39,6 +39,7 @@
     },
     "WAREHOUSE": {
         "warehouse": "Almacen",
+        "wnewname": "Nuevo Nombre",
         "wname": "Nombre",
         "address": "Dirección",
         "numberUnit": "Número de unidades",

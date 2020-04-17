@@ -42,6 +42,7 @@
     },
     "WAREHOUSE": {
         "warehouse": "Warehouse",
+        "wnewname": "New Name",
         "wname": "Name",
         "address": "Address",
         "numberUnit": "Number of units",

@@ -4,6 +4,9 @@ import { Platform, NavController } from '@ionic/angular';
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { TranslateConfigService } from '../../translate-config.service';
 import { ColumnMode } from '@swimlane/ngx-datatable';
+import { AuthenticationService } from '../../Services/authentication.service';
+import { User } from 'src/app/models/user';
+import { Role } from 'src/app/models/role';
 
 @Component({
   selector: 'app-warehouses',
@@ -13,7 +16,6 @@ import { ColumnMode } from '@swimlane/ngx-datatable';
 export class WarehousesPage implements OnInit {
 
   ColumnMode = ColumnMode;
-  
   rows: {};
   aux: Array<any> = [];
   tableStyle='material';
@@ -21,17 +23,24 @@ export class WarehousesPage implements OnInit {
   cantUnid: number;
   direccion: string;
   selectedLanguage: string;
+  currentUser: User;
+  isAdmin: boolean;
+
   constructor(
     private warehouseServices: ServicesService,
     public navCtrl: NavController,
     private router: Router,
-    private translateConfigService: TranslateConfigService
+    private translateConfigService: TranslateConfigService,
+    private authenticationService: AuthenticationService
     ) {
       this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
+      this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+      this.isAdmin = this.currentUser.cargo === Role.Admin
      }
 
   ngOnInit() {
     this.getWarehouses();
+
   }
 
   ionViewWillEnter() {

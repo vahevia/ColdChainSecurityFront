@@ -43,7 +43,7 @@
         </ng-template>
       </ngx-datatable-column>
 
-        <ngx-datatable-column name="{{ 'USERS.edit' | translate }}" sortable="false" prop="almacen_nombre" [flexGrow]="1">
+        <ngx-datatable-column *ngIf="isAdmin" name="{{ 'USERS.edit' | translate }}" sortable="false" prop="almacen_nombre" [flexGrow]="1">
           <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
             <ion-button md-icon-button color="warning" (click)="editWareh(value)">
               <ion-icon name="create"></ion-icon>
@@ -51,7 +51,7 @@
           </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column name="{{ 'USERS.delete' | translate }}" sortable="false" prop="almacen_nombre" [flexGrow]="1">
+        <ngx-datatable-column *ngIf="isAdmin" name="{{ 'USERS.delete' | translate }}" sortable="false" prop="almacen_nombre" [flexGrow]="1">
           <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
             <ion-button md-icon-button color="warning" (click)="deleteWareh(value)" > 
               <ion-icon name="trash"></ion-icon>
@@ -62,7 +62,7 @@
       </ngx-datatable>
 
       <div id="padding"></div>
-    <ion-button size="large" expand="full" color="primary" (click)="createWareh()" no-margin>Add warehouse</ion-button>
+    <ion-button  *ngIf="isAdmin" size="large" expand="full" color="primary" (click)="createWareh()" no-margin>Add warehouse</ion-button>
     <div id="padding"></div>
   </div>
   </ion-content>

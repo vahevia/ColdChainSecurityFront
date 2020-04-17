@@ -13,36 +13,33 @@
     </div>
 
     <!-- Login form -->
-    <form [formGroup]="onLoginForm" class="list-form">
+    <form [formGroup]="loginForm" class="list-form" (ngSubmit)="onSubmit()">
       <ion-item no-padding class="animated fadeInUp">
         <ion-label position="floating">
           <ion-icon name="mail" item-start></ion-icon>
-          User
+          {{ 'LOGIN.user' | translate }}
         </ion-label>
-        <ion-input color="secondary" type="email" formControlName="user"></ion-input>
+        <ion-input color="secondary" type="email" formControlName="username"></ion-input>
       </ion-item>
       
 
       <ion-item no-padding class="animated fadeInUp">
         <ion-label position="floating">
           <ion-icon name="lock" item-start></ion-icon>
-          Password
+          {{ 'LOGIN.password' | translate }}
         </ion-label>
         <ion-input color="secondary" type="password" formControlName="password"></ion-input>
       </ion-item>
+
+      <div id="padding"></div>
+      <div>
+        <ion-button icon-left size="medium" expand="full" shape="round" color="warning" type="submit" tappable>
+          <ion-icon name="log-in"></ion-icon>
+          {{ 'LOGIN.signIn' | translate }}
+        </ion-button>
+      </div>
       
     </form>
-
-    <div id="padding"></div>
-    <div>
-      <ion-button icon-left size="medium" expand="full" shape="round" color="warning" (click)="goToHome()"  tappable>
-        <ion-icon name="log-in"></ion-icon>
-        Signin
-      </ion-button>
-    </div>
-
-    <!-- Other links -->
-    
 
   </div>
 </ion-content>

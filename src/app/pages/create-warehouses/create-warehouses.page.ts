@@ -66,6 +66,7 @@ export class CreateWarehousesPage implements OnInit {
       .subscribe(
         (warehouse) => {
           this.nombre = warehouse[0].almacen_nombre,
+          this.nuevoNombre = warehouse[0].almacen_nombre,
           this.avenida = warehouse[0].almacen_direccion_avenida, 
           this.calle = warehouse[0].almacen_direccion_calle, 
           this.zona = warehouse[0].almacen_direccion_zona , 
@@ -75,7 +76,8 @@ export class CreateWarehousesPage implements OnInit {
           this.casa = warehouse[0].almacen_direccion_casa , 
           this.nroCasa = warehouse[0].almacen_direccion_nro_casa ,
           this.estado = warehouse[0].almacen_direccion_lugar_estado , 
-          this.pais = warehouse[0].almacen_direccion_lugar_pais
+          this.pais = warehouse[0].almacen_direccion_lugar_pais;
+          console.log(warehouse);
         },
         (error) => {
           console.log(error)
@@ -123,6 +125,7 @@ export class CreateWarehousesPage implements OnInit {
   }
 
   createWareHouse(event) {
+    console.log('NOMBRE', this.nombre)
     var warehouse = {
       nombre: this.nombre,
       avenida: this.avenida,
@@ -134,7 +137,7 @@ export class CreateWarehousesPage implements OnInit {
       casa: this.casa,
       nro_casa: this.nroCasa,
       lugar: this.estado,
-      nuevoNombre: this.nuevoNombre
+      nombreNuevo: this.nuevoNombre
     }
     if (this.editando) {
       this.warehouseService.updateWareHouse(warehouse)

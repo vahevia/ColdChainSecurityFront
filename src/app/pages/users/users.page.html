@@ -53,7 +53,7 @@
         </ng-template>
       </ngx-datatable-column> -->
 
-      <ngx-datatable-column name="{{ 'USERS.edit' | translate }}" sortable="false" prop="usu_cedula" [flexGrow]="1">
+      <ngx-datatable-column *ngIf="isAdmin" name="{{ 'USERS.edit' | translate }}" sortable="false" prop="usu_cedula" [flexGrow]="1">
         <ng-template let-row="data" let-value="value"  ngx-datatable-cell-template>
           <ion-button md-icon-button color="warning" (click)="editUser(value)">
             <ion-icon name="create"></ion-icon>
@@ -61,7 +61,7 @@
         </ng-template>
       </ngx-datatable-column>
 
-      <ngx-datatable-column name="{{ 'USERS.delete' | translate }}" sortable="false" prop="usu_cedula" [flexGrow]="1">
+      <ngx-datatable-column *ngIf="isAdmin" name="{{ 'USERS.delete' | translate }}" sortable="false" prop="usu_cedula" [flexGrow]="1">
         <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
             <ion-button md-icon-button color="warning" (click)="deleteUser(value)" > 
               <ion-icon name="trash"></ion-icon>
@@ -72,6 +72,6 @@
     </ngx-datatable>
 
     <div id="padding"></div>
-  <ion-button size="large" expand="full" color="primary" (click)="createUser()" no-margin>Add user</ion-button>
+  <ion-button *ngIf="isAdmin" size="large" expand="full" color="primary" (click)="createUser()" no-margin>Add user</ion-button>
   <div id="padding"></div>
 </ion-content>

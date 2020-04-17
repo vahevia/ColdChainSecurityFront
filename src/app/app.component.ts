@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { Platform, NavController } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { AuthenticationService } from './Services/authentication.service';
+import { Role } from './models/role';
+import { User } from './models/user'
 
 import { Pages } from './interfaces/pages';
 
@@ -14,13 +16,16 @@ import { Pages } from './interfaces/pages';
 export class AppComponent {
 
   public appPages: Array<Pages>;
+  currentUser: User;
 
   constructor(
     private platform: Platform,
-    private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    private router: Router,
+    private authenticationService: AuthenticationService
   ) {
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
     this.appPages = [
       {
         title: 'Home',
@@ -46,19 +51,6 @@ export class AppComponent {
         direct: 'forward',
         icon: 'home'
       },
-      // {
-      //   title: 'About',
-      //   url: '/about',
-      //   direct: 'forward',
-      //   icon: 'information-circle-outline'
-      // },
-
-      // {
-      //   title: 'App Settings',
-      //   url: '/settings',
-      //   direct: 'forward',
-      //   icon: 'cog'
-      // },
       {
         title: 'Log Out',
         url: '/',
@@ -73,15 +65,14 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
-      this.splashScreen.hide();
     }).catch(() => {});
   }
 
-  goToEditProgile() {
-    this.navCtrl.navigateForward('edit-profile');
+  get isAdmin() {
+    return this.currentUser && this.currentUser.cargo === Role.Admin;
   }
 
   logout() {
-    this.navCtrl.navigateRoot('/');
+    this.authenticationService.logout();
   }
 }

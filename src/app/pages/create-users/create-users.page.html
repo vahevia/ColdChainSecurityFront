@@ -5,63 +5,70 @@
     </ion-buttons>
     <ion-title>
         <ion-text color="light">
-          <ion-text color="light" class="fw700">Create User</ion-text>
+          <ion-text color="light" class="fw700">{{ 'USERS.createUser' | translate }}</ion-text>
         </ion-text>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <div id="padding"></div>
-  <div id="container">
-    
-    <ion-item id="rounded" lines=none>
-      <ion-label position="fixed">{{ 'USERS.name' | translate }}</ion-label>
-        <ion-item id="bottom-border">
-          <ion-input placeholder="{{ 'USERS.name' | translate }}" [(ngModel)]="nombre"></ion-input>
-        </ion-item>
-    </ion-item>
+<ion-content padding class="background-content">
+  <ion-grid>
+    <ion-row justify-content-center>
+      <ion-col align-self-center size-md="6" size-lg="5" size-xs="12" >
+        <ion-card class="card-color">
+          <ion-card-content>
+            <ion-label position="fixed">{{ 'USERS.name' | translate }}</ion-label>
+          <ion-list class="line-input">
+            <ion-item>
+              <ion-input placeholder="{{ 'USERS.name' | translate }}" [(ngModel)]="nombre"></ion-input>
+            </ion-item>
+          </ion-list>
+          <ion-label position="fixed">{{ 'USERS.lastname' | translate }}</ion-label>
+          <ion-list class="line-input"> 
+            <ion-item>
+              <ion-input placeholder="{{ 'USERS.lastname' | translate }}" [(ngModel)]="apellido"></ion-input>
+            </ion-item>
+          </ion-list> 
+          <ion-label position="fixed">{{ 'USERS.id' | translate }}</ion-label>
+          <ion-list class="line-input">
+            <ion-item id="bottom-border">
+              <ion-input placeholder="{{ 'USERS.id' | translate }}" [(ngModel)]="cedula"></ion-input>
+            </ion-item>
+          </ion-list>
+          <ion-label position="fixed">{{ 'USERS.position' | translate }}</ion-label>
+          <ion-list class="line-input">
+            <ion-item>
+              <ion-select placeholder="{{ 'USERS.choose' | translate }}" [(ngModel)]="cargo" interface="popover">
+                <ion-select-option value="Usuario">{{ 'USERS.roleUser' | translate }}</ion-select-option>
+                <ion-select-option value="Administrador">{{ 'USERS.roleAdmin' | translate }}</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+          <ion-label position="fixed">{{ 'LOGIN.user' | translate }}</ion-label>
+            <ion-list class="line-input">
+                <ion-item>
+                  <ion-input placeholder="{{ 'LOGIN.user' | translate }}" [(ngModel)]="username"></ion-input>
+                </ion-item>
+            </ion-list>
+            <ion-label position="fixed">{{ 'LOGIN.password' | translate }}</ion-label>
+            <ion-list class="line-input">
+              <ion-item id="bottom-border">
+                <ion-input placeholder="{{ 'LOGIN.password' | translate }}" [(ngModel)]="password"></ion-input>
+              </ion-item>
+            </ion-list>
 
-    <ion-item id="rounded" lines=none>
-      <ion-label position="fixed">{{ 'USERS.lastname' | translate }}</ion-label>
-        <ion-item id="bottom-border">
-          <ion-input placeholder="{{ 'USERS.lastname' | translate }}" [(ngModel)]="apellido"></ion-input>
-        </ion-item>
-    </ion-item>
+            <div id="padding"></div>
 
-    <ion-item id="rounded" lines=none>
-      <ion-label position="fixed">{{ 'USERS.id' | translate }}</ion-label>
-        <ion-item id="bottom-border">
-          <ion-input placeholder="{{ 'USERS.id' | translate }}" [(ngModel)]="cedula"></ion-input>
-        </ion-item>
-    </ion-item>
+            <ion-button size="large" expand="block" *ngIf="editando"  (click)="crearUsuario()" color='primary'>{{ 'USERS.update' | translate }}</ion-button>
+            <ion-button size="large" expand="block" *ngIf="!editando" (click)="crearUsuario()" color='primary'>{{ 'USERS.addUser' | translate }}</ion-button>
 
-    <ion-item lines=none>
-      <ion-label position="fixed">{{ 'USERS.position' | translate }}</ion-label>
-          <ion-select placeholder="{{ 'USERS.choose' | translate }}" [(ngModel)]="cargo" interface="popover">
-            <ion-select-option value="Usuario">{{ 'USERS.roleUser' | translate }}</ion-select-option>
-            <ion-select-option value="Administrador">{{ 'USERS.roleAdmin' | translate }}</ion-select-option>
-          </ion-select>
-    </ion-item>
-
-    <ion-item id="rounded" lines=none>
-      <ion-label position="fixed">{{ 'LOGIN.user' | translate }}</ion-label>
-        <ion-item id="bottom-border">
-          <ion-input placeholder="{{ 'LOGIN.user' | translate }}" [(ngModel)]="username"></ion-input>
-        </ion-item>
-    </ion-item>
-
-    <ion-item id="rounded" lines=none>
-      <ion-label position="fixed">{{ 'LOGIN.password' | translate }}</ion-label>
-        <ion-item id="bottom-border">
-          <ion-input placeholder="{{ 'LOGIN.password' | translate }}" [(ngModel)]="password"></ion-input>
-        </ion-item>
-    </ion-item>
-
-    <div id="padding"></div>
-  
- </div>
-
-  <ion-button size="large" expand="full" *ngIf="editando"  (click)="crearUsuario()" color='warning' no-margin>{{ 'USERS.update' | translate }}</ion-button>
-  <ion-button size="large" expand="full" *ngIf="!editando" (click)="crearUsuario()" color='warning' no-margin>{{ 'USERS.addUser' | translate }}</ion-button>
+            <div id="padding"></div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+  
+
+  

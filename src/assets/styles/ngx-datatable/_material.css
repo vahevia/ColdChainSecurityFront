@@ -111,14 +111,14 @@ That's all.
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAABCAYAAAD5PA/NAAAAFklEQVQI12PQkNdi1VTQ5gbSwkAsDQARLAIGtOSFUAAAAABJRU5ErkJggg==);
   }
   .ngx-datatable.material .datatable-header {
-    border: 1px solid #0b3c5d;
+    /* border: 1px solid #0b3c5d; */
     overflow: hidden;
     border-radius: 5px; }
     .ngx-datatable.material .datatable-header .datatable-header-cell {
       text-align: left;
       padding: 0.9rem 1.2rem;
       font-weight: 400;
-      border-right: 1px solid #0b3c5d;
+      /* border-right: 1px solid #0b3c5d; */
       background-color: #328CC1	;
       color: #f7f5e6;
       vertical-align: bottom;

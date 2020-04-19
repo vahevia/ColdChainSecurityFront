@@ -5,7 +5,14 @@
         "password": "Password",
         "signIn": "Sign In",
         "logout": "Log Out",
-        "language": "Change language"
+        "language": "Change language",
+        "error": "Username or password is incorrect"
+    },
+    "MENU": {
+        "home": "Home",
+        "users": "Users",
+        "units": "Units",
+        "warehouses": "Warehouses"
     },
     "DASHBOARD": {
         "dashboard": "Map",
@@ -25,6 +32,7 @@
         
     },
     "USERS": {
+        "createUser": "Create User",
         "users": "Users",
         "name": "Name",
         "lastname": "Lastname",
@@ -32,7 +40,7 @@
         "position": "Position",
         "edit": "Edit",
         "delete": "Delete",
-        "addUser": "Create User",
+        "addUser": "Add User",
         "choose": "Choose one",
         "add": "Add",
         "update": "Update",
@@ -41,12 +49,13 @@
         "roleAdmin": "Administrator"
     },
     "WAREHOUSE": {
+        "warehouses": "Warehouses",
         "warehouse": "Warehouse",
         "wnewname": "New Name",
         "wname": "Name",
         "address": "Address",
         "numberUnit": "Number of units",
-        "addWareh": "Create Warehouse",
+        "addWareh": "Add Warehouse",
         "editTitle": "Edit Warehouse",
         "city": "City",
         "state": "State",
@@ -61,6 +70,7 @@
         "houseNumber": "House Number"
     },
     "TRUCKS": {
+        "createTruck": "Create Unit",
         "truckTitle": "Units",
         "truck": "Unit",
         "driverName": "Driver",
@@ -71,7 +81,7 @@
         "capacity": "Capacity",
         "routee": "Route",
         "wareHouse": "Warehouse",
-        "addTruck": "Create Unit",
+        "addTruck": "Add Unit",
         "editTitle": "Edit Unit"
     }
 }

@@ -10,12 +10,6 @@
                 <ion-text color="light" >
                   <strong>ColdChain</strong>
                 </ion-text>
-                <!-- <a class="text08" tappable (click)="goToEditProgile()">
-                  <ion-text color="medium">
-                    <ion-icon name="contact"></ion-icon>
-                    <strong>edit profile</strong>
-                  </ion-text> 
-                </a> <ion-text color="secondary"> | </ion-text>  -->
               </ion-menu-toggle>
 
           </ion-item>
@@ -25,20 +19,18 @@
 
       <ion-content class="bg-profile">
         <ion-list>
-          <ion-list-header color="dark">
-            <ion-label>Menu</ion-label>
-          </ion-list-header>
+          
 
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
             <ion-item [routerLink]="[p.url]" color="dark">
               <ion-icon slot="start" [name]="p.icon" color="light"></ion-icon>
               <ion-label>
-                {{p.title}}
+                {{ p.title | translate}}
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
           <ion-item button color="dark" (click)= "logout()">
-            <ion-icon slot="start" [name]="log-out" color="light"></ion-icon>
+            <ion-icon slot="start" name="log-out" color="light"></ion-icon>
             <ion-label>
               {{ 'LOGIN.logout' | translate }}
             </ion-label>

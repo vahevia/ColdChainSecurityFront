@@ -1,7 +1,13 @@
-:host {
-    ion-content {
-        --background:  var(--ion-color-primary);
-    }
+.pl-2{
+    height: 15px;
+    width: 15px;
+    margin: auto;
+}
+
+.alert{
+    color: #F53D3D;
+    text-align: center;
+    font-weight: 700;
 }
 
 .paz {
@@ -12,3 +18,22 @@
 #padding {
     padding-bottom: 20px;
 }
+
+$height100: 100%;
+
+ion-grid {
+    width:100%;
+    height: $height100;
+}
+
+.log-form {
+    padding-top: 50px;
+}
+
+.logo {
+    width: 200px;
+    height: 150px;
+    margin: auto ;
+    background: url("/assets/img/coldchain-logo-trans.png") no-repeat;
+    background-size: 100%;
+  }

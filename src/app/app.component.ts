@@ -32,25 +32,25 @@ export class AppComponent {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
     this.appPages = [
       {
-        title: 'Home',
+        title: 'MENU.home',
         url: '/home-results',
         direct: 'root',
         icon: 'home'
       },
       {
-        title: 'Users',
+        title: 'MENU.users',
         url: '/users',
         direct: 'forward',
         icon: 'people'
       },
       {
-        title: 'Units',
+        title: 'MENU.units',
         url: '/trucks',
         direct: 'forward',
         icon: 'car'
       },
       {
-        title: 'Warehouses',
+        title: 'MENU.warehouses',
         url: '/warehouses',
         direct: 'forward',
         icon: 'home'

@@ -5,81 +5,79 @@
     </ion-buttons>
     <ion-title>
         <ion-text color="light">
-          <ion-text color="light" class="fw700">Create Unit</ion-text>
+          <ion-text color="light" class="fw700">{{ 'TRUCKS.createTruck' | translate }}</ion-text>
         </ion-text>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <div id="container">
-  <ion-item id="rounded" lines=none>
-    <ion-label position="fixed">{{ 'TRUCKS.plate' | translate }}</ion-label>
-      <ion-item id="bottom-border">
-        <ion-input placeholder="{{ 'TRUCKS.plate' | translate }}" [(ngModel)]="plate"></ion-input>
-      </ion-item>
-  </ion-item>
-
-  <ion-item id="rounded" lines=none>
-    <ion-label position="fixed">{{ 'TRUCKS.brand' | translate }}</ion-label>
-      <ion-item id="bottom-border">
-        <ion-input placeholder="{{ 'TRUCKS.brand' | translate }}" [(ngModel)]="brand"></ion-input>
-      </ion-item>
-  </ion-item>
-
-  <ion-item id="rounded" lines=none>
-    <ion-label position="fixed">{{ 'TRUCKS.model' | translate }}</ion-label>
-      <ion-item id="bottom-border">
-        <ion-input placeholder="{{ 'TRUCKS.model' | translate }}" [(ngModel)]="model"></ion-input>
-      </ion-item>
-  </ion-item>
-
-  <ion-item id="rounded" lines=none>
-    <ion-label position="fixed">{{ 'TRUCKS.year' | translate }}</ion-label>
-      <ion-item id="bottom-border">
-        <ion-input placeholder="{{ 'TRUCKS.year' | translate }}" [(ngModel)]="year"></ion-input>
-      </ion-item>
-  </ion-item>
-
-  <ion-item id="rounded" lines=none>
-    <ion-label position="fixed">{{ 'TRUCKS.capacity' | translate }}</ion-label>
-      <ion-item id="bottom-border">
-        <ion-input placeholder="{{ 'TRUCKS.capacity' | translate }}" [(ngModel)]="capacity"></ion-input>
-      </ion-item>
-  </ion-item>
-
-  <ion-item id="rounded" lines=none>
-    <ion-label position="fixed">{{ 'TRUCKS.driverName' | translate }}</ion-label>
-      <ion-item id="bottom-border">
-        <ion-input placeholder="{{ 'TRUCKS.driverName' | translate }}" [(ngModel)]="driver"></ion-input>
-      </ion-item>
-  </ion-item>
-
-  <ion-item id="rounded" lines=none>
-    <ion-label position="fixed">{{ 'TRUCKS.routee' | translate }}</ion-label>
-      <ion-item id="bottom-border">
-        <ion-input placeholder="{{ 'TRUCKS.routee' | translate }}" [(ngModel)]="routee"></ion-input>
-      </ion-item>
-  </ion-item>
-
-  <ion-item id="rounded" lines=none>
-    <ion-label position="fixed">{{ 'TRUCKS.wareHouse' | translate }}</ion-label>
-        <ion-select placeholder="{{ 'TRUCKS.wareHouse' | translate }}" [(ngModel)]="warehouse" interface="popover">
-          <ion-select-option *ngFor="let almacen of almacenes" value="{{almacen.nombre}}">{{almacen.nombre}}</ion-select-option>
-        </ion-select>
-  </ion-item>
-
-  <!-- <ion-item id="rounded" lines=none>
-    <ion-label position="fixed">{{ 'TRUCKS.wareHouse' | translate }}</ion-label>
-      <ion-item id="bottom-border">
-        <ion-input placeholder="{{ 'TRUCKS.wareHouse' | translate }}" [(ngModel)]="warehouse"></ion-input>
-      </ion-item>
-  </ion-item> -->
-
-</div>
-  <div id="padding"></div>
-
-  <ion-button size="large" expand="full" *ngIf="editando" (click)="createTruck()" color='warning' no-margin>{{ 'USERS.update' | translate }}</ion-button>
-  <ion-button size="large" expand="full" *ngIf="!editando" (click)="createTruck()" color='warning' no-margin>{{ 'TRUCKS.addTruck' | translate }}</ion-button>
-  <div id="padding"></div>
+<ion-content padding class="background-content">
+  <ion-grid>
+    <ion-row justify-content-center>
+      <ion-col align-self-center size-md="6" size-lg="5" size-xs="12" >
+        <ion-card class="card-color">
+          <ion-card-content>
+            <ion-label position="stacked">{{ 'TRUCKS.plate' | translate }}</ion-label>
+            <ion-list class="line-input">
+              <ion-item>
+                <ion-input placeholder="{{ 'TRUCKS.plate' | translate }}" [(ngModel)]="plate" ></ion-input>
+              </ion-item>
+            </ion-list>
+            <ion-label position="stacked">{{ 'TRUCKS.brand' | translate }}</ion-label>
+            <ion-list class="line-input">
+              <ion-item>
+                <ion-input placeholder="{{ 'TRUCKS.brand' | translate }}" [(ngModel)]="brand"></ion-input>
+              </ion-item>
+            </ion-list>
+            <ion-label position="stacked">{{ 'TRUCKS.model' | translate }}</ion-label>
+            <ion-list class="line-input">
+              <ion-item>
+                <ion-input placeholder="{{ 'TRUCKS.model' | translate }}" [(ngModel)]="model"></ion-input>
+              </ion-item>
+            </ion-list>
+            <ion-label position="stacked">{{ 'TRUCKS.year' | translate }}</ion-label>
+            <ion-list class="line-input">
+              <ion-item>
+                <ion-input placeholder="{{ 'TRUCKS.year' | translate }}" [(ngModel)]="year"></ion-input>
+              </ion-item>
+            </ion-list>
+            <ion-label position="stacked">{{ 'TRUCKS.capacity' | translate }}</ion-label>
+            <ion-list class="line-input">
+              <ion-item>
+                <ion-input placeholder="{{ 'TRUCKS.capacity' | translate }}" [(ngModel)]="capacity"></ion-input>
+              </ion-item>
+            </ion-list>
+            <ion-label position="stacked">{{ 'TRUCKS.driverName' | translate }}</ion-label>
+            <ion-list class="line-input">
+              <ion-item>
+                <ion-input placeholder="{{ 'TRUCKS.driverName' | translate }}" [(ngModel)]="driver"></ion-input>
+              </ion-item>
+            </ion-list>
+            <ion-label position="stacked">{{ 'TRUCKS.routee' | translate }}</ion-label>
+            <ion-list class="line-input">
+              <ion-item>
+                <ion-input placeholder="{{ 'TRUCKS.routee' | translate }}" [(ngModel)]="routee"></ion-input>
+              </ion-item>
+            </ion-list>
+            <ion-label position="stacked">{{ 'TRUCKS.wareHouse' | translate }}</ion-label>
+            <ion-list class="line-input">
+              <ion-item>
+                  <ion-select placeholder="{{ 'TRUCKS.wareHouse' | translate }}" [(ngModel)]="warehouse" interface="popover">
+                    <ion-select-option *ngFor="let almacen of almacenes" value="{{almacen.nombre}}">{{almacen.nombre}}</ion-select-option>
+                  </ion-select>
+              </ion-item>
+            </ion-list>
+            
+              <div id="padding"></div>
+            
+              <ion-button size="large" expand="block" *ngIf="editando" (click)="createTruck()" color='primary' >{{ 'USERS.update' | translate }}</ion-button>
+              <ion-button size="large" expand="block" *ngIf="!editando" (click)="createTruck()" color='primary' >{{ 'TRUCKS.addTruck' | translate }}</ion-button>
+              <div id="padding"></div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+  
 </ion-content>

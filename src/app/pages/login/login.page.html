@@ -1,45 +1,43 @@
 <ion-content padding class="animated fadeIn login auth-page">
-  <div class="theme-bg"></div>
-  <div class="auth-content">
-
-    <!-- Logo -->
-    <div padding-horizontal text-center class="animated fadeInDown">
-      <div class="logo"></div> <!-- en Global.scss -->
-      <h4 no-margin>
-        <ion-text color="light" class="fw700">
-          Cold Chain Security
-        </ion-text>
-      </h4>
-    </div>
-
-    <!-- Login form -->
-    <form [formGroup]="loginForm" class="list-form" (ngSubmit)="onSubmit()">
-      <ion-item no-padding class="animated fadeInUp">
-        <ion-label position="floating">
-          <ion-icon name="mail" item-start></ion-icon>
-          {{ 'LOGIN.user' | translate }}
-        </ion-label>
-        <ion-input color="secondary" type="email" formControlName="username"></ion-input>
-      </ion-item>
-      
-
-      <ion-item no-padding class="animated fadeInUp">
-        <ion-label position="floating">
-          <ion-icon name="lock" item-start></ion-icon>
-          {{ 'LOGIN.password' | translate }}
-        </ion-label>
-        <ion-input color="secondary" type="password" formControlName="password"></ion-input>
-      </ion-item>
-
-      <div id="padding"></div>
-      <div>
-        <ion-button icon-left size="medium" expand="full" shape="round" color="warning" type="submit" tappable>
-          <ion-icon name="log-in"></ion-icon>
-          {{ 'LOGIN.signIn' | translate }}
-        </ion-button>
-      </div>
-      
-    </form>
-
-  </div>
+  <ion-grid class="log-form"> 
+    <ion-row justify-content-center>
+      <ion-col align-self-center size-md="6" size-lg="5" size-xs="12" >
+          
+          <ion-card>  
+            <div class="logo"></div> 
+            <ion-card-content>
+            <form [formGroup]="loginForm" class="list-form" (ngSubmit)="onSubmit()">
+              <ion-item no-padding class="animated fadeInUp">
+                <ion-label position="floating">
+                  <ion-icon name="mail" item-start></ion-icon>
+                  {{ 'LOGIN.user' | translate }}
+                </ion-label>
+                <ion-input color="black" type="email" formControlName="username"></ion-input>
+              </ion-item>
+              
+        
+              <ion-item no-padding class="animated fadeInUp">
+                <ion-label position="floating">
+                  <ion-icon name="lock" item-start></ion-icon>
+                  {{ 'LOGIN.password' | translate }}
+                </ion-label>
+                <ion-input color="black" type="password" formControlName="password"></ion-input>
+              </ion-item>
+        
+              <div id="padding"></div>
+              <div>
+                <ion-button icon-left size="medium" expand="block" shape="round" color="primary" type="submit" tappable [disabled]="loading">
+                  <ion-icon name="log-in"></ion-icon>
+                  {{ 'LOGIN.signIn' | translate }}
+                </ion-button>
+                <img *ngIf="loading" class="pl-2" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+              </div>
+              <div *ngIf="error" class="alert">{{'LOGIN.error' | translate}}</div>
+            </form>
+          </ion-card-content>
+          </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+

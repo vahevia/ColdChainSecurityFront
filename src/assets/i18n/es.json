@@ -5,7 +5,14 @@
         "password": "Contraseña",
         "signIn": "Iniciar sesión",
         "logout": "Cerrar sesión",
-        "language": "Cambiar idioma"
+        "language": "Cambiar idioma",
+        "error": "Usuario o Contraseña incorrecto"
+    },
+    "MENU": {
+        "home": "Home",
+        "users": "Usuarios",
+        "units": "Unidades",
+        "warehouses": "Almacenes"
     },
     "DASHBOARD": {
         "dashboard": "Mapa",
@@ -22,6 +29,7 @@
         "cancel": "cancelar"        
     },
     "USERS": {
+        "createUser": "Crear Usuario",
         "users": "Usuarios",
         "name": "Nombre",
         "lastname": "Apellido",
@@ -38,6 +46,7 @@
         "roleAdmin": "Administrador"
     },
     "WAREHOUSE": {
+        "warehouses": "Almacenes",
         "warehouse": "Almacen",
         "wnewname": "Nuevo Nombre",
         "wname": "Nombre",
@@ -58,6 +67,7 @@
         "houseNumber": "Número de casa"
     },
     "TRUCKS": {
+        "createTruck": "Crear Unidad",
         "truckTitle": "Unidades",
         "truck": "Unidad",
         "driverName": "Conductor",

@@ -39,6 +39,7 @@ export class LoginPage implements OnInit {
 
   ionViewWillEnter() {
     this.menuCtrl.enable(false);
+    this.loading = false;
   }
 
   ngOnInit() {
@@ -64,11 +65,11 @@ export class LoginPage implements OnInit {
     }
 
     this.loading = true;
+    this.error = '';
     this.authenticationService.login(this.f.username.value, this.f.password.value)
       .pipe(first())
         .subscribe(
             data => {
-              console.log('you did it!')
               this.router.navigate(['/home-results']);
             },
             error => {

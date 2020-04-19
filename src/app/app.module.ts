@@ -20,24 +20,15 @@ export function LanguageLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
 
-// Modal Pages
-import { ImagePageModule } from './pages/modal/image/image.module';
-import { SearchFilterPageModule } from './pages/modal/search-filter/search-filter.module';
-
-// Components
-import { NotificationsComponent } from './components/notifications/notifications.component';
-
 
 @NgModule({
-  declarations: [AppComponent, NotificationsComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    ImagePageModule,
-    SearchFilterPageModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -46,7 +37,7 @@ import { NotificationsComponent } from './components/notifications/notifications
       }
     })
   ],
-  entryComponents: [NotificationsComponent],
+  entryComponents: [],
   providers: [
     StatusBar,
     TranslateConfigService,

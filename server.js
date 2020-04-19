@@ -1,5 +1,6 @@
 var express  = require('express');
-var app      = express();                               
+var app      = express();
+var compression = require('compression');                               
 var morgan = require('morgan');            
 var bodyParser = require('body-parser');    
 var cors = require('cors');
@@ -8,6 +9,7 @@ app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({'extended':'true'}));            
 app.use(bodyParser.json());                                     
 app.use(cors());
+app.use(compression());
  
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');

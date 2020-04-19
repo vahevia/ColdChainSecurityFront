@@ -19,8 +19,7 @@
           <ion-text color="light">{{ 'DASHBOARD.activeUnit' | translate }}</ion-text>
         </h2>
       </ion-label>
-      <ion-select placeholder="{{ 'DASHBOARD.activeUnit' | translate }}" [(ngModel)]="unit"
-        okText="OK" cancelText="{{ 'DASHBOARD.cancel' | translate }}">
+      <ion-select placeholder="{{ 'DASHBOARD.activeUnit' | translate }}" [(ngModel)]="unit" interface="popover">
         <ion-select-option *ngFor="let unit of units" value="{{unit.name}}">{{unit.name}}</ion-select-option>
       </ion-select>
     </ion-item>

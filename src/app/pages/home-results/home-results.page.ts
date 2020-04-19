@@ -7,11 +7,9 @@ import {
   PopoverController,
   ModalController } from '@ionic/angular';
 import { TranslateConfigService } from '../../translate-config.service';
+import { ServicesService } from '../../Services/services.service';
 import { Chart } from 'chart.js';
 
-// Modals
-import { SearchFilterPage } from '../../pages/modal/search-filter/search-filter.page';
-import { ImagePage } from './../modal/image/image.page';
 
 declare var google;
 
@@ -34,17 +32,7 @@ export class HomeResultsPage implements OnInit {
   searchKey = '';
   yourLocation = '123 Test Street';
   themeCover = 'assets/img/ionic4-Start-Theme-cover.jpg';
-  units: Array<any>=[
-    {
-      name: 'Unit 1'
-    },
-    {
-      name: 'Unit 2'
-    },
-    {
-      name: 'Unit 3'
-    }
-  ];
+  units: Array<any> = [];
 
   marks: Array<any>=[
     {
@@ -65,6 +53,7 @@ export class HomeResultsPage implements OnInit {
     public navCtrl: NavController,
     public menuCtrl: MenuController,
     public popoverCtrl: PopoverController,
+    private services: ServicesService,
     public alertCtrl: AlertController,
     public modalCtrl: ModalController,
     public toastCtrl: ToastController,
@@ -107,6 +96,22 @@ export class HomeResultsPage implements OnInit {
   // }
 
   ngOnInit(): void {
+    this.services.getTrucks()
+    .subscribe(
+      (unidades) => {
+        for(let data in unidades){
+          this.units.push({
+            name: unidades[data].unidad_placa,
+          });
+          this.units=[...this.units]
+      }
+      console.log('unidades', this.units);
+    },
+      (error) => {
+        console.error(error);
+      }
+    );
+
     const pos = {
       lat: 10.482390, lng: -66.818895
     }
@@ -322,16 +327,5 @@ export class HomeResultsPage implements OnInit {
     this.navCtrl.navigateForward('settings');
   }
 
- 
-
-  async presentImage(image: any) {
-    const modal = await this.modalCtrl.create({
-      component: ImagePage,
-      componentProps: { value: image }
-    });
-    return await modal.present();
-  }
-
-  
 
 }

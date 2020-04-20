@@ -22,6 +22,7 @@ export class CreateTrucksPage implements OnInit {
   routee: string;
   warehouse: string;
   almacenes: Array<any>=[];
+  isdisabled: boolean = false;
 
   constructor(
     private route: ActivatedRoute, 
@@ -34,6 +35,7 @@ export class CreateTrucksPage implements OnInit {
         this.editando = this.router.getCurrentNavigation().extras.state.editando;
         if (this.editando === true) {
           this.plate = this.router.getCurrentNavigation().extras.state.id;
+          this.isdisabled = true;
         }
       }
     })

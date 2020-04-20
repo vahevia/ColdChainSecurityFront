@@ -32,7 +32,7 @@
           <ion-label position="fixed">{{ 'USERS.id' | translate }}</ion-label>
           <ion-list class="line-input">
             <ion-item id="bottom-border">
-              <ion-input placeholder="{{ 'USERS.id' | translate }}" [(ngModel)]="cedula"></ion-input>
+              <ion-input placeholder="{{ 'USERS.id' | translate }}" [(ngModel)]="cedula" [disabled]="isdisabled"></ion-input>
             </ion-item>
           </ion-list>
           <ion-label position="fixed">{{ 'USERS.position' | translate }}</ion-label>
@@ -52,8 +52,8 @@
             </ion-list>
             <ion-label position="fixed">{{ 'LOGIN.password' | translate }}</ion-label>
             <ion-list class="line-input">
-              <ion-item id="bottom-border">
-                <ion-input placeholder="{{ 'LOGIN.password' | translate }}" [(ngModel)]="password"></ion-input>
+              <ion-item>
+                <ion-input placeholder="{{ 'LOGIN.password' | translate }}" [(ngModel)]="passwordCambio"></ion-input>
               </ion-item>
             </ion-list>
 

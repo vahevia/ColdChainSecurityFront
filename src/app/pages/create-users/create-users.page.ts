@@ -17,8 +17,10 @@ export class CreateUsersPage implements OnInit {
   cargo: string;
   username: string;
   password: string;
+  passwordCambio: string = '';
   editando: boolean;
   selectedLanguage: string;
+  isdisabled: boolean = false;
   
 
   constructor(private route: ActivatedRoute, 
@@ -30,6 +32,7 @@ export class CreateUsersPage implements OnInit {
           this.editando = this.router.getCurrentNavigation().extras.state.editando;
           if (this.editando === true) {
             this.cedula = this.router.getCurrentNavigation().extras.state.id;
+            this.isdisabled = true;
           }
         }
       })
@@ -45,7 +48,7 @@ export class CreateUsersPage implements OnInit {
           this.nombre = user[0].usu_nombre,
           this.apellido = user[0].usu_apellido,
           this.cargo = user[0].usu_cargo,
-          this.username = user[0].usu_usuario,
+          this.username = user[0].usu_usuario
           this.password = user[0].usu_contrasena
         },
         (error) => {
@@ -62,7 +65,7 @@ export class CreateUsersPage implements OnInit {
       cedula: this.cedula,
       cargo: this.cargo,
       username: this.username,
-      password: this.password
+      password: (this.passwordCambio === '' ? this.password :  this.passwordCambio)
     }
     if (this.editando === true) {
       this.usuarioService.updateUser(usuario)

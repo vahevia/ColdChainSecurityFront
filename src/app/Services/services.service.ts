@@ -119,7 +119,7 @@ export class ServicesService {
 
   // Companies
   getCompanies() {
-    return this.http.request('get', `${this.baseurl}/comercio/super/0`, { headers: { 'x-access-token': this.currentUser.token}});
+    return this.http.request('get', this.baseurl +'/comercio/'+this.currentUser.rol+'/'+this.comercio, { headers: { 'x-access-token': this.currentUser.token}});
   }
 
   getCompaniesByID(){

@@ -30,6 +30,7 @@ export class UsersPage implements OnInit {
   update: boolean;
   currentUser: User;
   isAdmin: boolean;
+  isSuper: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -40,7 +41,8 @@ export class UsersPage implements OnInit {
     private authenticationService: AuthenticationService) {
       this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
       this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
-      this.isAdmin = this.currentUser.cargo === Role.Admin
+      this.isAdmin = this.currentUser.rol === Role.Admin
+      this.isSuper = this.currentUser.rol === Role.super
   }
 
   ngOnInit() {

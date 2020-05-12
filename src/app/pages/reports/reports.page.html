@@ -1,0 +1,126 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button color="secondary"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+        <ion-text color="light">
+          <ion-text color="light" class="fw700">Cold Chain</ion-text>
+        </ion-text>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card no-margin class="no-radius">
+    <ion-item lines="none" color="tertiary">
+      <ion-label>
+        <h2 no-margin class="fw500 no-margin">
+          <ion-text color="light">{{ 'WAREHOUSE.warehouse' | translate }}</ion-text>
+        </h2>
+      </ion-label>
+      <ion-select placeholder="{{ 'WAREHOUSE.warehouse' | translate }}" [(ngModel)]="warehouse" interface="popover">
+        <ion-select-option *ngFor="let warehouse of almacenes" value="{{warehouse.nombre}}">{{warehouse.nombre}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-card>
+
+  <ion-content padding>
+
+  <ngx-datatable
+    class="material" 
+    [rows]="rows"
+    [rowHeight]="auto"
+    [headerHeight]="50"
+    [footerHeight]="50"
+    [columnMode]="ColumnMode.flex"
+    [scrollbarH]="true"
+    >
+
+    <ngx-datatable-column name="{{ 'WAREHOUSE.warehouse' | translate }}" [flexGrow]="5/2">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{row.almacen}}
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="{{ 'USERS.lastname' | translate }}" [flexGrow]="5/2">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{row.apellido}}
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="{{ 'USERS.id' | translate }}" [flexGrow]="2">
+    <ng-template let-row="row" ngx-datatable-cell-template>
+      {{row.cedula}}
+    </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="{{ 'USERS.position' | translate }}" [flexGrow]="2">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{row.cargo}}
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="{{ 'USERS.edit' | translate }}" sortable="false" prop="cedula" [flexGrow]="1">
+      <ng-template let-row="data" let-value="value"  ngx-datatable-cell-template>
+        <ion-button md-icon-button color="warning" (click)="editUser(value)">
+          <ion-icon name="create"></ion-icon>
+        </ion-button>
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="{{ 'USERS.delete' | translate }}" sortable="false" prop="cedula" [flexGrow]="1">
+      <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
+          <ion-button md-icon-button color="warning" (click)="deleteUser(value)" > 
+            <ion-icon name="trash"></ion-icon>
+          </ion-button>
+      </ng-template>
+    </ngx-datatable-column>
+
+  </ngx-datatable>
+
+</ion-content>
+
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-card >
+                <ion-card-header color="primary">
+                  <ion-card-title>{{ 'DASHBOARD.chartTitle' | translate }}</ion-card-title>
+                </ion-card-header>
+              
+                <ion-card-content>
+                  
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>    
+      
+        <ion-row>
+          <ion-col>
+            <ion-card >
+              <ion-card-header color="primary">
+                <ion-card-title>{{ 'DASHBOARD.activeUnits' | translate }}</ion-card-title>
+              </ion-card-header>
+            
+              <ion-card-content>
+                <h1 style=" text-align: center;">3</h1>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+          <ion-col>
+            <ion-card>
+              <ion-card-header color="primary">
+                <ion-card-title>{{ 'DASHBOARD.averageTemp' | translate }}</ion-card-title>
+              </ion-card-header>
+            
+              <ion-card-content>
+                <h1 style="text-align: center;">27</h1>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+    </ion-grid>
+    
+</ion-content>
+  

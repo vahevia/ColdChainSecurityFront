@@ -45,7 +45,26 @@ const routes: Routes = [
     loadChildren: './pages/create-warehouses/create-warehouses.module#CreateWarehousesPageModule',
     canActivate: [AuthGuard],
     data: { roles: [Role.Admin] }  
-  }
+  },
+  { 
+    path: 'reports', 
+    loadChildren: './pages/reports/reports.module#ReportsPageModule',
+    canActivate: [AuthGuard]
+  },
+  { 
+    path: 'create-company', 
+    loadChildren: './pages/create-company/create-company.module#CreateCompanyPageModule',
+    canActivate: [AuthGuard],
+    //data: { roles: [Role.super] }
+ },
+  { 
+    path: 'company', 
+    loadChildren: './pages/company/company.module#CompanyPageModule',
+    canActivate: [AuthGuard],
+    //data: { roles: [Role.super] }
+  },
+
+
 ];
 
 @NgModule({

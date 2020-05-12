@@ -1,9 +1,6 @@
 export class User {
-    // id: number;
-    // username: string;
-    // password: string;
-    // firstName: string;
-    // lastName: string;
-    cargo: string;
+    cedula: string;
+    rol: string;
+    id_comercio: string;
     token?: string;
 }

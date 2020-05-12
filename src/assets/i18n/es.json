@@ -12,7 +12,9 @@
         "home": "Home",
         "users": "Usuarios",
         "units": "Unidades",
-        "warehouses": "Almacenes"
+        "warehouses": "Almacenes",
+        "reports": "Reportes",
+        "companies": "Compañías"
     },
     "DASHBOARD": {
         "dashboard": "Mapa",
@@ -43,7 +45,9 @@
         "update": "Actualizar",
         "updateTitle": "Actualizar Usuario",
         "roleUser": "Usuario",
-        "roleAdmin": "Administrador"
+        "roleAdmin": "Administrador",
+        "company": "Compañía",
+        "schedule": "Horario"
     },
     "WAREHOUSE": {
         "warehouses": "Almacenes",
@@ -65,6 +69,14 @@
         "apartmentNumber": "Número de Apartamento",
         "house": "Casa",
         "houseNumber": "Número de casa"
+    },
+    "COMPANIES": {
+        "name": "Nombre",
+        "id": "RIF",
+        "address": "Dirección",
+        "description": "Descripción",
+        "numberUnit": "Número de unidades",
+        "numberWareH": "Número de almacenes"
     },
     "TRUCKS": {
         "createTruck": "Crear Unidad",

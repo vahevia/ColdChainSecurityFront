@@ -12,7 +12,9 @@
         "home": "Home",
         "users": "Users",
         "units": "Units",
-        "warehouses": "Warehouses"
+        "warehouses": "Warehouses",
+        "reports": "Reports",
+        "companies": "Companies"
     },
     "DASHBOARD": {
         "dashboard": "Map",
@@ -46,7 +48,9 @@
         "update": "Update",
         "updateTitle": "Update Users",
         "roleUser": "User",
-        "roleAdmin": "Administrator"
+        "roleAdmin": "Administrator",
+        "company": "Company",
+        "schedule": "Schedule"
     },
     "WAREHOUSE": {
         "warehouses": "Warehouses",
@@ -68,6 +72,14 @@
         "apartmentNumber": "Apartment Number",
         "house": "House",
         "houseNumber": "House Number"
+    },
+    "COMPANIES": {
+        "name": "Name",
+        "id": "ID",
+        "address": "Address",
+        "description": "Description",
+        "numberUnit": "Number of units",
+        "numberWareH": "Number of warehouses"
     },
     "TRUCKS": {
         "createTruck": "Create Unit",

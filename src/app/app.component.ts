@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Platform, NavController } from '@ionic/angular';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AuthenticationService } from './Services/authentication.service';
 import { Role } from './models/role';
 import { User } from './models/user';
@@ -22,7 +21,6 @@ export class AppComponent {
 
   constructor(
     private platform: Platform,
-    private statusBar: StatusBar,
     public navCtrl: NavController,
     private router: Router,
     private authenticationService: AuthenticationService,
@@ -44,6 +42,18 @@ export class AppComponent {
         icon: 'people'
       },
       {
+        title: 'MENU.companies',
+        url: '/company',
+        direct: 'forward',
+        icon: 'clipboard'
+      },
+      {
+        title: 'MENU.reports',
+        url: '/reports',
+        direct: 'forward',
+        icon: 'stats'
+      },
+      {
         title: 'MENU.units',
         url: '/trucks',
         direct: 'forward',
@@ -62,12 +72,11 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
     }).catch(() => {});
   }
 
   get isAdmin() {
-    return this.currentUser && this.currentUser.cargo === Role.Admin;
+    return this.currentUser && this.currentUser.rol === Role.Admin;
   }
 
 

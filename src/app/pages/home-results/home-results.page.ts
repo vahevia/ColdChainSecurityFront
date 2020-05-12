@@ -33,6 +33,7 @@ export class HomeResultsPage implements OnInit {
   yourLocation = '123 Test Street';
   themeCover = 'assets/img/ionic4-Start-Theme-cover.jpg';
   units: Array<any> = [];
+  unit: string;
 
   marks: Array<any>=[
     {
@@ -134,55 +135,55 @@ export class HomeResultsPage implements OnInit {
         "name":"Unidad 1",
         "series": [
           {
-            "name":"12 pm",
+            "name":"12",
             "value": 22
           },
           {
-            "name":"12:10 pm",
+            "name":"12:10",
             "value": 23
           },
           {
-            "name":"12:20 pm",
+            "name":"12:20",
             "value": 28
           },
           {
-            "name":"12:30 pm",
+            "name":"12:30",
             "value": 26
           },
           {
-            "name":"12:40 pm",
+            "name":"12:40 ",
             "value": 27
           },
           {
-            "name":"12:50 pm",
+            "name":"12:50 ",
             "value": 29
           },
           {
-            "name":"1 pm",
+            "name":"13 ",
             "value": 27
           },
           {
-            "name":"1:10 pm",
+            "name":"13:10 ",
             "value": 23
           },
           {
-            "name":"1:20 pm",
+            "name":"13:20 ",
             "value": 28
           },
           {
-            "name":"1:30 pm",
+            "name":"13:30 ",
             "value": 26
           },
           {
-            "name":"1:40 pm",
+            "name":"13:40 ",
             "value": 27
           },
           {
-            "name":"1:50 pm",
+            "name":"13:50 ",
             "value": 29
           },
           {
-            "name":"2 pm",
+            "name":"14 ",
             "value": 27
           }
         ]
@@ -191,55 +192,55 @@ export class HomeResultsPage implements OnInit {
       "name":"Unidad 2",
       "series": [
         {
-          "name":"12 pm",
+          "name":"12 ",
           "value": 22
         },
         {
-          "name":"12:10 pm",
+          "name":"12:10 ",
           "value": 24
         },
         {
-          "name":"12:20 pm",
+          "name":"12:20 ",
           "value": 23
         },
         {
-          "name":"12:30 pm",
+          "name":"12:30 ",
           "value": 24
         },
         {
-          "name":"12:40 pm",
+          "name":"12:40 ",
           "value": 25
         },
         {
-          "name":"12:50 pm",
+          "name":"12:50 ",
           "value": 28
         },
         {
-          "name":"1 pm",
+          "name":"13 ",
           "value": 22
         },
         {
-          "name":"1:10 pm",
+          "name":"13:10 ",
           "value": 24
         },
         {
-          "name":"1:20 pm",
+          "name":"13:20 ",
           "value": 23
         },
         {
-          "name":"1:30 pm",
+          "name":"13:30 ",
           "value": 24
         },
         {
-          "name":"1:40 pm",
+          "name":"13:40 ",
           "value": 25
         },
         {
-          "name":"1:50 pm",
+          "name":"13:50 ",
           "value": 28
         },
         {
-          "name":"2 pm",
+          "name":"14 ",
           "value": 29
         }
       ]
@@ -248,55 +249,55 @@ export class HomeResultsPage implements OnInit {
       "name":"Unidad 3",
       "series": [
         {
-          "name":"12 pm",
+          "name":"12 ",
           "value": 20
         },
         {
-          "name":"12:10 pm",
+          "name":"12:10 ",
           "value": 22
         },
         {
-          "name":"12:20 pm",
+          "name":"12:20 ",
           "value": 21
         },
         {
-          "name":"12:30 pm",
+          "name":"12:30 ",
           "value": 23
         },
         {
-          "name":"12:40 pm",
+          "name":"12:40 ",
           "value": 25
         },
         {
-          "name":"12:50 pm",
+          "name":"12:50 ",
           "value": 24
         },
         {
-          "name":"1 pm",
+          "name":"13 ",
           "value": 20
         },
         {
-          "name":"1:10 pm",
+          "name":"13:10 ",
           "value": 22
         },
         {
-          "name":"1:20 pm",
+          "name":"13:20 ",
           "value": 21
         },
         {
-          "name":"1:30 pm",
+          "name":"13:30 ",
           "value": 23
         },
         {
-          "name":"1:40 pm",
+          "name":"13:40 ",
           "value": 25
         },
         {
-          "name":"1:50 pm",
+          "name":"13:50 ",
           "value": 24
         },
         {
-          "name":"2 pm",
+          "name":"14 ",
           "value": 26
         }
       ]

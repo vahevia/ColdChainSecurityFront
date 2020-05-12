@@ -25,35 +25,35 @@
 
       <ngx-datatable-column name="{{ 'USERS.name' | translate }}" [flexGrow]="5/2">
         <ng-template let-row="row" ngx-datatable-cell-template>
-          {{row.usu_nombre}}
+          {{row.usuario_nombre}}
         </ng-template>
       </ngx-datatable-column>
 
      <ngx-datatable-column name="{{ 'USERS.lastname' | translate }}" [flexGrow]="5/2">
         <ng-template let-row="row" ngx-datatable-cell-template>
-          {{row.usu_apellido}}
+          {{row.usuario_apellido}}
         </ng-template>
      </ngx-datatable-column>
 
      <ngx-datatable-column name="{{ 'USERS.id' | translate }}" [flexGrow]="2">
       <ng-template let-row="row" ngx-datatable-cell-template>
-        {{row.usu_cedula}}
+        {{row.usuario_cedula}}
       </ng-template>
      </ngx-datatable-column>
 
       <ngx-datatable-column name="{{ 'USERS.position' | translate }}" [flexGrow]="2">
         <ng-template let-row="row" ngx-datatable-cell-template>
-          {{row.usu_cargo}}
+          {{row.usuario_rol}}
         </ng-template>
      </ngx-datatable-column>
 
-     <!-- <ngx-datatable-column [hidden]="hide" name="numero" >
+     <ngx-datatable-column *ngIf="isSuper" [hidden]="hide" name="{{ 'USERS.company' | translate }}" >
         <ng-template let-row="row" ngx-datatable-cell-template>
-          {{row.numero}}
+          {{row.usuario_comercio}}
         </ng-template>
-      </ngx-datatable-column> -->
+      </ngx-datatable-column>
 
-      <ngx-datatable-column *ngIf="isAdmin" name="{{ 'USERS.edit' | translate }}" sortable="false" prop="usu_cedula" [flexGrow]="1">
+      <ngx-datatable-column *ngIf="isAdmin" name="{{ 'USERS.edit' | translate }}" sortable="false" prop="usuario_cedula" [flexGrow]="1">
         <ng-template let-row="data" let-value="value"  ngx-datatable-cell-template>
           <ion-button md-icon-button color="warning" (click)="editUser(value)">
             <ion-icon name="create"></ion-icon>
@@ -61,7 +61,7 @@
         </ng-template>
       </ngx-datatable-column>
 
-      <ngx-datatable-column *ngIf="isAdmin" name="{{ 'USERS.delete' | translate }}" sortable="false" prop="usu_cedula" [flexGrow]="1">
+      <ngx-datatable-column *ngIf="isAdmin" name="{{ 'USERS.delete' | translate }}" sortable="false" prop="usuario_cedula" [flexGrow]="1">
         <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
             <ion-button md-icon-button color="warning" (click)="deleteUser(value)" > 
               <ion-icon name="trash"></ion-icon>

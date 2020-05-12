@@ -14,7 +14,9 @@ export class ServicesService {
   urlWareH = 'https://coldchainsecurity.herokuapp.com/almacen';
   urlWareHBN = 'https://coldchainsecurity.herokuapp.com/almacenNombre';
   urlState = 'https://coldchainsecurity.herokuapp.com/estado';
+  baseurl = 'https://coldchainsecurity.herokuapp.com'
   currentUser = this.authenticationService.currentUserValue;
+  comercio = this.currentUser.rol === 'super' ? '0' : this.currentUser.id_comercio;
 
   constructor(private http: HttpClient, private authenticationService: AuthenticationService) { }
 
@@ -38,8 +40,8 @@ export class ServicesService {
   }
 
   // Users
-  getUsers(): Observable<any> {  
-    return this.http.get(this.url, this.httpOptions).pipe(
+  getUsers(): Observable<any> { 
+    return this.http.get(this.url+'/'+this.currentUser.rol+'/'+this.comercio, this.httpOptions).pipe(
       tap(data => console.log(data)),
       catchError(this.handleError)
     );
@@ -58,7 +60,15 @@ export class ServicesService {
   }
 
   getUserbyId( cedula ): Observable<any>{
-    return this.http.get<any>(this.url + '/'+ cedula, this.httpOptions)
+    return this.http.get<any>(this.url + '/'+ cedula + '/' + this.currentUser.rol, this.httpOptions)
+  }
+
+  getAllRoles() {
+    return this.http.get(this.baseurl+'/rol/'+this.currentUser.rol, this.httpOptions)
+  }
+
+  getAllEmployeeSchedule() {
+    return this.http.get(this.baseurl+'/horarioE', this.httpOptions)
   }
 
   // Trucks
@@ -107,6 +117,16 @@ export class ServicesService {
     return this.http.put(this.urlWareH, warehouse, this.httpOptions);
   }
 
+  // Companies
+  getCompanies() {
+    return this.http.request('get', `${this.baseurl}/comercio/super/0`, { headers: { 'x-access-token': this.currentUser.token}});
+  }
+
+  getCompaniesByID(){
+    return this.http.request('get', this.baseurl+'/comercio/id/'+this.comercio, { headers: { 'x-access-token': this.currentUser.token}});
+  }
+
+  // Address
   getCountries() {
     return this.http.get(`https://coldchainsecurity.herokuapp.com/pais`, this.httpOptions);
   }

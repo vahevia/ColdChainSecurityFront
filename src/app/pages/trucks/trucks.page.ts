@@ -27,6 +27,8 @@ export class TrucksPage implements OnInit {
   selectedLanguage: string;
   currentUser: User;
   isAdmin: boolean;
+  auto: any;
+  force: any;
 
   constructor(
     private truckServices: ServicesService,
@@ -37,7 +39,7 @@ export class TrucksPage implements OnInit {
     ) { 
       this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
       this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
-      this.isAdmin = this.currentUser.cargo === Role.Admin
+      this.isAdmin = this.currentUser.rol === Role.Admin
     }
 
   ngOnInit() {
@@ -53,7 +55,7 @@ export class TrucksPage implements OnInit {
     .subscribe(
       (trucks) => {
         this.rows = trucks
-        console.log(this.rows);
+        console.log('HOLA',this.rows);
     },
       (error) => {
         console.error(error);

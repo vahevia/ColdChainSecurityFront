@@ -32,7 +32,7 @@ const routes: Routes = [
     path: 'create-users', 
     loadChildren: './pages/create-users/create-users.module#CreateUsersPageModule',
     canActivate: [AuthGuard],
-    data: { roles: [Role.Admin] }  
+    data: { roles: [Role.Admin, Role.super] }  
   },
   { 
     path: 'create-trucks', 

@@ -59,11 +59,11 @@
                 <ion-input placeholder="{{ 'TRUCKS.routee' | translate }}" [(ngModel)]="routee"></ion-input>
               </ion-item>
             </ion-list>
-            <ion-label position="stacked">{{ 'TRUCKS.wareHouse' | translate }}</ion-label>
+            <ion-label position="stacked">{{ 'TRUCKS.company' | translate }}</ion-label>
             <ion-list class="line-input">
               <ion-item>
-                  <ion-select placeholder="{{ 'TRUCKS.wareHouse' | translate }}" [(ngModel)]="warehouse" interface="popover">
-                    <ion-select-option *ngFor="let almacen of almacenes" value="{{almacen.nombre}}">{{almacen.nombre}}</ion-select-option>
+                  <ion-select placeholder="{{ 'TRUCKS.company' | translate }}" [(ngModel)]="company" interface="popover">
+                    <ion-select-option *ngFor="let compania of companias" value="{{compania.com_nombre}}">{{compania.com_nombre}}</ion-select-option>
                   </ion-select>
               </ion-item>
             </ion-list>

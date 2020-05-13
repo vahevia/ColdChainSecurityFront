@@ -11,10 +11,11 @@
     "MENU": {
         "home": "Home",
         "users": "Usuarios",
-        "units": "Unidades",
+        "units": "Unidades de transporte",
         "warehouses": "Almacenes",
         "reports": "Reportes",
-        "companies": "Compañías"
+        "companies": "Compañías",
+        "static-units": "Unidades de almacenamiento"
     },
     "DASHBOARD": {
         "dashboard": "Mapa",
@@ -68,20 +69,21 @@
         "apartment": "Apartamento",
         "apartmentNumber": "Número de Apartamento",
         "house": "Casa",
-        "houseNumber": "Número de casa"
+        "houseNumber": "Número de casa",
+        "company": "Compañía"
     },
     "COMPANIES": {
         "name": "Nombre",
         "id": "RIF",
         "address": "Dirección",
         "description": "Descripción",
-        "numberUnit": "Número de unidades",
+        "numberUnit": "Número de unidades de transporte",
         "numberWareH": "Número de almacenes"
     },
     "TRUCKS": {
-        "createTruck": "Crear Unidad",
-        "truckTitle": "Unidades",
-        "truck": "Unidad",
+        "createTruck": "Crear Unidad de transporte",
+        "truckTitle": "Unidades de transporte",
+        "truck": "Unidad de transporte",
         "driverName": "Conductor",
         "brand": "Marca",
         "model": "Modelo",
@@ -89,8 +91,12 @@
         "year": "Año",
         "capacity": "Capacidad",
         "rute": "Ruta",
-        "wareHouse": "Almacen",
-        "addTruck": "Crear Unidad",
-        "editTitle": "Editar Unidad"
+        "company": "Compañía",
+        "addTruck": "Crear Unidad de transporte",
+        "editTitle": "Editar Unidad de transporte"
+    },
+    "STATICUNITS": {
+        "createStaticUnit": "Crear Unidad de almacenamiento",
+        "staticUnitTitle": "Unidades de almacenamiento"
     }
 }

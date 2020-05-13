@@ -29,6 +29,12 @@
                 <ion-input placeholder="{{ 'WAREHOUSE.wnewname' | translate }}" [(ngModel)]="nuevoNombre"></ion-input>
               </ion-item>
             </ion-list> -->
+            <ion-label *ngIf="isSuper" position="fixed">{{ 'WAREHOUSE.company' | translate }}</ion-label>
+            <ion-list *ngIf="isSuper" class="line-input">
+              <ion-select placeholder="{{ 'USERS.choose' | translate }}" [(ngModel)]="compania" interface="popover">
+                <ion-select-option *ngFor="let compania of companias" value="{{compania.comercio_nombre}}">{{compania.comercio_nombre}}</ion-select-option>
+              </ion-select>
+            </ion-list>
             <ion-label position="fixed">{{ 'WAREHOUSE.avenue' | translate }}</ion-label>
             <ion-list class="line-input">
               <ion-item>

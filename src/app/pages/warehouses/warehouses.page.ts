@@ -25,6 +25,7 @@ export class WarehousesPage implements OnInit {
   selectedLanguage: string;
   currentUser: User;
   isAdmin: boolean;
+  isSuper: boolean;
   auto: any;
 
   constructor(
@@ -36,7 +37,8 @@ export class WarehousesPage implements OnInit {
     ) {
       this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
       this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
-      this.isAdmin = this.currentUser.rol === Role.Admin
+      this.isAdmin = this.currentUser.rol === Role.Admin;
+      this.isSuper = this.currentUser.rol === Role.super;
      }
 
   ngOnInit() {

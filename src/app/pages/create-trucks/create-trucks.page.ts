@@ -20,8 +20,8 @@ export class CreateTrucksPage implements OnInit {
   capacity: string;
   driver: string;
   routee: string;
-  warehouse: string;
-  almacenes: Array<any>=[];
+  company: string;
+  companias: {};
   isdisabled: boolean = false;
 
   constructor(
@@ -52,7 +52,7 @@ export class CreateTrucksPage implements OnInit {
           this.capacity = truck[0].unidad_capacidad,
           this.driver = truck[0].unidad_conductor,
           this.routee = truck[0].unidad_ruta,
-          this.warehouse = truck[0].unidad_almacen
+          this.company = truck[0].unidad_comercio
         },
         (error) => {
           console.log(error)
@@ -60,15 +60,11 @@ export class CreateTrucksPage implements OnInit {
       )
     }
 
-    this.truckService.getWareHousesNames()
+    this.truckService.getCompaniesNames()
       .subscribe(
-        (wh) => {
-          for(let data in wh){
-            this.almacenes.push({
-              nombre: wh[data].almacen_nombre
-            });
-            this.almacenes=[...this.almacenes]
-        }
+        (comp) => {
+          this.companias = comp
+          console.log(this.companias)
       },
         (error) => {
           console.error(error);
@@ -85,7 +81,7 @@ export class CreateTrucksPage implements OnInit {
         modelo: this.model,
         placa: this.plate,
         ruta: this.routee,
-        nombreAlmacen: this.warehouse,
+        nombreComercio: this.company,
         ano: this.year
       }
       if (this.editando === true) {

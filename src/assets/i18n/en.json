@@ -11,10 +11,11 @@
     "MENU": {
         "home": "Home",
         "users": "Users",
-        "units": "Units",
+        "units": "Transport units",
         "warehouses": "Warehouses",
         "reports": "Reports",
-        "companies": "Companies"
+        "companies": "Companies",
+        "static-units": "Storage units"
     },
     "DASHBOARD": {
         "dashboard": "Map",
@@ -71,7 +72,8 @@
         "apartment": "Apartment",
         "apartmentNumber": "Apartment Number",
         "house": "House",
-        "houseNumber": "House Number"
+        "houseNumber": "House Number",
+        "company": "Company"
     },
     "COMPANIES": {
         "name": "Name",
@@ -82,9 +84,9 @@
         "numberWareH": "Number of warehouses"
     },
     "TRUCKS": {
-        "createTruck": "Create Unit",
-        "truckTitle": "Units",
-        "truck": "Unit",
+        "createTruck": "Create Transport unit",
+        "truckTitle": "Transport units",
+        "truck": "Transport unit",
         "driverName": "Driver",
         "brand": "Brand",
         "model": "Model",
@@ -92,8 +94,12 @@
         "year": "Year",
         "capacity": "Capacity",
         "routee": "Route",
-        "wareHouse": "Warehouse",
-        "addTruck": "Add Unit",
-        "editTitle": "Edit Unit"
+        "company": "Company",
+        "addTruck": "Add Transport unit",
+        "editTitle": "Edit Transport unit"
+    },
+    "STATICUNITS": {
+        "createStaticUnit": "Create Storage unit",
+        "staticUnitTitle": "Storage units"
     }
 }

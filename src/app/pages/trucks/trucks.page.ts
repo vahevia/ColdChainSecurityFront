@@ -27,6 +27,7 @@ export class TrucksPage implements OnInit {
   selectedLanguage: string;
   currentUser: User;
   isAdmin: boolean;
+  isSuper: boolean;
   auto: any;
   force: any;
 
@@ -39,7 +40,8 @@ export class TrucksPage implements OnInit {
     ) { 
       this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
       this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
-      this.isAdmin = this.currentUser.rol === Role.Admin
+      this.isAdmin = this.currentUser.rol === Role.Admin;
+      this.isSuper = this.currentUser.rol === Role.super;
     }
 
   ngOnInit() {
@@ -55,7 +57,7 @@ export class TrucksPage implements OnInit {
     .subscribe(
       (trucks) => {
         this.rows = trucks
-        console.log('HOLA',this.rows);
+        console.log(this.rows);
     },
       (error) => {
         console.error(error);

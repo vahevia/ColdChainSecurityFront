@@ -60,11 +60,13 @@ export class CreateUsersPage implements OnInit {
       .subscribe(
         (user) => {
           console.log('USER', user);
-          this.nombre = user[0].usu_nombre,
-          this.apellido = user[0].usu_apellido,
-          this.cargo = user[0].usu_cargo,
-          this.username = user[0].usu_usuario
-          this.password = user[0].usu_contrasena
+          this.nombre = user[0].usuario_nombre,
+          this.apellido = user[0].usuario_apellido,
+          this.cargo = user[0].usuario_rol,
+          this.username = user[0].usuario_usuario,
+          this.password = user[0].usuario_contrasena,
+          this.horario = user[0].hor_emp_descripcion,
+          this.compania = user[0].usuario_comercio
         },
         (error) => {
           console.log(error)
@@ -92,8 +94,7 @@ export class CreateUsersPage implements OnInit {
         }
       ); 
 
-      {this.isSuper ? 
-
+  
       this.usuarioService.getCompanies()
         .subscribe(
           (comp) => {
@@ -103,17 +104,6 @@ export class CreateUsersPage implements OnInit {
             console.error(error);
           }
         ) 
-      :
-      this.usuarioService.getCompaniesByID()
-        .subscribe(
-          (comp) => {
-          this.companias = comp
-          },
-          (error) => {
-            console.error(error);
-          }
-        );
-      }
 
   }
 

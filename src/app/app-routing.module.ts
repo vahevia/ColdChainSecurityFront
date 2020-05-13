@@ -38,13 +38,13 @@ const routes: Routes = [
     path: 'create-trucks', 
     loadChildren: './pages/create-trucks/create-trucks.module#CreateTrucksPageModule',
     canActivate: [AuthGuard],
-    data: { roles: [Role.Admin] }  
+    data: { roles: [Role.Admin, Role.super] }  
   },
   { 
     path: 'create-warehouses', 
     loadChildren: './pages/create-warehouses/create-warehouses.module#CreateWarehousesPageModule',
     canActivate: [AuthGuard],
-    data: { roles: [Role.Admin] }  
+    data: { roles: [Role.Admin, Role.super] }  
   },
   { 
     path: 'reports', 
@@ -63,6 +63,18 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     //data: { roles: [Role.super] }
   },
+  { 
+    path: 'static-units', 
+    loadChildren: './pages/static-units/static-units.module#StaticUnitsPageModule',
+    canActivate: [AuthGuard] 
+  },
+  { 
+    path: 'create-static-units', 
+    loadChildren: './pages/create-static-units/create-static-units.module#CreateStaticUnitsPageModule',
+    canActivate: [AuthGuard],
+    data: { roles: [Role.Admin, Role.super] }
+  },
+
 
 
 ];

@@ -60,7 +60,7 @@ export class ServicesService {
   }
 
   getUserbyId( cedula ): Observable<any>{
-    return this.http.get<any>(this.url + '/'+ cedula + '/' + this.currentUser.rol, this.httpOptions)
+    return this.http.get<any>(this.url +'/'+ cedula, this.httpOptions)
   }
 
   getAllRoles() {
@@ -73,11 +73,12 @@ export class ServicesService {
 
   // Trucks
   getTrucks() {
-    return this.http.get(this.urlTruck, this.httpOptions);
+    console.log(this.urlTruck +'/'+ this.currentUser +'/'+ this.comercio)
+    return this.http.get(this.urlTruck +'/'+ this.currentUser.rol +'/'+ this.comercio, this.httpOptions);
   }
 
   getTruckByPlate(plate): Observable<any>{
-    return this.http.get<any>(this.urlTruck + '/'+ plate, this.httpOptions)
+    return this.http.get<any>(this.urlTruck +'/'+ plate, this.httpOptions)
   }
 
   deleteTruck(plate){
@@ -94,15 +95,15 @@ export class ServicesService {
 
   // Warehouses 
   getWareHouses() {
-    return this.http.request('get', `${this.urlWareH}`, { headers: { 'x-access-token': this.currentUser.token}});
+    return this.http.get(this.urlWareH +'/'+ this.currentUser.rol +'/'+ this.comercio, this.httpOptions);
   }
 
   getWareHousesNames() {
-    return this.http.get(`https://coldchainsecurity.herokuapp.com/almacenes`, this.httpOptions)
+    return this.http.get(this.baseurl +'/almacenes', this.httpOptions)
   }
 
   getWareHouseByName(name) {
-    return this.http.request('get', this.urlWareH + '/'+ name, { headers: { 'x-access-token': this.currentUser.token}})
+    return this.http.request('get', this.urlWareH +'/'+ name, { headers: { 'x-access-token': this.currentUser.token}})
   }
 
   deleteWareHouse(name){
@@ -120,6 +121,10 @@ export class ServicesService {
   // Companies
   getCompanies() {
     return this.http.request('get', this.baseurl +'/comercio/'+this.currentUser.rol+'/'+this.comercio, { headers: { 'x-access-token': this.currentUser.token}});
+  }
+
+  getCompaniesNames() {
+    return this.http.request('get', this.baseurl +'/comercios', { headers: { 'x-access-token': this.currentUser.token}});
   }
 
   getCompaniesByID(){

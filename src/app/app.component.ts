@@ -64,6 +64,12 @@ export class AppComponent {
         url: '/warehouses',
         direct: 'forward',
         icon: 'home'
+      },
+      {
+        title: 'MENU.static-units',
+        url: '/static-units',
+        direct: 'forward',
+        icon: 'filing'
       }
     ];
 

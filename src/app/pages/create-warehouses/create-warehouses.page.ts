@@ -30,6 +30,8 @@ export class CreateWarehousesPage implements OnInit {
   ciudad: string;
   selectedLanguage: any;
   isdisabled: boolean = false;
+  companias: {};
+  compania: String;
   
   constructor(
     private route: ActivatedRoute, 
@@ -84,6 +86,16 @@ export class CreateWarehousesPage implements OnInit {
         }
       )
     }
+
+    this.warehouseService.getCompanies()
+        .subscribe(
+          (comp) => {
+          this.companias = comp
+          },
+          (error) => {
+            console.error(error);
+          }
+        ) 
   }
 
 

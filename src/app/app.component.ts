@@ -70,6 +70,12 @@ export class AppComponent {
         url: '/static-units',
         direct: 'forward',
         icon: 'filing'
+      },
+      {
+        title: 'MENU.my-info',
+        url: '/edit-user',
+        direct: 'forward',
+        icon: 'contact'
       }
     ];
 

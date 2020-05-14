@@ -30,19 +30,25 @@
               </ng-template>
             </ngx-datatable-column>
 
-          <ngx-datatable-column name="{{ 'WAREHOUSE.numberUnit' | translate }}">
-              <ng-template let-row="row" ngx-datatable-cell-template>
-                {{row.almacen_cantidad_unidades}}
-              </ng-template>
-          </ngx-datatable-column>
+            <ngx-datatable-column name="{{ 'WAREHOUSE.numberUnit' | translate }}">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{row.almacen_cantidad_unidades}}
+                </ng-template>
+            </ngx-datatable-column>
 
-          <ngx-datatable-column name="{{ 'WAREHOUSE.address' | translate }}">
-            <ng-template  let-row="row" ngx-datatable-cell-template>
-              <span style="white-space: normal;">
-                {{row.direccion}}
-              </span> 
-            </ng-template>
-          </ngx-datatable-column>
+            <ngx-datatable-column name="{{ 'WAREHOUSE.address' | translate }}">
+              <ng-template  let-row="row" ngx-datatable-cell-template>
+                <span style="white-space: normal;">
+                  {{row.direccion}}
+                </span> 
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column *ngIf="isSuper" name="{{ 'WAREHOUSE.company' | translate }}">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.almacen_comercio}}
+              </ng-template>
+            </ngx-datatable-column>
 
             <ngx-datatable-column *ngIf="isAdmin || isSuper" name="{{ 'USERS.edit' | translate }}" sortable="false" prop="almacen_nombre">
               <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>

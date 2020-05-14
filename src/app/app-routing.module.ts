@@ -74,6 +74,12 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: { roles: [Role.Admin, Role.super] }
   },
+  { 
+    path: 'edit-user', 
+    loadChildren: './pages/edit-user/edit-user.module#EditUserPageModule',
+    canActivate: [AuthGuard] 
+  },
+
 
 
 

@@ -1,5 +1,5 @@
 export class User {
-    cedula: string;
+    cedula_usuario: string;
     rol: string;
     id_comercio: string;
     token?: string;

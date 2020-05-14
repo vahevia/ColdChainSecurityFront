@@ -3,6 +3,9 @@ import { NavController } from '@ionic/angular';
 import { ServicesService } from '../../Services/services.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TranslateConfigService } from '../../translate-config.service';
+import { AuthenticationService } from '../../Services/authentication.service';
+import { User } from 'src/app/models/user';
+import { Role } from 'src/app/models/role';
 
 @Component({
   selector: 'app-create-warehouses',
@@ -32,13 +35,18 @@ export class CreateWarehousesPage implements OnInit {
   isdisabled: boolean = false;
   companias: {};
   compania: String;
-  
+  currentUser: User;
+  isSuper: boolean;
+
   constructor(
     private route: ActivatedRoute, 
     private router: Router, private warehouseService: ServicesService, 
     private navCtrl: NavController, 
-    private translateConfigService: TranslateConfigService
+    private translateConfigService: TranslateConfigService,
+    private authenticationService: AuthenticationService
   ) {
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+    this.isSuper = this.currentUser.rol === Role.super
     this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
     this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
@@ -71,13 +79,13 @@ export class CreateWarehousesPage implements OnInit {
           this.nuevoNombre = warehouse[0].almacen_nombre,
           this.avenida = warehouse[0].almacen_direccion_avenida, 
           this.calle = warehouse[0].almacen_direccion_calle, 
-          this.zona = warehouse[0].almacen_direccion_zona , 
-          this.edificio = warehouse[0].almacen_direccion_edificio ,
-          this.apartamento = warehouse[0].almacen_direccion_apartamento , 
-          this.nroApartamento = warehouse[0].almacen_direccion_nro_apartamento ,
-          this.casa = warehouse[0].almacen_direccion_casa , 
-          this.nroCasa = warehouse[0].almacen_direccion_nro_casa ,
-          this.estado = warehouse[0].almacen_direccion_lugar_estado , 
+          this.zona = warehouse[0].almacen_direccion_zona, 
+          this.edificio = warehouse[0].almacen_direccion_edificio,
+          this.apartamento = warehouse[0].almacen_direccion_apartamento, 
+          this.nroApartamento = warehouse[0].almacen_direccion_nro_apartamento,
+          this.casa = warehouse[0].almacen_direccion_casa, 
+          this.nroCasa = warehouse[0].almacen_direccion_nro_casa,
+          this.estado = warehouse[0].almacen_direccion_lugar_estado, 
           this.pais = warehouse[0].almacen_direccion_lugar_pais;
           console.log(warehouse);
         },
@@ -87,17 +95,36 @@ export class CreateWarehousesPage implements OnInit {
       )
     }
 
-    this.warehouseService.getCompanies()
-        .subscribe(
-          (comp) => {
-          this.companias = comp
-          },
-          (error) => {
-            console.error(error);
-          }
-        ) 
+    this.getCompanies()
+    
+    if (!this.isSuper) {
+      this.getCompanyName()
+    } 
   }
 
+  getCompanies(){
+    this.warehouseService.getCompanies()
+    .subscribe(
+      (comp) => {
+      this.companias = comp
+      },
+      (error) => {
+        console.error(error);
+      }
+    )
+  }
+
+  getCompanyName(){
+    this.warehouseService.getCompaniesByID()
+    .subscribe(
+      (comp) => {
+        this.compania = comp[0]
+      },
+      (error) => {
+        console.error(error)
+      }
+    )
+  }
 
   onChangeCountry(){
     console.log('COUNTRY', this.pais)
@@ -149,7 +176,8 @@ export class CreateWarehousesPage implements OnInit {
       casa: this.casa,
       nro_casa: this.nroCasa,
       lugar: this.estado,
-      nombreNuevo: this.nuevoNombre
+      nombreNuevo: this.nuevoNombre,
+      compania: this.compania
     }
     if (this.editando) {
       this.warehouseService.updateWareHouse(warehouse)

@@ -15,7 +15,8 @@
         "warehouses": "Almacenes",
         "reports": "Reportes",
         "companies": "Compañías",
-        "static-units": "Unidades de almacenamiento"
+        "static-units": "Unidades de almacenamiento",
+        "my-info": "Mi info"
     },
     "DASHBOARD": {
         "dashboard": "Mapa",
@@ -48,7 +49,10 @@
         "roleUser": "Usuario",
         "roleAdmin": "Administrador",
         "company": "Compañía",
-        "schedule": "Horario"
+        "schedule": "Horario",
+        "save": "Guardar cambios",
+        "newId": "Nueva cédula",
+        "editUser": "Editar mi info"
     },
     "WAREHOUSE": {
         "warehouses": "Almacenes",

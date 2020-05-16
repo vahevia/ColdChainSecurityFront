@@ -1,9 +1,69 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>create-static-units</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button color="secondary"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+        <ion-text color="light">
+          <ion-text color="light" class="fw700">{{ 'STATICUNITS.staticUnitTitle' | translate }}</ion-text>
+        </ion-text>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="background-content">
+  <ion-grid>
+    <ion-row justify-content-center>
+      <ion-col align-self-center size-md="6" size-lg="5" size-xs="12" >
+        <ion-card class="card-color">
+          <ion-card-content>
+            <ion-label position="fixed" *ngIf="!editando">{{ 'STATICUNITS.id' | translate }}</ion-label>
+            <ion-list class="line-input" *ngIf="!editando">
+              <ion-item>
+                <ion-input placeholder="{{ 'STATICUNITS.id' | translate }}" [(ngModel)]="id" [disabled]="isdisabled"></ion-input>
+              </ion-item>
+            </ion-list>
+            <ion-label position="fixed" *ngIf="!editando">{{ 'STATICUNITS.type' | translate }}</ion-label>
+            <ion-list class="line-input" *ngIf="!editando">
+              <ion-item>
+                <ion-input placeholder="{{ 'STATICUNITS.type' | translate }}" [(ngModel)]="tipo" [disabled]="isdisabled"></ion-input>
+              </ion-item>
+            </ion-list>
+            <ion-label position="fixed" *ngIf="!editando">{{ 'STATICUNITS.description' | translate }}</ion-label>
+            <ion-list class="line-input" *ngIf="!editando">
+              <ion-item >
+                <ion-input placeholder="{{ 'STATICUNITS.description' | translate }}" [(ngModel)]="descripcion" [disabled]="isdisabled"></ion-input>
+              </ion-item>
+            </ion-list>
+            <ion-label position="fixed" *ngIf="editando">{{ 'WAREHOUSE.warehouse' | translate }}</ion-label>
+            <ion-list class="line-input" *ngIf="editando">
+              <ion-item >
+                <ion-input placeholder="{{ 'WAREHOUSE.warehouse' | translate }}" [(ngModel)]="almacen" [disabled]="isdisabled"></ion-input>
+              </ion-item>
+            </ion-list>
+            <ion-label position="fixed" *ngIf="editando">{{ 'WAREHOUSE.warehouse' | translate }}</ion-label>
+            <ion-list class="line-input" *ngIf="editando">
+              <ion-select placeholder="{{ 'USERS.choose' | translate }}" [(ngModel)]="almacenNuevo" interface="popover">
+                <ion-select-option *ngFor="let almacen of almacenes" value="{{almacen.nombre_almacen}}">{{almacen.nombre_almacen}}</ion-select-option>
+              </ion-select>
+            </ion-list>
+            <ion-label position="fixed" *ngIf="!editando">{{ 'WAREHOUSE.warehouse' | translate }}</ion-label>
+            <ion-list class="line-input" *ngIf="!editando">
+              <ion-select placeholder="{{ 'USERS.choose' | translate }}" [(ngModel)]="almacen" interface="popover">
+                <ion-select-option *ngFor="let almacen of almacenes" value="{{almacen.nombre_almacen}}">{{almacen.nombre_almacen}}</ion-select-option>
+              </ion-select>
+            </ion-list>
 
+            <div id="padding"></div>
+
+          <ion-button size="large" expand="block" *ngIf="editando" (click)="updateStaticUnit()" color='primary' no-margin>{{ 'USERS.update' | translate }}</ion-button>
+          <ion-button size="large" expand="block" *ngIf="!editando" (click)="createsStaticUnit()" color='primary' no-margin>{{ 'STATICUNITS.addStaticUnit' | translate }}</ion-button>
+          <div id="padding"></div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+          
+

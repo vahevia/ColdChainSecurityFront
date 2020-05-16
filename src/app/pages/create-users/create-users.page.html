@@ -32,32 +32,32 @@
           <ion-label position="fixed">{{ 'USERS.id' | translate }}</ion-label>
           <ion-list class="line-input">
             <ion-item id="bottom-border">
-              <ion-input placeholder="{{ 'USERS.id' | translate }}" [(ngModel)]="cedula" [disabled]="isdisabled"></ion-input>
+              <ion-input placeholder="{{ 'USERS.id' | translate }}" [(ngModel)]="cedulaOriginal" [disabled]="isdisabled"></ion-input>
+            </ion-item>
+          </ion-list>
+          <ion-label *ngIf="editando" position="fixed">{{ 'USERS.newId' | translate }}</ion-label>
+          <ion-list *ngIf="editando" class="line-input">
+            <ion-item id="bottom-border">
+              <ion-input placeholder="{{ 'USERS.newId' | translate }}" [(ngModel)]="cedula"></ion-input>
             </ion-item>
           </ion-list>
           <ion-label position="fixed">{{ 'USERS.position' | translate }}</ion-label>
           <ion-list class="line-input">
-            <ion-item>
-              <ion-select placeholder="{{ 'USERS.choose' | translate }}" [(ngModel)]="cargo" interface="popover">
-                <ion-select-option *ngFor="let rol of roles" value="{{rol.rol_tipo}}">{{rol.rol_tipo}}</ion-select-option>
-              </ion-select>
-            </ion-item>
+            <ion-select placeholder="{{ 'USERS.choose' | translate }}" [(ngModel)]="cargo" interface="popover">
+              <ion-select-option *ngFor="let rol of roles" value="{{rol.rol_tipo}}">{{rol.rol_tipo}}</ion-select-option>
+            </ion-select>
           </ion-list>
           <ion-label position="fixed">{{ 'USERS.schedule' | translate }}</ion-label>
           <ion-list class="line-input">
-            <ion-item>
-              <ion-select placeholder="{{ 'USERS.choose' | translate }}" [(ngModel)]="horario" interface="popover">
-                <ion-select-option *ngFor="let horario of horarios" value="{{horario.hor_emp_descripcion}}">{{horario.hor_emp_descripcion}}</ion-select-option>
-              </ion-select>
-            </ion-item>
+            <ion-select placeholder="{{ 'USERS.choose' | translate }}" [(ngModel)]="horario" interface="popover">
+              <ion-select-option *ngFor="let horario of horarios" value="{{horario.hor_emp_descripcion}}">{{horario.hor_emp_descripcion}}</ion-select-option>
+            </ion-select>
           </ion-list>
           <ion-label position="fixed">{{ 'USERS.company' | translate }}</ion-label>
           <ion-list class="line-input">
-            <ion-item>
-              <ion-select placeholder="{{ 'USERS.choose' | translate }}" [(ngModel)]="compania" interface="popover">
-                <ion-select-option *ngFor="let compania of companias" value="{{compania.comercio_nombre}}">{{compania.comercio_nombre}}</ion-select-option>
-              </ion-select>
-            </ion-item>
+            <ion-select placeholder="{{ 'USERS.choose' | translate }}" [(ngModel)]="compania" interface="popover">
+              <ion-select-option *ngFor="let compania of companias" value="{{compania.comercio_nombre}}">{{compania.comercio_nombre}}</ion-select-option>
+            </ion-select>
           </ion-list>
           <ion-label position="fixed">{{ 'LOGIN.user' | translate }}</ion-label>
             <ion-list class="line-input">

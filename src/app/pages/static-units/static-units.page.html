@@ -1,9 +1,77 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>static-units</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button color="secondary"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+        <ion-text color="light">
+          <ion-text color="light" class="fw700">{{ 'STATICUNITS.staticUnitTitle' | translate }}</ion-text>
+        </ion-text>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ngx-datatable 
+          [rows]="rows"
+          class="material"
+          [rowHeight]="auto"
+          [headerHeight]="50"
+          [footerHeight]="50"
+          [columnMode]="force"
+          [scrollbarH]="true">
 
+            <ngx-datatable-column name="{{ 'STATICUNITS.id' | translate }}">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.eslabon_serial_id}}
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="{{ 'STATICUNITS.type' | translate }}">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{row.eslabon_tipo}}
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="{{ 'STATICUNITS.description' | translate }}">
+              <ng-template  let-row="row" ngx-datatable-cell-template>
+                <span style="white-space: normal;">
+                  {{row.eslabon_descripcion}}
+                </span> 
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="{{ 'WAREHOUSE.warehouse' | translate }}">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.eslabon_almacen}}
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column *ngIf="isAdmin || isSuper" name="{{ 'USERS.edit' | translate }}" sortable="false" prop="eslabon_serial_id">
+              <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
+                <ion-button md-icon-button color="warning" (click)="editStaticUnit(value)">
+                  <ion-icon name="create"></ion-icon>
+                </ion-button>
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column *ngIf="isAdmin || isSuper" name="{{ 'USERS.delete' | translate }}" sortable="false" prop="eslabon_serial_id">
+              <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
+                <ion-button md-icon-button color="warning" (click)="deleteStaticUnit(value)" > 
+                  <ion-icon name="trash"></ion-icon>
+                </ion-button>
+              </ng-template>
+            </ngx-datatable-column>
+
+          </ngx-datatable>
+
+          <div id="padding"></div>
+        <ion-button  *ngIf="isAdmin || isSuper" size="large" expand="full" color="primary" (click)="createStaticUnit()" no-margin>{{ 'STATICUNITS.createStaticUnit' | translate }}</ion-button>
+        <div id="padding"></div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

@@ -20,17 +20,29 @@ export class CompanyPage implements OnInit {
   aux: Array<any> = [];
   tableStyle='material';
   nombre: string;
+  descripcion: String;
+  rif: String;
+  avenida: String;
+  calle: String;
+  zona: String;
+  edificio: String;
+  apartamento: String;
+  nroApartamento: String;
+  casa: String;
+  nroCasa: String;
+  lugar: String;
+  horario: String;
   cantUnid: number;
   direccion: string;
   selectedLanguage: string;
   currentUser: User;
-  isAdmin: boolean;
+  isSuper: boolean;
   auto: any;
 
   constructor(private companyServices: ServicesService,
     public navCtrl: NavController,
     private router: Router,
-    private translateConfigService: TranslateConfigService,
+    private translateConfigService: TranslateConfigService
     ) {
       this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
      }
@@ -51,11 +63,11 @@ export class CompanyPage implements OnInit {
           this.rows = company
           for(let data in company){
             this.aux.push({
-              direccion: [company[data].almacen_direccion_avenida, company[data].almacen_direccion_calle, 
-              company[data].almacen_direccion_zona , company[data].almacen_direccion_edificio ,
-              company[data].almacen_direccion_apartamento , company[data].almacen_direccion_nro_apartamento ,
-              company[data].almacen_direccion_casa , company[data].almacen_direccion_nro_casa ,
-              company[data].almacen_direccion_lugar_estado , company[data].almacen_direccion_lugar_pais].filter(function (el) {return el != null && el != "";})
+              direccion: [company[data].comercio_direccion_avenida, company[data].comercio_direccion_calle, 
+              company[data].comercio_direccion_zona , company[data].comercio_direccion_edificio ,
+              company[data].comercio_direccion_apartamento , company[data].comercio_direccion_nro_apartamento ,
+              company[data].comercio_direccion_casa , company[data].comercio_direccion_nro_casa ,
+              company[data].comercio_direccion_estado , company[data].comercio_direccion_pais].filter(function (el) {return el != null && el != "";})
             });
             this.rows[data].direccion = this.aux[data].direccion
           }
@@ -69,30 +81,32 @@ export class CompanyPage implements OnInit {
     }
   
     createCompany(){
-      this.navCtrl.navigateForward('create-company');
+      console.log('me falta')
+      // this.navCtrl.navigateForward('create-company');
     }
   
-    editCompany(name){
-      let navigationExtras: NavigationExtras = {
-        state: {
-          editando: true,
-          id: name 
+    editCompany(id){
+      console.log('me falta')
+      // let navigationExtras: NavigationExtras = {
+      //   state: {
+      //     editando: true,
+      //     id: id 
+      //   }
+      // }
+      // this.router.navigate(['create-company'], navigationExtras);
+    }
+  
+    deleteCompany(rif){
+      this.companyServices.deleteCompany(rif)
+      .subscribe(
+        (response) => {
+          this.getCompanies();
+          console.log(response)
+        },
+        (error) => {
+          console.error(error);
         }
-      }
-      this.router.navigate(['create-company'], navigationExtras);
+      )
     }
-  
-    // deleteCompany(name){
-    //   this.companyServices.deleteCompany(name)
-    //   .subscribe(
-    //     (response) => {
-    //       this.getCompanies();
-    //       console.log(response)
-    //     },
-    //     (error) => {
-    //       console.error(error);
-    //     }
-    //   )
-    // }
 
 }

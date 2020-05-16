@@ -48,9 +48,9 @@
                 </ng-template>
             </ngx-datatable-column>
 
-            <ngx-datatable-column name="{{ 'COMPANIES.numberWareh' | translate }}">
+            <ngx-datatable-column name="{{ 'COMPANIES.numberWareH' | translate }}">
               <ng-template let-row="row" ngx-datatable-cell-template>
-                {{row.almacen_cantidad_almacen}}
+                {{row.comercio_cantidad_almacen}}
               </ng-template>
             </ngx-datatable-column>
 
@@ -62,17 +62,23 @@
             </ng-template>
           </ngx-datatable-column>
 
-            <ngx-datatable-column *ngIf="isAdmin" name="{{ 'USERS.edit' | translate }}" sortable="false" prop="almacen_nombre">
+          <ngx-datatable-column name="{{ 'USERS.schedule' | translate }}">
+            <ng-template  let-row="row" ngx-datatable-cell-template>
+              {{row.comercio_horario}}
+            </ng-template>
+          </ngx-datatable-column>
+
+            <ngx-datatable-column name="{{ 'USERS.edit' | translate }}" sortable="false" prop="almacen_nombre">
               <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
-                <ion-button md-icon-button color="warning" (click)="editWareh(value)">
+                <ion-button md-icon-button color="warning" (click)="editCompany(value)">
                   <ion-icon name="create"></ion-icon>
                 </ion-button>
               </ng-template>
             </ngx-datatable-column>
 
-            <ngx-datatable-column *ngIf="isAdmin" name="{{ 'USERS.delete' | translate }}" sortable="false" prop="almacen_nombre">
+            <ngx-datatable-column name="{{ 'USERS.delete' | translate }}" sortable="false" prop="almacen_nombre">
               <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
-                <ion-button md-icon-button color="warning" (click)="deleteWareh(value)" > 
+                <ion-button md-icon-button color="warning" (click)="deleteCompany(value)" > 
                   <ion-icon name="trash"></ion-icon>
                 </ion-button>
               </ng-template>
@@ -81,7 +87,7 @@
           </ngx-datatable>
 
           <div id="padding"></div>
-        <ion-button  *ngIf="isAdmin" size="large" expand="full" color="primary" (click)="createWareh()" no-margin>{{ 'COMPANIES.addWareh' | translate }}</ion-button>
+        <ion-button size="large" expand="full" color="primary" (click)="createCompany()" no-margin>{{ 'COMPANIES.addCompany' | translate }}</ion-button>
         <div id="padding"></div>
       </ion-col>
     </ion-row>

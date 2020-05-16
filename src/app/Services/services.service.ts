@@ -14,6 +14,8 @@ export class ServicesService {
   urlWareH = 'https://coldchainsecurity.herokuapp.com/almacen';
   urlWareHBN = 'https://coldchainsecurity.herokuapp.com/almacenNombre';
   urlState = 'https://coldchainsecurity.herokuapp.com/estado';
+  urlStaticU = 'https://coldchainsecurity.herokuapp.com/eslabonfijo';
+  urlCompany = 'https://coldchainsecurity.herokuapp.com/comercio';
   baseurl = 'https://coldchainsecurity.herokuapp.com'
   currentUser = this.authenticationService.currentUserValue;
   comercio = this.currentUser.rol === 'super' ? '0' : this.currentUser.id_comercio;
@@ -99,7 +101,7 @@ export class ServicesService {
   }
 
   getWareHousesNames() {
-    return this.http.get(this.baseurl +'/almacenes', this.httpOptions)
+    return this.http.get(this.baseurl +'/almacenes/'+this.currentUser.rol +'/'+ this.comercio, this.httpOptions)
   }
 
   getWareHouseByName(name) {
@@ -120,15 +122,19 @@ export class ServicesService {
 
   // Companies
   getCompanies() {
-    return this.http.request('get', this.baseurl +'/comercio/'+this.currentUser.rol+'/'+this.comercio, { headers: { 'x-access-token': this.currentUser.token}});
+    return this.http.request('get',this.urlCompany +'/'+this.currentUser.rol+'/'+this.comercio, { headers: { 'x-access-token': this.currentUser.token}});
   }
 
   getCompaniesNames() {
-    return this.http.request('get', this.baseurl +'/comercios', { headers: { 'x-access-token': this.currentUser.token}});
+    return this.http.request('get', this.urlCompany , { headers: { 'x-access-token': this.currentUser.token}});
   }
 
   getCompaniesByID(){
-    return this.http.request('get', this.baseurl+'/comercio/id/'+this.comercio, { headers: { 'x-access-token': this.currentUser.token}});
+    return this.http.request('get', this.urlCompany +'/id/'+this.comercio, { headers: { 'x-access-token': this.currentUser.token}});
+  }
+
+  deleteCompany(rif){
+    return this.http.request('delete', this.urlCompany, { headers: { 'x-access-token': this.currentUser.token }, body: { "rif": rif } });
   }
 
   // Address
@@ -138,4 +144,26 @@ export class ServicesService {
   getStateByCountry(pais): Observable<any>{
     return this.http.get<any>(this.urlState + '/'+ pais, this.httpOptions)
   }
+
+  // Static Units
+  getStaticUnits() {
+    return this.http.request('get', this.urlStaticU+'/'+this.currentUser.rol+'/'+this.comercio, { headers: { 'x-access-token': this.currentUser.token}});
+  }
+
+  getStaticUnitByID(id) {
+    return this.http.request('get', this.urlStaticU +'/'+ id, { headers: { 'x-access-token': this.currentUser.token}})
+  }
+
+  deleteStaticUnit(id){
+    return this.http.request('delete', this.urlStaticU, { headers: { 'x-access-token': this.currentUser.token }, body: { "idSerial": id } });
+  }
+
+  addNewStaticUnit(staticunit) {
+    return this.http.post(this.urlStaticU, staticunit, this.httpOptions);
+  }
+
+  updateStaticUnit(staticunit) {
+    return this.http.put(this.urlStaticU, staticunit, this.httpOptions);
+  }
+
 }

@@ -82,7 +82,8 @@
         "address": "Dirección",
         "description": "Descripción",
         "numberUnit": "Número de unidades de transporte",
-        "numberWareH": "Número de almacenes"
+        "numberWareH": "Número de almacenes",
+        "addCompany": "Crear Compañía"
     },
     "TRUCKS": {
         "createTruck": "Crear Unidad de transporte",
@@ -101,6 +102,11 @@
     },
     "STATICUNITS": {
         "createStaticUnit": "Crear Unidad de almacenamiento",
-        "staticUnitTitle": "Unidades de almacenamiento"
+        "staticUnitTitle": "Unidades de almacenamiento",
+        "id": "ID",
+        "type": "Tipo",
+        "description": "Descripción",
+        "addStaticUnit": "Crear Unidad de almacenamiento",
+        "editTitle": "Editar Unidad de almacenamiento"
     }
 }

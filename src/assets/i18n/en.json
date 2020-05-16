@@ -85,7 +85,8 @@
         "address": "Address",
         "description": "Description",
         "numberUnit": "Number of units",
-        "numberWareH": "Number of warehouses"
+        "numberWareH": "Number of warehouses",
+        "addCompany": "Add Company"
     },
     "TRUCKS": {
         "createTruck": "Create Transport unit",
@@ -104,6 +105,11 @@
     },
     "STATICUNITS": {
         "createStaticUnit": "Create Storage unit",
-        "staticUnitTitle": "Storage units"
+        "staticUnitTitle": "Storage units",
+        "id": "ID",
+        "type": "Type",
+        "description": "Description",
+        "addStaticUnit": "Add Storage unit",
+        "editTitle": "Edit Storage unit"
     }
 }

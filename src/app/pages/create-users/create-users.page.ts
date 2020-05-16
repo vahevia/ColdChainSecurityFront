@@ -17,6 +17,7 @@ export class CreateUsersPage implements OnInit {
   nombre: string;
   apellido: string;
   cedula: string = '';
+  cedulaOriginal: string;
   cargo: string;
   horario: string;
   compania: string;
@@ -60,12 +61,13 @@ export class CreateUsersPage implements OnInit {
       .subscribe(
         (user) => {
           console.log('USER', user);
-          this.nombre = user[0].usuario_nombre,
-          this.apellido = user[0].usuario_apellido,
-          this.cargo = user[0].usuario_rol,
-          this.username = user[0].usuario_usuario,
-          this.password = user[0].usuario_contrasena,
-          this.horario = user[0].hor_emp_descripcion,
+          this.cedulaOriginal = user[0].usuario_cedula
+          this.nombre = user[0].usuario_nombre
+          this.apellido = user[0].usuario_apellido
+          this.cargo = user[0].usuario_rol
+          this.username = user[0].usuario_usuario
+          this.password = user[0].usuario_contrasena
+          this.horario = user[0].hor_emp_descripcion
           this.compania = user[0].usuario_comercio
         },
         (error) => {
@@ -108,29 +110,40 @@ export class CreateUsersPage implements OnInit {
   }
 
   crearUsuario(event){
-    var usuario = {
-      nombre: this.nombre,
-      apellido: this.apellido,
-      cedula: this.cedula,
-      cargo: this.cargo, 
-      username: this.username,
-      password: (this.passwordCambio === '' ? this.password :  this.passwordCambio),
-      horario: this.horario,
-      comercio: this.compania
-    }
     if (this.editando === true) {
-      this.usuarioService.updateUser(usuario)
+      var usuarioE = {
+        nombre: this.nombre,
+        apellido: this.apellido,
+        cedulaOriginal: this.cedulaOriginal,
+        cedula: this.cedula,
+        cargo: this.cargo, 
+        username: this.username,
+        password: (this.passwordCambio === '' ? this.password :  this.passwordCambio),
+        horario: this.horario,
+        comercio: this.compania
+      }
+      this.usuarioService.updateUser(usuarioE)
       .subscribe(
         (response) => {
           console.log(response)
           this.navCtrl.navigateRoot('/users')
-          console.log(usuario)
+          console.log(usuarioE)
         },
         (error) => {
           console.log(error)
         }
       )
     } else {
+      var usuario = {
+        nombre: this.nombre,
+        apellido: this.apellido,
+        cedula: this.cedulaOriginal,
+        cargo: this.cargo, 
+        username: this.username,
+        password: this.password,
+        horario: this.horario,
+        comercio: this.compania
+      }
       this.usuarioService.addNewUser(usuario)
       .subscribe(
         (response) => {

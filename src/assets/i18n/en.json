@@ -43,6 +43,7 @@
         "id": "ID",
         "position": "Position",
         "edit": "Edit",
+        "editTitle": "Edit user",
         "delete": "Delete",
         "addUser": "Add User",
         "choose": "Choose one",

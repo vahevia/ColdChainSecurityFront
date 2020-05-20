@@ -23,6 +23,16 @@
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
+          <ion-item button color="dark" (click)="languageChanged()" >
+            <ion-icon slot="start" name="text" color="light"></ion-icon>
+            <ion-label>
+              {{ 'LOGIN.language' | translate }}
+            </ion-label>
+            <ion-select placeholder="{{ 'USERS.choose' | translate }}" interface="popover" [(ngModel)]="selectedLanguage" (ionChange)="languageChanged()">
+              <ion-select-option value="en">English</ion-select-option>
+              <ion-select-option value="es">Español</ion-select-option>
+            </ion-select>
+          </ion-item>
           <ion-item button color="dark" (click)= "logout()">
             <ion-icon slot="start" name="log-out" color="light"></ion-icon>
             <ion-label>

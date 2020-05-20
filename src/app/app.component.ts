@@ -91,9 +91,11 @@ export class AppComponent {
     return this.currentUser && this.currentUser.rol === Role.Admin;
   }
 
+  languageChanged(){
+    this.translateConfigService.setLanguage(this.selectedLanguage);
+  }
 
   logout() {
-    console.log('el que tal')
     this.authenticationService.logout();
     this.router.navigate(['/'])
   }

@@ -5,7 +5,8 @@
     </ion-buttons>
     <ion-title>
         <ion-text color="light">
-          <ion-text color="light" class="fw700">{{ 'USERS.createUser' | translate }}</ion-text>
+          <ion-text color="light" *ngIf="!editando" class="fw700">{{ 'USERS.createUser' | translate }}</ion-text>
+          <ion-text color="light" *ngIf="editando" class="fw700">{{ 'USERS.editTitle' | translate }}</ion-text>
         </ion-text>
     </ion-title>
   </ion-toolbar>

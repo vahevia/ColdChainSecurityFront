@@ -55,13 +55,13 @@ const routes: Routes = [
     path: 'create-company', 
     loadChildren: './pages/create-company/create-company.module#CreateCompanyPageModule',
     canActivate: [AuthGuard],
-    //data: { roles: [Role.super] }
+    data: { roles: [Role.super] }
  },
   { 
     path: 'company', 
     loadChildren: './pages/company/company.module#CompanyPageModule',
     canActivate: [AuthGuard],
-    //data: { roles: [Role.super] }
+    data: { roles: [Role.super] }
   },
   { 
     path: 'static-units', 

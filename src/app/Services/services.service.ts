@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { tap, catchError, map} from 'rxjs/operators';
-import { AuthenticationService } from './authentication.service' 
+import { AuthenticationService } from './authentication.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +18,11 @@ export class ServicesService {
   urlCompany = 'https://coldchainsecurity.herokuapp.com/comercio';
   baseurl = 'https://coldchainsecurity.herokuapp.com'
   currentUser = this.authenticationService.currentUserValue;
-  comercio = this.currentUser.rol === 'super' ? '0' : this.currentUser.id_comercio;
+  
 
-  constructor(private http: HttpClient, private authenticationService: AuthenticationService) { }
+  constructor(private http: HttpClient, private authenticationService: AuthenticationService) {
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+   }
 
   private handleError(error: any) {
     console.log(error);
@@ -33,6 +35,13 @@ export class ServicesService {
     })
   }
 
+  getCurrentUserComercio(){
+    if (this.currentUser.rol == 'super') {
+      return '0'
+    }
+    return this.currentUser.id_comercio
+  }
+
   getInfo(){  
     return this.http.get(`${this.url}`);
   }
@@ -43,7 +52,7 @@ export class ServicesService {
 
   // Users
   getUsers(): Observable<any> { 
-    return this.http.get(this.url+'/'+this.currentUser.rol+'/'+this.comercio, this.httpOptions).pipe(
+    return this.http.get(this.url+'/'+this.currentUser.rol+'/'+this.getCurrentUserComercio(), this.httpOptions).pipe(
       tap(data => console.log(data)),
       catchError(this.handleError)
     );
@@ -75,8 +84,7 @@ export class ServicesService {
 
   // Trucks
   getTrucks() {
-    console.log(this.urlTruck +'/'+ this.currentUser +'/'+ this.comercio)
-    return this.http.get(this.urlTruck +'/'+ this.currentUser.rol +'/'+ this.comercio, this.httpOptions);
+    return this.http.get(this.urlTruck +'/'+ this.currentUser.rol +'/'+ this.getCurrentUserComercio(), this.httpOptions);
   }
 
   getTruckByPlate(plate): Observable<any>{
@@ -97,11 +105,11 @@ export class ServicesService {
 
   // Warehouses 
   getWareHouses() {
-    return this.http.get(this.urlWareH +'/'+ this.currentUser.rol +'/'+ this.comercio, this.httpOptions);
+    return this.http.get(this.urlWareH +'/'+ this.currentUser.rol +'/'+ this.getCurrentUserComercio(), this.httpOptions);
   }
 
   getWareHousesNames() {
-    return this.http.get(this.baseurl +'/almacenes/'+this.currentUser.rol +'/'+ this.comercio, this.httpOptions)
+    return this.http.get(this.baseurl +'/almacenes/'+this.currentUser.rol +'/'+ this.getCurrentUserComercio(), this.httpOptions)
   }
 
   getWareHouseByName(name) {
@@ -122,7 +130,7 @@ export class ServicesService {
 
   // Companies
   getCompanies() {
-    return this.http.request('get',this.urlCompany +'/'+this.currentUser.rol+'/'+this.comercio, { headers: { 'x-access-token': this.currentUser.token}});
+    return this.http.request('get',this.urlCompany +'/'+this.currentUser.rol+'/'+this.getCurrentUserComercio(), { headers: { 'x-access-token': this.currentUser.token}});
   }
 
   getCompaniesNames() {
@@ -130,7 +138,7 @@ export class ServicesService {
   }
 
   getCompaniesByID(){
-    return this.http.request('get', this.urlCompany +'/id/'+this.comercio, { headers: { 'x-access-token': this.currentUser.token}});
+    return this.http.request('get', this.urlCompany +'/id/'+this.getCurrentUserComercio(), { headers: { 'x-access-token': this.currentUser.token}});
   }
 
   deleteCompany(rif){
@@ -147,7 +155,7 @@ export class ServicesService {
 
   // Static Units
   getStaticUnits() {
-    return this.http.request('get', this.urlStaticU+'/'+this.currentUser.rol+'/'+this.comercio, { headers: { 'x-access-token': this.currentUser.token}});
+    return this.http.request('get', this.urlStaticU+'/'+this.currentUser.rol+'/'+this.getCurrentUserComercio(), { headers: { 'x-access-token': this.currentUser.token}});
   }
 
   getStaticUnitByID(id) {

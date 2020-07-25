@@ -32,6 +32,15 @@
         "blockChainDesc": "Número de bloques: {{number}} \n Informacion relevante",
         "cancel": "cancelar"        
     },
+    "REPORTS": {
+        "latitude": "Latitud",
+        "longitude": "Longitud",
+        "date": "Fecha",
+        "temperature": "Temperatura",
+        "unitId": "ID de unidad",
+        "info": "Info",
+        "search": "Buscar"
+    },
     "USERS": {
         "createUser": "Crear Usuario",
         "users": "Usuarios",
@@ -84,7 +93,8 @@
         "description": "Descripción",
         "numberUnit": "Número de unidades de transporte",
         "numberWareH": "Número de almacenes",
-        "addCompany": "Crear Compañía"
+        "addCompany": "Crear Compañía",
+        "editCompany": "Editar Compañía"
     },
     "TRUCKS": {
         "createTruck": "Crear Unidad de transporte",
@@ -103,6 +113,7 @@
     },
     "STATICUNITS": {
         "createStaticUnit": "Crear Unidad de almacenamiento",
+        "createUnit": "Crear Unidad",
         "staticUnitTitle": "Unidades de almacenamiento",
         "id": "ID",
         "type": "Tipo",

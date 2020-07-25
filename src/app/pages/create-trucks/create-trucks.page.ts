@@ -3,6 +3,9 @@ import { NavController } from '@ionic/angular';
 import { ServicesService } from '../../Services/services.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TranslateConfigService } from '../../translate-config.service';
+import { AuthenticationService } from '../../Services/authentication.service';
+import { User } from 'src/app/models/user';
+import { Role } from 'src/app/models/role';
 
 @Component({
   selector: 'app-create-trucks',
@@ -23,20 +26,26 @@ export class CreateTrucksPage implements OnInit {
   company: string;
   companias: {};
   isdisabled: boolean = false;
+  currentUser: User;
+  isAdmin: boolean;
+  isSuper: boolean;
 
   constructor(
     private route: ActivatedRoute, 
     private router: Router, private truckService: ServicesService, 
-    private navCtrl: NavController, private translateConfigService: TranslateConfigService
-  ) {
-    this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
-    this.route.queryParams.subscribe(params => {
-      if (this.router.getCurrentNavigation().extras.state) {
-        this.editando = this.router.getCurrentNavigation().extras.state.editando;
-        if (this.editando === true) {
-          this.plate = this.router.getCurrentNavigation().extras.state.id;
-          this.isdisabled = true;
-        }
+    private navCtrl: NavController, private translateConfigService: TranslateConfigService,
+    private authenticationService: AuthenticationService) {
+      this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
+      this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+      this.isAdmin = this.currentUser.rol === Role.Admin
+      this.isSuper = this.currentUser.rol === Role.super
+      this.route.queryParams.subscribe(params => {
+        if (this.router.getCurrentNavigation().extras.state) {
+          this.editando = this.router.getCurrentNavigation().extras.state.editando;
+          if (this.editando === true) {
+            this.plate = this.router.getCurrentNavigation().extras.state.id;
+            this.isdisabled = true;
+          }
       }
     })
    }

@@ -5,27 +5,65 @@
     </ion-buttons>
     <ion-title>
         <ion-text color="light">
-          <ion-text color="light" class="fw700">Cold Chain</ion-text>
+          <ion-text color="light" class="fw700">{{ 'MENU.reports' | translate }}</ion-text>
         </ion-text>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
+
+  
+
   <ion-card no-margin class="no-radius">
-    <ion-item lines="none" color="tertiary">
-      <ion-label>
-        <h2 no-margin class="fw500 no-margin">
-          <ion-text color="light">{{ 'WAREHOUSE.warehouse' | translate }}</ion-text>
-        </h2>
-      </ion-label>
-      <ion-select placeholder="{{ 'WAREHOUSE.warehouse' | translate }}" [(ngModel)]="warehouse" interface="popover">
-        <ion-select-option *ngFor="let warehouse of almacenes" value="{{warehouse.nombre}}">{{warehouse.nombre}}</ion-select-option>
-      </ion-select>
-    </ion-item>
+    <ion-grid>
+      <ion-row class="full">
+        <ion-col>
+          <ion-item lines="none" color="tertiary" *ngIf="isSuper">
+            <ion-label>
+              <h2 no-margin class="fw500 no-margin">
+                <ion-text color="light">{{ 'WAREHOUSE.company' | translate }}</ion-text>
+              </h2>
+            </ion-label>
+            <ion-select placeholder="{{ 'WAREHOUSE.company' | translate }}" [(ngModel)]="company" interface="popover">
+              <ion-select-option *ngFor="let compania of companias" value="{{compania.nombre}}">{{compania.nombre}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row class="full">
+        <ion-col>
+          <ion-item lines="none" color="tertiary" >
+            <ion-label>
+              <h2 no-margin class="fw500 no-margin">
+                <ion-text color="light">{{ 'WAREHOUSE.warehouse' | translate }}</ion-text>
+              </h2>
+            </ion-label>
+            <ion-select placeholder="{{ 'WAREHOUSE.warehouse' | translate }}" [(ngModel)]="warehouse" interface="popover">
+              <ion-select-option *ngFor="let warehouse of almacenes" value="{{warehouse.nombre_almacen}}">{{warehouse.nombre_almacen}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item lines="none" color="tertiary" >
+            <ion-label>
+              <h2 no-margin class="fw500 no-margin">
+                <ion-text color="light">{{ 'REPORTS.unitId' | translate }}</ion-text>
+              </h2>
+            </ion-label>
+            <ion-select placeholder="{{ 'REPORTS.unitId' | translate }}" [(ngModel)]="unit" interface="popover">
+              <ion-select-option *ngFor="let unidad of unidades" value="{{unidad.id}}">{{unidad.id}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-button size="medium" expand="block" (click)="getReports()" color='primary'>{{ 'REPORTS.search' | translate }}</ion-button>
+      </ion-row>
+    </ion-grid>
   </ion-card>
 
-  <ion-content padding>
+  <div id="padding"></div>
 
   <ngx-datatable
     class="material" 
@@ -33,94 +71,42 @@
     [rowHeight]="auto"
     [headerHeight]="50"
     [footerHeight]="50"
-    [columnMode]="ColumnMode.flex"
+    [columnMode]="force"
     [scrollbarH]="true"
     >
 
-    <ngx-datatable-column name="{{ 'WAREHOUSE.warehouse' | translate }}" [flexGrow]="5/2">
+    <ngx-datatable-column name="{{ 'REPORTS.latitude' | translate }}" [flexGrow]="5/2">
       <ng-template let-row="row" ngx-datatable-cell-template>
-        {{row.almacen}}
+        {{row.lat}}
       </ng-template>
     </ngx-datatable-column>
 
-    <ngx-datatable-column name="{{ 'USERS.lastname' | translate }}" [flexGrow]="5/2">
+    <ngx-datatable-column name="{{ 'REPORTS.longitude' | translate }}" [flexGrow]="5/2">
       <ng-template let-row="row" ngx-datatable-cell-template>
-        {{row.apellido}}
+        {{row.lon}}
       </ng-template>
     </ngx-datatable-column>
 
-    <ngx-datatable-column name="{{ 'USERS.id' | translate }}" [flexGrow]="2">
+    <ngx-datatable-column name="{{ 'REPORTS.date' | translate }}" [flexGrow]="2">
     <ng-template let-row="row" ngx-datatable-cell-template>
-      {{row.cedula}}
+      {{row.date}}
     </ng-template>
     </ngx-datatable-column>
 
-    <ngx-datatable-column name="{{ 'USERS.position' | translate }}" [flexGrow]="2">
+    <ngx-datatable-column name="{{ 'REPORTS.temperature' | translate }}" [flexGrow]="2">
       <ng-template let-row="row" ngx-datatable-cell-template>
-        {{row.cargo}}
+        {{row.temp}}
       </ng-template>
     </ngx-datatable-column>
 
-    <ngx-datatable-column name="{{ 'USERS.edit' | translate }}" sortable="false" prop="cedula" [flexGrow]="1">
+    <ngx-datatable-column name="{{ 'REPORTS.info' | translate }}" sortable="false" prop="cedula" [flexGrow]="1">
       <ng-template let-row="data" let-value="value"  ngx-datatable-cell-template>
         <ion-button md-icon-button color="warning" (click)="editUser(value)">
-          <ion-icon name="create"></ion-icon>
+          <ion-icon name="information-circle"></ion-icon>
         </ion-button>
-      </ng-template>
-    </ngx-datatable-column>
-
-    <ngx-datatable-column name="{{ 'USERS.delete' | translate }}" sortable="false" prop="cedula" [flexGrow]="1">
-      <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
-          <ion-button md-icon-button color="warning" (click)="deleteUser(value)" > 
-            <ion-icon name="trash"></ion-icon>
-          </ion-button>
       </ng-template>
     </ngx-datatable-column>
 
   </ngx-datatable>
 
 </ion-content>
-
-        <ion-grid>
-          <ion-row>
-            <ion-col>
-              <ion-card >
-                <ion-card-header color="primary">
-                  <ion-card-title>{{ 'DASHBOARD.chartTitle' | translate }}</ion-card-title>
-                </ion-card-header>
-              
-                <ion-card-content>
-                  
-                </ion-card-content>
-              </ion-card>
-            </ion-col>
-          </ion-row>    
-      
-        <ion-row>
-          <ion-col>
-            <ion-card >
-              <ion-card-header color="primary">
-                <ion-card-title>{{ 'DASHBOARD.activeUnits' | translate }}</ion-card-title>
-              </ion-card-header>
-            
-              <ion-card-content>
-                <h1 style=" text-align: center;">3</h1>
-              </ion-card-content>
-            </ion-card>
-          </ion-col>
-          <ion-col>
-            <ion-card>
-              <ion-card-header color="primary">
-                <ion-card-title>{{ 'DASHBOARD.averageTemp' | translate }}</ion-card-title>
-              </ion-card-header>
-            
-              <ion-card-content>
-                <h1 style="text-align: center;">27</h1>
-              </ion-card-content>
-            </ion-card>
-          </ion-col>
-        </ion-row>
-    </ion-grid>
-    
-</ion-content>
-  

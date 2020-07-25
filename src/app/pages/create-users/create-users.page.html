@@ -32,13 +32,13 @@
           </ion-list> 
           <ion-label position="fixed">{{ 'USERS.id' | translate }}</ion-label>
           <ion-list class="line-input">
-            <ion-item id="bottom-border">
+            <ion-item>
               <ion-input placeholder="{{ 'USERS.id' | translate }}" [(ngModel)]="cedulaOriginal" [disabled]="isdisabled"></ion-input>
             </ion-item>
           </ion-list>
           <ion-label *ngIf="editando" position="fixed">{{ 'USERS.newId' | translate }}</ion-label>
           <ion-list *ngIf="editando" class="line-input">
-            <ion-item id="bottom-border">
+            <ion-item>
               <ion-input placeholder="{{ 'USERS.newId' | translate }}" [(ngModel)]="cedula"></ion-input>
             </ion-item>
           </ion-list>
@@ -48,41 +48,49 @@
               <ion-select-option *ngFor="let rol of roles" value="{{rol.rol_tipo}}">{{rol.rol_tipo}}</ion-select-option>
             </ion-select>
           </ion-list>
-          <ion-label position="fixed">{{ 'USERS.schedule' | translate }}</ion-label>
-          <ion-list class="line-input">
-            <ion-select placeholder="{{ 'USERS.choose' | translate }}" [(ngModel)]="horario" interface="popover">
-              <ion-select-option *ngFor="let horario of horarios" value="{{horario.hor_emp_descripcion}}">{{horario.hor_emp_descripcion}}</ion-select-option>
-            </ion-select>
-          </ion-list>
-          <ion-label position="fixed">{{ 'USERS.company' | translate }}</ion-label>
-          <ion-list class="line-input">
-            <ion-select placeholder="{{ 'USERS.choose' | translate }}" [(ngModel)]="compania" interface="popover">
-              <ion-select-option *ngFor="let compania of companias" value="{{compania.comercio_nombre}}">{{compania.comercio_nombre}}</ion-select-option>
-            </ion-select>
-          </ion-list>
-          <ion-label position="fixed">{{ 'LOGIN.user' | translate }}</ion-label>
-            <ion-list class="line-input">
+          
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card class="card-color">
+          <ion-card-content>
+            <ion-label position="fixed">{{ 'USERS.schedule' | translate }}</ion-label>
+              <ion-list class="line-input">
+                <ion-select placeholder="{{ 'USERS.choose' | translate }}" [(ngModel)]="horario" interface="popover">
+                  <ion-select-option *ngFor="let horario of horarios" value="{{horario.hor_emp_descripcion}}">{{horario.hor_emp_descripcion}}</ion-select-option>
+                </ion-select>
+              </ion-list>
+              <ion-label position="fixed" *ngIf="isSuper">{{ 'USERS.company' | translate }}</ion-label>
+              <ion-list *ngIf="isSuper" class="line-input">
+                <ion-select placeholder="{{ 'USERS.choose' | translate }}" [(ngModel)]="compania" interface="popover">
+                  <ion-select-option *ngFor="let compania of companias" value="{{compania.comercio_nombre}}">{{compania.comercio_nombre}}</ion-select-option>
+                </ion-select>
+              </ion-list>
+              <ion-label position="fixed">{{ 'LOGIN.user' | translate }}</ion-label>
+              <ion-list class="line-input">
                 <ion-item>
                   <ion-input placeholder="{{ 'LOGIN.user' | translate }}" [(ngModel)]="username"></ion-input>
                 </ion-item>
-            </ion-list>
-            <ion-label position="fixed">{{ 'LOGIN.password' | translate }}</ion-label>
-            <ion-list class="line-input">
-              <ion-item>
-                <ion-input placeholder="{{ 'LOGIN.password' | translate }}" [(ngModel)]="passwordCambio"></ion-input>
-              </ion-item>
-            </ion-list>
-
-            <div id="padding"></div>
-
-            <ion-button size="large" expand="block" *ngIf="editando"  (click)="crearUsuario()" color='primary'>{{ 'USERS.update' | translate }}</ion-button>
-            <ion-button size="large" expand="block" *ngIf="!editando" (click)="crearUsuario()" color='primary'>{{ 'USERS.addUser' | translate }}</ion-button>
-
-            <div id="padding"></div>
+              </ion-list>
+              <ion-label position="fixed">{{ 'LOGIN.password' | translate }}</ion-label>
+              <ion-list class="line-input">
+                <ion-item>
+                  <ion-input placeholder="{{ 'LOGIN.password' | translate }}" [(ngModel)]="passwordCambio"></ion-input>
+                </ion-item>
+              </ion-list>
           </ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>
+      <ion-row justify-content-center>
+        <div id="padding"></div>
+
+        <ion-button size="large" expand="block" *ngIf="editando"  (click)="crearUsuario()" color='primary'>{{ 'USERS.update' | translate }}</ion-button>
+        <ion-button size="large" expand="block" *ngIf="!editando" (click)="crearUsuario()" color='primary'>{{ 'USERS.addUser' | translate }}</ion-button>
+
+        <div id="padding"></div>
+      </ion-row>
   </ion-grid>
 </ion-content>
   

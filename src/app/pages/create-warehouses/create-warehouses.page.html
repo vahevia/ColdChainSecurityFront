@@ -60,6 +60,12 @@
                 <ion-input placeholder="{{ 'WAREHOUSE.building' | translate }}" [(ngModel)]="edificio"></ion-input>
               </ion-item>
             </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card class="card-color">
+          <ion-card-content>
             <ion-label position="fixed">{{ 'WAREHOUSE.apartment' | translate }}</ion-label>
             <ion-list class="line-input">
               <ion-item>
@@ -96,15 +102,15 @@
                 <ion-select-option *ngFor="let state of states" value="{{state.estado}}">{{state.estado}}</ion-select-option>
               </ion-select>
             </ion-list>
-
-            <div id="padding"></div>
-
-          <ion-button size="large" expand="block" *ngIf="editando" (click)="createWareHouse()" color='primary' no-margin>{{ 'USERS.update' | translate }}</ion-button>
-          <ion-button size="large" expand="block" *ngIf="!editando" (click)="createWareHouse()" color='primary' no-margin>{{ 'WAREHOUSE.addWareh' | translate }}</ion-button>
-          <div id="padding"></div>
           </ion-card-content>
         </ion-card>
       </ion-col>
+    </ion-row>
+    <ion-row justify-content-center>
+      <div id="padding"></div>
+      <ion-button size="large" expand="block" *ngIf="editando" (click)="createWareHouse()" color='primary' no-margin>{{ 'USERS.update' | translate }}</ion-button>
+      <ion-button size="large" expand="block" *ngIf="!editando" (click)="createWareHouse()" color='primary' no-margin>{{ 'WAREHOUSE.addWareh' | translate }}</ion-button>
+      <div id="padding"></div>
     </ion-row>
   </ion-grid>
 </ion-content>

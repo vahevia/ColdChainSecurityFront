@@ -58,7 +58,7 @@
             <div id="padding"></div>
 
           <ion-button size="large" expand="block" *ngIf="editando" (click)="updateStaticUnit()" color='primary' no-margin>{{ 'USERS.update' | translate }}</ion-button>
-          <ion-button size="large" expand="block" *ngIf="!editando" (click)="createsStaticUnit()" color='primary' no-margin>{{ 'STATICUNITS.addStaticUnit' | translate }}</ion-button>
+          <ion-button size="large" expand="block" *ngIf="!editando" (click)="createsStaticUnit()" color='primary' >{{ 'STATICUNITS.createUnit' | translate }}</ion-button>
           <div id="padding"></div>
           </ion-card-content>
         </ion-card>

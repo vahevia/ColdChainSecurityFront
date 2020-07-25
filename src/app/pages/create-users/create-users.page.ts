@@ -106,7 +106,23 @@ export class CreateUsersPage implements OnInit {
             console.error(error);
           }
         ) 
+      
+        if (this.isAdmin) {
+          this.getCurrentCompany()
+        }
 
+  }
+
+  getCurrentCompany(){
+    this.usuarioService.getCompaniesByID()
+    .subscribe(
+      (comp) => {
+        this.compania = comp[0].comercio_nombre
+      },
+      (error) => {
+        console.error(error);
+      }
+    )
   }
 
   crearUsuario(event){
@@ -140,10 +156,11 @@ export class CreateUsersPage implements OnInit {
         cedula: this.cedulaOriginal,
         cargo: this.cargo, 
         username: this.username,
-        password: this.password,
+        password: this.passwordCambio,
         horario: this.horario,
         comercio: this.compania
       }
+      console.log(usuario)
       this.usuarioService.addNewUser(usuario)
       .subscribe(
         (response) => {

@@ -33,7 +33,13 @@
         "cancel": "cancel"       
     },
     "REPORTS": {
-        
+        "latitude": "Latitude",
+        "longitude": "Longitude",
+        "date": "Date",
+        "temperature": "Temperature",
+        "unitId": "Unit ID",
+        "info": "Info",
+        "search": "Search"
     },
     "USERS": {
         "createUser": "Create User",
@@ -87,7 +93,8 @@
         "description": "Description",
         "numberUnit": "Number of units",
         "numberWareH": "Number of warehouses",
-        "addCompany": "Add Company"
+        "addCompany": "Create Company",
+        "editCompany": "Edit Company"
     },
     "TRUCKS": {
         "createTruck": "Create Transport unit",
@@ -106,6 +113,7 @@
     },
     "STATICUNITS": {
         "createStaticUnit": "Create Storage unit",
+        "createUnit": "Create Unit",
         "staticUnitTitle": "Storage units",
         "id": "ID",
         "type": "Type",

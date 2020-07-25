@@ -10,7 +10,7 @@ import { Role } from 'src/app/models/role';
 @Component({
   selector: 'app-trucks',
   templateUrl: './trucks.page.html',
-  styleUrls: ['./trucks.page.scss'],
+  styleUrls: ['./trucks.page.scss']
 })
 export class TrucksPage implements OnInit {
 

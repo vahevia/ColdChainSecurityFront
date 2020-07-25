@@ -16,7 +16,8 @@ export class ServicesService {
   urlState = 'https://coldchainsecurity.herokuapp.com/estado';
   urlStaticU = 'https://coldchainsecurity.herokuapp.com/eslabonfijo';
   urlCompany = 'https://coldchainsecurity.herokuapp.com/comercio';
-  baseurl = 'https://coldchainsecurity.herokuapp.com'
+  urlHLF = 'https://coldchainsecurity.herokuapp.com/hlf';
+  baseurl = 'https://coldchainsecurity.herokuapp.com';
   currentUser = this.authenticationService.currentUserValue;
   
 
@@ -141,8 +142,16 @@ export class ServicesService {
     return this.http.request('get', this.urlCompany +'/id/'+this.getCurrentUserComercio(), { headers: { 'x-access-token': this.currentUser.token}});
   }
 
+  getCompanyByRIF(rif){
+    return this.http.request('get', this.urlCompany +'/'+rif, { headers: { 'x-access-token': this.currentUser.token}});
+  }
+
   deleteCompany(rif){
     return this.http.request('delete', this.urlCompany, { headers: { 'x-access-token': this.currentUser.token }, body: { "rif": rif } });
+  }
+
+  getCompaniesSchedules(){
+    return this.http.request('get',this.baseurl +'/horarioC' , { headers: { 'x-access-token': this.currentUser.token}} )
   }
 
   // Address
@@ -172,6 +181,11 @@ export class ServicesService {
 
   updateStaticUnit(staticunit) {
     return this.http.put(this.urlStaticU, staticunit, this.httpOptions);
+  }
+
+  //HLF
+  getAllRegisters() {
+    return this.http.get(this.urlHLF)
   }
 
 }

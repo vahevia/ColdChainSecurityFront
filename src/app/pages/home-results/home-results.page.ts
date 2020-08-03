@@ -34,21 +34,11 @@ export class HomeResultsPage implements OnInit {
   themeCover = 'assets/img/ionic4-Start-Theme-cover.jpg';
   units: Array<any> = [];
   unit: string;
-
-  marks: Array<any>=[
-    {
-      lat: 10.482390, 
-      lng: -66.818895
-    },
-    {
-      lat: 10.482546,
-      lng: -66.819021
-    },
-    {
-      lat: 10.482979, 
-      lng: -66.819080
-    }
-  ]
+  trucks: Array<any> = [];
+  truck: string;
+  aux = {};
+  marks: Array<any> = [];
+  commerce: string;
 
   constructor(
     public navCtrl: NavController,
@@ -96,15 +86,14 @@ export class HomeResultsPage implements OnInit {
   //   });
   // }
 
-  ngOnInit(): void {
-    this.services.getTrucks()
+  getStaticUnits() {
+    this.services.getStaticUnits()
     .subscribe(
       (unidades) => {
         for(let data in unidades){
           this.units.push({
-            name: unidades[data].unidad_placa,
+            id: unidades[data].eslabon_serial_id,
           });
-          this.units=[...this.units]
       }
       console.log('unidades', this.units);
     },
@@ -112,22 +101,95 @@ export class HomeResultsPage implements OnInit {
         console.error(error);
       }
     );
-
-    const pos = {
-      lat: 10.482390, lng: -66.818895
-    }
-    this.map = new google.maps.Map(
-        this.mapElement.nativeElement,
-        {
-          center: pos,
-          zoom: 20
-        });
-        const marker = new google.maps.Marker({
-          position: pos,
-          map: this.map
-        });
   }
 
+  getTrucks(){
+    this.services.getTrucks()
+    .subscribe(
+      (camiones) => {
+        for(let data in camiones){
+          this.trucks.push({
+            plate: camiones[data].unidad_placa,
+          });
+      }
+      console.log('camiones', this.trucks);
+    },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+  getMapsInfo(){
+
+    this.truck ?
+    this.services.geTruckUnitByPlateFromHLF(this.truck)
+    .subscribe(
+      (registers) => {
+        this.aux = registers.data;
+        this.displayGoogleMap(this.aux[0].Record.latitud, this.aux[0].Record.longitud)
+        for (let i in this.aux){
+          this.addMarkersToMap(this.aux[i].Record.latitud, this.aux[i].Record.longitud)
+          this.marks.push({
+            lat: this.aux[i].Record.latitud,
+            lon: this.aux[i].Record.longitud
+          })
+        }
+        console.log('MARKS', this.marks)
+      }
+    )
+    :
+    this.services.getStaticUnitBySerialIDFromHLF(this.unit)
+    .subscribe(
+      (registers) => {
+        this.aux = registers.data;
+        this.displayGoogleMap(this.aux[0].Record.latitud, this.aux[0].Record.longitud)
+        for (let i in this.aux){
+          this.addMarkersToMap(this.aux[i].Record.latitud, this.aux[i].Record.longitud)
+          this.marks.push({
+            lat: this.aux[i].Record.latitud,
+            lon: this.aux[i].Record.longitud
+          })
+        }
+        console.log('MARKS', this.marks)
+      }
+    )
+  }
+
+  displayGoogleMap(lat, lon){
+    const latLon = new google.maps.LatLng(lat,lon)
+    this.map = new google.maps.Map(
+      this.mapElement.nativeElement,
+      {
+        center: latLon,
+        zoom: 20
+      });
+  }
+
+  addMarkersToMap(lat, lon){
+    const position = new google.maps.LatLng(lat, lon);
+    const museumMarker = new google.maps.Marker({position});
+    museumMarker.setMap(this.map);
+  }
+
+  ngOnInit(): void {
+
+    this.getTrucks();
+    this.getStaticUnits();
+    this.getMapsInfo();
+    this.getGraphicValues()
+    
+  }
+
+  
+  getGraphicValues(){
+    this.services.getAllDataFromHLF()
+    .subscribe(
+      (data) => {
+        console.log('DATA', data)
+      }
+    )
+  }
    // Grafica
 
   multi: any[] = [

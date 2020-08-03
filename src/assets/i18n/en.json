@@ -20,7 +20,8 @@
     },
     "DASHBOARD": {
         "dashboard": "Map",
-        "activeUnit": "Active unit",
+        "activeUnit": "Active storage unit",
+        "activeTruck": "Active transport unit",
         "activeUnits": "Active units",
         "chartTitle": "Temperature of the units per hour",
         "unit": "Unit {{number}}",
@@ -30,7 +31,8 @@
         "averageTemp": "Average temperature",
         "blockChain": "BlockChain",
         "blockChainDesc": "Number of blocks: {{number}} \n Other relevant information" ,
-        "cancel": "cancel"       
+        "cancel": "cancel",
+        "show": "Show on map"       
     },
     "REPORTS": {
         "latitude": "Latitude",

@@ -184,8 +184,41 @@ export class ServicesService {
   }
 
   //HLF
-  getAllRegisters() {
+  getAllDataFromHLF(){
     return this.http.get(this.urlHLF)
+  }
+
+  getDataFromHLFByCommerce(commerce){
+    console.log(this.urlHLF + '/' + commerce)
+    return this.http.get(this.urlHLF + '/' + commerce)
+  }
+
+  getDataFromHLFByID(id){
+    return this.http.get(this.urlHLF + 'History/' + id)
+  }
+
+  geTruckUnitByPlateFromHLF(plate){
+    return this.http.get(this.urlHLF + 'Unidad/' + plate)
+  }
+
+  getStaticUnitBySerialIDFromHLF(serial){
+    return this.http.get(this.urlHLF + 'UnidadAlmacen/' + serial)
+  }
+
+  getTemperatureMaxByTransportUnit(plate){
+    return this.http.get(this.urlHLF + 'Unidad/Max/' + plate)
+  }
+
+  getMaxTemperatureByStaticUnit(serial){
+    return this.http.get(this.urlHLF + 'UnidadAlmacen/Max/' + serial)
+  }
+
+  getTemperatureMinByTransportUnit(plate){
+    return this.http.get(this.urlHLF + 'Unidad/Min/' + plate)
+  }
+
+  getMinTemperatureByStaticUnit(serial){
+    return this.http.get(this.urlHLF + 'UnidadAlmacen/Min/' + serial)
   }
 
 }

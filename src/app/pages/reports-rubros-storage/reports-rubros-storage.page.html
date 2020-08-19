@@ -5,7 +5,7 @@
     </ion-buttons>
     <ion-title>
         <ion-text color="light">
-          <ion-text color="light" class="fw700">{{ 'MENU.reportsStatic' | translate }}</ion-text>
+          <ion-text color="light" class="fw700">{{ 'MENU.reportsRubrosStatic' | translate }}</ion-text>
         </ion-text>
     </ion-title>
   </ion-toolbar>
@@ -59,6 +59,38 @@
       <ion-row>
         <ion-button size="medium" expand="block" (click)="getReports()" color='primary'>{{ 'REPORTS.search' | translate }}</ion-button>
       </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>
+              <h2 no-margin >
+                <ion-text color="#1D2731">{{ 'AREAS.area' | translate }}</ion-text>
+              </h2>
+            </ion-label>
+            <ion-input placeholder=" - " [(ngModel)]="rubro" readonly color="#1D2731" class="ion-text-center"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-label>
+              <h2 no-margin class="fw500 no-margin">
+                <ion-text color="dark">{{ 'AREAS.minTemp' | translate }}</ion-text>
+              </h2>
+            </ion-label>
+            <ion-input placeholder=" - " [(ngModel)]="tmin" readonly color="#1D2731" class="ion-text-center"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-label>
+              <h2 no-margin class="fw500 no-margin">
+                <ion-text color="dark">{{ 'AREAS.maxTemp' | translate }}</ion-text>
+              </h2>
+            </ion-label>
+            <ion-input placeholder=" - " [(ngModel)]="tmax" readonly color="#1D2731" class="ion-text-center"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
     </ion-grid>
   </ion-card>
 
@@ -74,18 +106,6 @@
     [scrollbarH]="true"
     >
 
-    <ngx-datatable-column name="{{ 'REPORTS.latitude' | translate }}" [flexGrow]="5/2">
-      <ng-template let-row="row" ngx-datatable-cell-template>
-        {{row.latitud}}
-      </ng-template>
-    </ngx-datatable-column>
-
-    <ngx-datatable-column name="{{ 'REPORTS.longitude' | translate }}" [flexGrow]="5/2">
-      <ng-template let-row="row" ngx-datatable-cell-template>
-        {{row.longitud}}
-      </ng-template>
-    </ngx-datatable-column>
-
     <ngx-datatable-column name="{{ 'REPORTS.date' | translate }}" [flexGrow]="2">
     <ng-template let-row="row" ngx-datatable-cell-template>
       {{row.fecha}}
@@ -98,21 +118,9 @@
       </ng-template>
     </ngx-datatable-column>
 
-    <ngx-datatable-column name="{{ 'REPORTS.unitId' | translate }}" [flexGrow]="2">
+    <ngx-datatable-column name="{{ 'REPORTS.status' | translate }}" [flexGrow]="2">
       <ng-template let-row="row" ngx-datatable-cell-template>
-        {{row.unidadAlmacen}}
-      </ng-template>
-    </ngx-datatable-column>
-
-    <ngx-datatable-column name="{{ 'WAREHOUSE.warehouse' | translate }}" [flexGrow]="2">
-      <ng-template let-row="row" ngx-datatable-cell-template>
-        {{row.almacen}}
-      </ng-template>
-    </ngx-datatable-column>
-
-    <ngx-datatable-column name="{{ 'WAREHOUSE.company' | translate }}" [flexGrow]="2" *ngIf="isSuper">
-      <ng-template let-row="row" ngx-datatable-cell-template>
-        {{row.comercio}}
+        {{row.estatus}}
       </ng-template>
     </ngx-datatable-column>
 

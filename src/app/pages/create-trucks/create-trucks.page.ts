@@ -24,7 +24,9 @@ export class CreateTrucksPage implements OnInit {
   driver: string;
   routee: string;
   company: string;
+  rubro: string;
   companias: {};
+  rubros: {};
   isdisabled: boolean = false;
   currentUser: User;
   isAdmin: boolean;
@@ -35,7 +37,7 @@ export class CreateTrucksPage implements OnInit {
     private router: Router, private truckService: ServicesService, 
     private navCtrl: NavController, private translateConfigService: TranslateConfigService,
     private authenticationService: AuthenticationService) {
-      this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
+      this.translateConfigService.getDefaultLanguage();
       this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
       this.isAdmin = this.currentUser.rol === Role.Admin
       this.isSuper = this.currentUser.rol === Role.super
@@ -67,6 +69,8 @@ export class CreateTrucksPage implements OnInit {
           console.log(error)
         }
       )
+    } else {
+      this.getCurrentUserCompanyName()
     }
 
     this.truckService.getCompaniesNames()
@@ -80,6 +84,28 @@ export class CreateTrucksPage implements OnInit {
         }
       );
 
+      this.getRubros()
+  }
+
+  getCurrentUserCompanyName(){
+    this.truckService.getCompaniesByID()
+    .subscribe(
+      (nombre) => {
+        this.company = nombre[0].comercio_nombre
+      }
+    )
+  }
+
+  getRubros(){
+    this.truckService.getAllRubrosByCompanyId()
+    .subscribe(
+      (ru) => {
+        this.rubros = ru
+      },
+      (error) => {
+        console.error(error)
+      }
+    )
   }
 
   createTruck(){
@@ -91,7 +117,8 @@ export class CreateTrucksPage implements OnInit {
         placa: this.plate,
         ruta: this.routee,
         nombreComercio: this.company,
-        ano: this.year
+        ano: this.year,
+        rubro: this.rubro
       }
       if (this.editando === true) {
         this.truckService.updateTruck(truck)

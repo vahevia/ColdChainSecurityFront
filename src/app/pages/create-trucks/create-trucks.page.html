@@ -66,6 +66,14 @@
                       <ion-input placeholder="{{ 'TRUCKS.routee' | translate }}" [(ngModel)]="routee"></ion-input>
                     </ion-item>
                   </ion-list>
+                  <ion-label position="stacked" >{{ 'AREAS.areasTitle' | translate }}</ion-label>
+                  <ion-list class="line-input">
+                    <ion-item>
+                      <ion-select placeholder="{{ 'AREAS.areasTitle' | translate }}" [(ngModel)]="rubro" interface="popover">
+                        <ion-select-option *ngFor="let rubro of rubros" value="{{rubro.rubro_nombre}}">{{rubro.rubro_nombre}}</ion-select-option>
+                      </ion-select>
+                    </ion-item>
+                  </ion-list>
                   <ion-label position="stacked" *ngIf="isSuper">{{ 'TRUCKS.company' | translate }}</ion-label>
                   <ion-list class="line-input">
                     <ion-item *ngIf="isSuper">

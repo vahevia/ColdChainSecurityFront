@@ -6,6 +6,7 @@ import { TranslateConfigService } from '../../translate-config.service';
 import { AuthenticationService } from '../../Services/authentication.service';
 import { User } from 'src/app/models/user';
 import { Role } from 'src/app/models/role';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
 @Component({
   selector: 'app-create-static-units',
@@ -19,7 +20,9 @@ export class CreateStaticUnitsPage implements OnInit {
   descripcion: String;
   almacen: String;
   almacenNuevo: String;
+  rubro: String;
   almacenes: {};
+  rubros: {};
   editando: Boolean;
   selectedLanguage: any;
   isdisabled: boolean = false;
@@ -49,6 +52,7 @@ export class CreateStaticUnitsPage implements OnInit {
 
   ngOnInit() {
     this.getWareHouses();
+    this.getRubros();
 
     if (this.editando === true) {
       this.staticUnitsServices.getStaticUnitByID(this.id)
@@ -79,12 +83,27 @@ export class CreateStaticUnitsPage implements OnInit {
     );
   }
 
+  getRubros(){
+    this.staticUnitsServices.getAllRubrosByCompanyId()
+    .subscribe(
+      (ru) => {
+        this.rubros = ru
+      },
+      (error) => {
+        console.error(error)
+      }
+    )
+  }
+
   createsStaticUnit(event) {
     var staticUnit = {
       serialId: this.id,
       tipo: this.tipo,
       descripcion: this.descripcion,
-      nombreAlmacen: this.almacen
+      nombreAlmacen: this.almacen,
+      rubro: this.rubro,
+      comercio: this.currentUser.id_comercio,
+      comercioL: null
     }
     this.staticUnitsServices.addNewStaticUnit(staticUnit)
     .subscribe(

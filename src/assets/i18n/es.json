@@ -13,9 +13,13 @@
         "users": "Usuarios",
         "units": "Unidades de transporte",
         "warehouses": "Almacenes",
-        "reports": "Reportes",
+        "reportsStatic": "Reportes unidades de almacenamiento",
+        "reportsTrucks": "Reportes unidades de transporte",
+        "reportsRubrosTrucks": "Reportes rubros unidad de transporte",
+        "reportsRubrosStatic": "Reportes rubros unidad de almacenamiento",
         "companies": "Compañías",
         "static-units": "Unidades de almacenamiento",
+        "areas": "Rubros",
         "my-info": "Mi info"
     },
     "DASHBOARD": {
@@ -41,7 +45,8 @@
         "temperature": "Temperatura",
         "unitId": "ID de unidad",
         "info": "Info",
-        "search": "Buscar"
+        "search": "Buscar",
+        "status": "Estatus"
     },
     "USERS": {
         "createUser": "Crear Usuario",
@@ -108,7 +113,7 @@
         "plate": "Placa",
         "year": "Año",
         "capacity": "Capacidad",
-        "rute": "Ruta",
+        "routee": "Ruta",
         "company": "Compañía",
         "addTruck": "Crear Unidad de transporte",
         "editTitle": "Editar Unidad de transporte"
@@ -122,5 +127,18 @@
         "description": "Descripción",
         "addStaticUnit": "Crear Unidad de almacenamiento",
         "editTitle": "Editar Unidad de almacenamiento"
+    },
+    "AREAS": {
+        "areasTitle": "Rubros",
+        "name": "Nombre",
+        "type": "Tipo",
+        "min": "Min",
+        "max": "Max",
+        "addArea": "Agregar Rubro",
+        "editTitle": "Editar Rubro",
+        "createArea": "Crear Area",
+        "area": "Rubro",
+        "maxTemp": "Temperatura máxima",
+        "minTemp": "Temperatura mínima"
     }
 }

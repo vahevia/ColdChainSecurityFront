@@ -36,6 +36,12 @@
                 <ion-input placeholder="{{ 'STATICUNITS.description' | translate }}" [(ngModel)]="descripcion" [disabled]="isdisabled"></ion-input>
               </ion-item>
             </ion-list>
+            <ion-label position="fixed" >{{ 'AREAS.areasTitle' | translate }}</ion-label>
+            <ion-list class="line-input" >
+              <ion-select placeholder="{{ 'USERS.choose' | translate }}" [(ngModel)]="rubro" interface="popover">
+                <ion-select-option *ngFor="let rubro of rubros" value="{{rubro.rubro_nombre}}">{{rubro.rubro_nombre}}</ion-select-option>
+              </ion-select>
+            </ion-list>
             <ion-label position="fixed" *ngIf="editando">{{ 'WAREHOUSE.warehouse' | translate }}</ion-label>
             <ion-list class="line-input" *ngIf="editando">
               <ion-item >

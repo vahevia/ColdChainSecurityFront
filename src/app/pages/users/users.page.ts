@@ -39,7 +39,7 @@ export class UsersPage implements OnInit {
     private router: Router,
     private translateConfigService: TranslateConfigService,
     private authenticationService: AuthenticationService) {
-      this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
+      this.translateConfigService.getDefaultLanguage();
       this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
       this.isAdmin = this.currentUser.rol === Role.Admin
       this.isSuper = this.currentUser.rol === Role.super

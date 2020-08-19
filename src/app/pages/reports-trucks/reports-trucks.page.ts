@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServicesService } from '../../Services/services.service';
-import { NavController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { Platform, NavController } from '@ionic/angular';
+import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { TranslateConfigService } from '../../translate-config.service';
 import { ColumnMode } from '@swimlane/ngx-datatable';
 import { AuthenticationService } from '../../Services/authentication.service';
@@ -9,23 +9,36 @@ import { User } from 'src/app/models/user';
 import { Role } from 'src/app/models/role';
 
 @Component({
-  selector: 'app-reports',
-  templateUrl: './reports.page.html',
-  styleUrls: ['./reports.page.scss'],
+  selector: 'app-reports-trucks',
+  templateUrl: './reports-trucks.page.html',
+  styleUrls: ['./reports-trucks.page.scss'],
 })
-export class ReportsPage implements OnInit {
+export class ReportsTrucksPage implements OnInit {
 
   ColumnMode = ColumnMode;
 
+  // rows = [
+  //   {
+  //   'lat': 66,
+  //   'lon': 77,
+  //   'date': '24-07-20 10:02',
+  //   'temp': 22
+  //   },
+  //   {
+  //     'lat': 66.22,
+  //     'lon': 77.56,
+  //     'date': '24-07-20 10:07',
+  //     'temp': 22
+  //     },
+  // ]
   tableStyle='material';
   selectedLanguage: string;
   rows: Array<any>=[{}];
   rows1: {};
-  almacenes: Array<any>=[{}];
+  almacenes: {};
   companias: {};
   unidades: {};
   dataArray: any = [{}];
-  warehouse: string;
   company: string;
   unit: string;
   userCompany: string;
@@ -55,7 +68,7 @@ export class ReportsPage implements OnInit {
       )
       :
       (
-        this.getWarehouses(),
+        this.getTrucks(),
         this.getCurrentUserCompanyName()
       )
 
@@ -65,11 +78,11 @@ export class ReportsPage implements OnInit {
     this.reportService.getAllDataFromHLF()
     .subscribe(
       (data1: any) => {
-        console.log('DATA', data1)
+        //console.log('DATA', data1)
         this.dataArray = data1.data
-        console.log('DATAARRAY!!', this.dataArray)
+        //console.log('DATAARRAY!!', this.dataArray)
         for (let i in this.dataArray){
-          if (this.dataArray[i].Record.unidadAlmacen !== 'null'){
+          if (this.dataArray[i].Record.unidad !== 'null'){
             this.rows.push({
               almacen: this.dataArray[i].Record.almacen,
               comercio: this.dataArray[i].Record.comercio,
@@ -83,7 +96,7 @@ export class ReportsPage implements OnInit {
           }
         }
         this.rows1 = this.rows
-        console.log('ROWS', this.rows)
+        //console.log('ROWS', this.rows)
       }
     )
   }
@@ -106,7 +119,7 @@ export class ReportsPage implements OnInit {
         this.dataArray = data1.data
         console.log('DATAARRAY!!', this.dataArray)
         for (let i in this.dataArray){
-          if (this.dataArray[i].Record.unidadAlmacen !== 'null'){
+          if (this.dataArray[i].Record.unidad !== 'null'){
             this.rows.push({
               almacen: this.dataArray[i].Record.almacen,
               comercio: this.dataArray[i].Record.comercio,
@@ -114,8 +127,7 @@ export class ReportsPage implements OnInit {
               latitud: this.dataArray[i].Record.latitud,
               longitud: this.dataArray[i].Record.longitud,
               temperatura: this.dataArray[i].Record.temperatura,
-              unidad: this.dataArray[i].Record.unidad,
-              unidadAlmacen: this.dataArray[i].Record.unidadAlmacen
+              unidad: this.dataArray[i].Record.unidad
             })
           }
         }
@@ -129,24 +141,7 @@ export class ReportsPage implements OnInit {
     this.reportService.getCompaniesNames()
       .subscribe(
         (co) => {
-          console.log(co)
           this.companias = co
-      },
-        (error) => {
-          console.error(error);
-        }
-      );
-  }
-
-  getWarehouses(){
-    this.reportService.getWareHousesNames()
-      .subscribe(
-        (wh: any) => {
-          for (let i in wh){
-            this.almacenes.push({
-              nombre_almacen: wh[i].nombre_almacen
-            })
-          }
       },
         (error) => {
           console.error(error);
@@ -156,76 +151,59 @@ export class ReportsPage implements OnInit {
 
   onChangeCompany(){
     if (this.company){
-      this.reportService.getWarehouseByCompany(this.company)
-        .subscribe(
-          (wh: any) => {
-            this.almacenes = []
-            for (let i in wh){
-              this.almacenes.push({
-                nombre_almacen: wh[i].almacen_nombre
-              })
-            }
-            this.almacenes = [...this.almacenes]
-          },
-          (error) => {
-            console.error(error);
-          }
-        );
-    }else {
-      this.almacenes = null;   
-    }
-  }
-
-  onChangeWarehouse() {
-    if (this.warehouse){
-      this.reportService.getStaticUnitByWarehouse(this.warehouse)
+      this.reportService.getTrucksByCompany(this.company)
         .subscribe(
           (un) => {
-            this.unidades = un;
-            if (un == []){
-              this.unidades = null
-            }
+            this.unidades = un; 
           },
           (error) => {
             console.error(error);
           }
         );
     }else {
-      this.unidades = null;
+      this.unidades = null;   
     }
   }
 
-  onChangeUnit() {
-    console.log(' CAMBIEEEEE')
-  }
-
-  getReports(){
-    this.reportService.getStaticUnitBySerialIDFromHLF(this.unit)
+  getTrucks(){
+    this.reportService.getTrucks()
     .subscribe(
-      (data1: any) => {
-        console.log('DATA', data1)
-        this.dataArray = data1.data
-        console.log('DATAARRAY!!', this.dataArray)
-        this.rows=[]
-        for (let i in this.dataArray){
-          if (this.dataArray[i].Record.unidad !== 'null'){
-            this.rows.push({
-              almacen: this.dataArray[i].Record.almacen,
-              comercio: this.dataArray[i].Record.comercio,
-              fecha: this.dataArray[i].Record.fecha,
-              latitud: this.dataArray[i].Record.latitud,
-              longitud: this.dataArray[i].Record.longitud,
-              temperatura: this.dataArray[i].Record.temperatura,
-              unidadAlmacen: this.dataArray[i].Record.unidad
-            })
-          }
-        }
-        this.rows=[...this.rows]
-        this.rows1 = this.rows
-        console.log('ROWS', this.rows)
+      (T) => {
+        this.unidades = T
+      },
+      (error) => {
+        console.error(error);
       }
     )
   }
+
+getReports(){
+  this.reportService.geTruckUnitByPlateFromHLF(this.unit)
+  .subscribe(
+    (data1: any) => {
+      console.log('DATA', data1)
+      this.dataArray = data1.data
+      console.log('DATAARRAY!!', this.dataArray)
+      this.rows=[]
+      for (let i in this.dataArray){
+        if (this.dataArray[i].Record.unidad !== 'null'){
+          this.rows.push({
+            almacen: this.dataArray[i].Record.almacen,
+            comercio: this.dataArray[i].Record.comercio,
+            fecha: this.dataArray[i].Record.fecha,
+            latitud: this.dataArray[i].Record.latitud,
+            longitud: this.dataArray[i].Record.longitud,
+            temperatura: this.dataArray[i].Record.temperatura,
+            unidad: this.dataArray[i].Record.unidad
+          })
+        }
+      }
+      this.rows=[...this.rows]
+      this.rows1 = this.rows
+      console.log('ROWS', this.rows)
+    }
+  )
+}
 
 
 }

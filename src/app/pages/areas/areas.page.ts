@@ -3,85 +3,74 @@ import { ServicesService } from '../../Services/services.service';
 import { Platform, NavController } from '@ionic/angular';
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { TranslateConfigService } from '../../translate-config.service';
-import { ColumnMode } from '@swimlane/ngx-datatable';
 import { AuthenticationService } from '../../Services/authentication.service';
 import { User } from 'src/app/models/user';
 import { Role } from 'src/app/models/role';
 
 @Component({
-  selector: 'app-static-units',
-  templateUrl: './static-units.page.html',
-  styleUrls: ['./static-units.page.scss'],
+  selector: 'app-areas',
+  templateUrl: './areas.page.html',
+  styleUrls: ['./areas.page.scss'],
 })
-export class StaticUnitsPage implements OnInit {
+export class AreasPage implements OnInit {
 
-  ColumnMode = ColumnMode;
   rows: {};
-  aux: Array<any> = [];
   tableStyle='material';
-  nombre: string;
-  cantUnid: number;
-  direccion: string;
   selectedLanguage: string;
   currentUser: User;
-  isAdmin: boolean;
-  isSuper: boolean;
   auto: any;
+  force: any;
 
   constructor(
-    private staticUnitsServices: ServicesService,
+    private areaServices: ServicesService,
     public navCtrl: NavController,
     private router: Router,
     private translateConfigService: TranslateConfigService,
     private authenticationService: AuthenticationService
-    ) {
-      this.translateConfigService.getDefaultLanguage();
-      this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
-      this.isAdmin = this.currentUser.rol === Role.Admin;
-      this.isSuper = this.currentUser.rol === Role.super;
-     }
+  ) {
+    this.translateConfigService.getDefaultLanguage();
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+   }
 
-  ngOnInit() {
-    this.getStaticUnits();
-
+   ngOnInit() {
+    this.getAreas();
   }
-
+  
   ionViewWillEnter() {
-    this.getStaticUnits();
+    this.getAreas();
   }
 
-  getStaticUnits(){
-    this.staticUnitsServices.getStaticUnits()
+  getAreas(){
+    this.areaServices.getAllRubrosByCompanyId()
     .subscribe(
-      (su) => {
-        this.rows = su
+      (trucks) => {
+        this.rows = trucks
         console.log(this.rows);
-      },
+    },
       (error) => {
         console.error(error);
       }
     )
   }
 
-  createStaticUnit(){
-    this.navCtrl.navigateForward('create-static-units');
+  createArea() {
+    this.navCtrl.navigateForward('create-areas');
   }
 
-  editStaticUnit(id){
+  editArea(plate){
     let navigationExtras: NavigationExtras = {
       state: {
         editando: true,
-        id: id 
+        id: plate 
       }
     }
-    this.router.navigate(['create-static-units'], navigationExtras);
+    this.router.navigate(['create-areas'], navigationExtras); 
   }
 
-  deleteWareh(id){
-    this.staticUnitsServices.deleteStaticUnit(id)
+  deleteArea(value){
+    this.areaServices.deleteRubro(value)
     .subscribe(
       (response) => {
-        this.getStaticUnits();
         console.log(response)
       },
       (error) => {
@@ -89,5 +78,7 @@ export class StaticUnitsPage implements OnInit {
       }
     )
   }
+
+
 
 }

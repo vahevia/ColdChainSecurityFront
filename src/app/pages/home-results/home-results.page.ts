@@ -37,6 +37,8 @@ export class HomeResultsPage implements OnInit {
   trucks: Array<any> = [];
   truck: string;
   aux = {};
+  dataArray: any = [{}];
+  graphicData: Array<any> = [];
   marks: Array<any> = [];
   commerce: string;
 
@@ -52,39 +54,6 @@ export class HomeResultsPage implements OnInit {
   ) {
     this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
   }
-
-  // ngOnInit(){
-  //   this.lineChart = new Chart(this.lineCanvas.nativeElement, {
-  //     type: "line",
-  //     data: {
-  //       labels: ["January", "February", "March", "April", "May", "June", "July"],
-  //       datasets: [
-  //         {
-  //           label: "My First dataset",
-  //           fill: false,
-  //           lineTension: 0.1,
-  //           backgroundColor: "rgba(75,192,192,0.4)",
-  //           borderColor: "rgba(75,192,192,1)",
-  //           borderCapStyle: "butt",
-  //           borderDash: [],
-  //           borderDashOffset: 0.0,
-  //           borderJoinStyle: "miter",
-  //           pointBorderColor: "rgba(75,192,192,1)",
-  //           pointBackgroundColor: "#fff",
-  //           pointBorderWidth: 1,
-  //           pointHoverRadius: 5,
-  //           pointHoverBackgroundColor: "rgba(75,192,192,1)",
-  //           pointHoverBorderColor: "rgba(220,220,220,1)",
-  //           pointHoverBorderWidth: 2,
-  //           pointRadius: 1,
-  //           pointHitRadius: 10,
-  //           data: [65, 59, 80, 81, 56, 55, 40],
-  //           spanGaps: false
-  //         }
-  //       ]
-  //     }
-  //   });
-  // }
 
   getStaticUnits() {
     this.services.getStaticUnits()
@@ -125,7 +94,7 @@ export class HomeResultsPage implements OnInit {
     this.truck ?
     this.services.geTruckUnitByPlateFromHLF(this.truck)
     .subscribe(
-      (registers) => {
+      (registers: any) => {
         this.aux = registers.data;
         this.displayGoogleMap(this.aux[0].Record.latitud, this.aux[0].Record.longitud)
         for (let i in this.aux){
@@ -141,7 +110,7 @@ export class HomeResultsPage implements OnInit {
     :
     this.services.getStaticUnitBySerialIDFromHLF(this.unit)
     .subscribe(
-      (registers) => {
+      (registers: any) => {
         this.aux = registers.data;
         this.displayGoogleMap(this.aux[0].Record.latitud, this.aux[0].Record.longitud)
         for (let i in this.aux){
@@ -172,6 +141,26 @@ export class HomeResultsPage implements OnInit {
     museumMarker.setMap(this.map);
   }
 
+  getGraphicValues(){
+    this.services.getDataFromHLFByCommerce('Locatel')
+    .subscribe(
+      (data1: any) => {
+        this.dataArray = data1.data
+        for (let i in this.dataArray){
+          this.graphicData.push({
+            name: this.dataArray[i].Record.unidadAlmacen,
+            series: [{
+              name: this.dataArray[i].Record.fecha,
+              value: Number(this.dataArray[i].Record.temperatura)
+            }] 
+          })
+        }
+        console.log('DATAARRAY', this.graphicData)
+        console.log('MULTI', this.multi)
+      }
+    )
+  }
+
   ngOnInit(): void {
 
     this.getTrucks();
@@ -182,14 +171,6 @@ export class HomeResultsPage implements OnInit {
   }
 
   
-  getGraphicValues(){
-    this.services.getAllDataFromHLF()
-    .subscribe(
-      (data) => {
-        console.log('DATA', data)
-      }
-    )
-  }
    // Grafica
 
   multi: any[] = [

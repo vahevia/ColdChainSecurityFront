@@ -9,11 +9,11 @@ import { User } from 'src/app/models/user';
 import { Role } from 'src/app/models/role';
 
 @Component({
-  selector: 'app-reports',
-  templateUrl: './reports.page.html',
-  styleUrls: ['./reports.page.scss'],
+  selector: 'app-reports-rubros-storage',
+  templateUrl: './reports-rubros-storage.page.html',
+  styleUrls: ['./reports-rubros-storage.page.scss'],
 })
-export class ReportsPage implements OnInit {
+export class ReportsRubrosStoragePage implements OnInit {
 
   ColumnMode = ColumnMode;
 
@@ -28,11 +28,14 @@ export class ReportsPage implements OnInit {
   warehouse: string;
   company: string;
   unit: string;
-  userCompany: string;
   auto: any;
   currentUser: User;
   isAdmin: boolean;
   isSuper: boolean;
+  status: string;
+  rubro: string;
+  tmin: number;
+  tmax: number;
 
   constructor(private reportService: ServicesService, 
     public navCtrl: NavController,
@@ -50,79 +53,13 @@ export class ReportsPage implements OnInit {
     
     this.isSuper ?  
       (
-        this.getCompanies(), 
-        this.getAllReports()
+        this.getCompanies()
       )
       :
       (
-        this.getWarehouses(),
-        this.getCurrentUserCompanyName()
+        this.getWarehouses()
       )
 
-  }
-
-  getAllReports(){
-    this.reportService.getAllDataFromHLF()
-    .subscribe(
-      (data1: any) => {
-        console.log('DATA', data1)
-        this.dataArray = data1.data
-        console.log('DATAARRAY!!', this.dataArray)
-        for (let i in this.dataArray){
-          if (this.dataArray[i].Record.unidadAlmacen !== 'null'){
-            this.rows.push({
-              almacen: this.dataArray[i].Record.almacen,
-              comercio: this.dataArray[i].Record.comercio,
-              fecha: this.dataArray[i].Record.fecha,
-              latitud: this.dataArray[i].Record.latitud,
-              longitud: this.dataArray[i].Record.longitud,
-              temperatura: this.dataArray[i].Record.temperatura,
-              unidad: this.dataArray[i].Record.unidad,
-              unidadAlmacen: this.dataArray[i].Record.unidadAlmacen
-            })
-          }
-        }
-        this.rows1 = this.rows
-        console.log('ROWS', this.rows)
-      }
-    )
-  }
-
-  getCurrentUserCompanyName(){
-    this.reportService.getCompaniesByID()
-    .subscribe(
-      (nombre) => {
-        this.userCompany = nombre[0].comercio_nombre
-        this.getAllCompanyReports(this.userCompany)
-      }
-    )
-  }
-
-  getAllCompanyReports(compania){
-    this.reportService.getDataFromHLFByCommerce(compania)
-    .subscribe(
-      (data1: any) => {
-        console.log('DATA', data1)
-        this.dataArray = data1.data
-        console.log('DATAARRAY!!', this.dataArray)
-        for (let i in this.dataArray){
-          if (this.dataArray[i].Record.unidadAlmacen !== 'null'){
-            this.rows.push({
-              almacen: this.dataArray[i].Record.almacen,
-              comercio: this.dataArray[i].Record.comercio,
-              fecha: this.dataArray[i].Record.fecha,
-              latitud: this.dataArray[i].Record.latitud,
-              longitud: this.dataArray[i].Record.longitud,
-              temperatura: this.dataArray[i].Record.temperatura,
-              unidad: this.dataArray[i].Record.unidad,
-              unidadAlmacen: this.dataArray[i].Record.unidadAlmacen
-            })
-          }
-        }
-        this.rows1 = this.rows
-        console.log('ROWS', this.rows)
-      }
-    )
   }
 
   getCompanies(){
@@ -196,33 +133,37 @@ export class ReportsPage implements OnInit {
   }
 
   onChangeUnit() {
-    console.log(' CAMBIEEEEE')
+    this.reportService.getRubroByStaticUnit(this.unit)
+    .subscribe(
+      (data: any) => {
+        this.rubro = data[0].rubro_nombre,
+        this.tmax = data[0].rubro_max,
+        this.tmin = data[0].rubro_min
+        console.log(this.rubro)
+      }
+    )
   }
 
   getReports(){
     this.reportService.getStaticUnitBySerialIDFromHLF(this.unit)
     .subscribe(
       (data1: any) => {
-        console.log('DATA', data1)
         this.dataArray = data1.data
-        console.log('DATAARRAY!!', this.dataArray)
         this.rows=[]
         for (let i in this.dataArray){
-          if (this.dataArray[i].Record.unidad !== 'null'){
-            this.rows.push({
-              almacen: this.dataArray[i].Record.almacen,
-              comercio: this.dataArray[i].Record.comercio,
-              fecha: this.dataArray[i].Record.fecha,
-              latitud: this.dataArray[i].Record.latitud,
-              longitud: this.dataArray[i].Record.longitud,
-              temperatura: this.dataArray[i].Record.temperatura,
-              unidadAlmacen: this.dataArray[i].Record.unidad
-            })
-          }
+          this.rows.push({
+            almacen: this.dataArray[i].Record.almacen,
+            comercio: this.dataArray[i].Record.comercio,
+            fecha: this.dataArray[i].Record.fecha,
+            latitud: this.dataArray[i].Record.latitud,
+            longitud: this.dataArray[i].Record.longitud,
+            temperatura: this.dataArray[i].Record.temperatura,
+            unidadAlmacen: this.dataArray[i].Record.unidad,
+            estatus: this.tmin <= parseFloat(this.dataArray[i].Record.temperatura) && parseFloat(this.dataArray[i].Record.temperatura) <= this.tmax ? 'normal' : (this.tmin > parseFloat(this.dataArray[i].Record.temperatura) ? 'bajo' : 'alto')
+          })
         }
         this.rows=[...this.rows]
         this.rows1 = this.rows
-        console.log('ROWS', this.rows)
       }
     )
   }

@@ -5,7 +5,7 @@
     </ion-buttons>
     <ion-title>
         <ion-text color="light">
-          <ion-text color="light" class="fw700">{{ 'MENU.reportsStatic' | translate }}</ion-text>
+          <ion-text color="light" class="fw700">{{ 'MENU.reportsTrucks' | translate }}</ion-text>
         </ion-text>
     </ion-title>
   </ion-toolbar>
@@ -35,23 +35,11 @@
           <ion-item lines="none" color="tertiary" >
             <ion-label>
               <h2 no-margin class="fw500 no-margin">
-                <ion-text color="light">{{ 'WAREHOUSE.warehouse' | translate }}</ion-text>
-              </h2>
-            </ion-label>
-            <ion-select placeholder="{{ 'WAREHOUSE.warehouse' | translate }}" [(ngModel)]="warehouse" interface="popover" (ionChange)="onChangeWarehouse()">
-              <ion-select-option *ngFor="let warehouse of almacenes" value="{{warehouse.nombre_almacen}}">{{warehouse.nombre_almacen}}</ion-select-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
-        <ion-col>
-          <ion-item lines="none" color="tertiary" >
-            <ion-label>
-              <h2 no-margin class="fw500 no-margin">
                 <ion-text color="light">{{ 'REPORTS.unitId' | translate }}</ion-text>
               </h2>
             </ion-label>
-            <ion-select placeholder="{{ 'REPORTS.unitId' | translate }}" [(ngModel)]="unit" interface="popover" (ionChange)="onChangeUnit()">
-              <ion-select-option *ngFor="let unidad of unidades" value="{{unidad.eslabon_serial_nombre}}">{{unidad.eslabon_serial_nombre}}</ion-select-option>
+            <ion-select placeholder="{{ 'REPORTS.unitId' | translate }}" [(ngModel)]="unit" interface="popover">
+              <ion-select-option *ngFor="let unidad of unidades" value="{{unidad.unidad_placa}}">{{unidad.unidad_placa}}</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-col>
@@ -100,13 +88,7 @@
 
     <ngx-datatable-column name="{{ 'REPORTS.unitId' | translate }}" [flexGrow]="2">
       <ng-template let-row="row" ngx-datatable-cell-template>
-        {{row.unidadAlmacen}}
-      </ng-template>
-    </ngx-datatable-column>
-
-    <ngx-datatable-column name="{{ 'WAREHOUSE.warehouse' | translate }}" [flexGrow]="2">
-      <ng-template let-row="row" ngx-datatable-cell-template>
-        {{row.almacen}}
+        {{row.unidad}}
       </ng-template>
     </ngx-datatable-column>
 

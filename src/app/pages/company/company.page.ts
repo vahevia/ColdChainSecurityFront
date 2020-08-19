@@ -44,7 +44,7 @@ export class CompanyPage implements OnInit {
     private router: Router,
     private translateConfigService: TranslateConfigService
     ) {
-      this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
+      this.translateConfigService.getDefaultLanguage();
      }
 
      ngOnInit() {

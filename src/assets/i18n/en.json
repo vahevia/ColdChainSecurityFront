@@ -13,9 +13,13 @@
         "users": "Users",
         "units": "Transport units",
         "warehouses": "Warehouses",
-        "reports": "Reports",
+        "reportsStatic": "Reports storage units",
+        "reportsTrucks": "Reports transport units",
+        "reportsRubrosTrucks": "Reports areas transport units",
+        "reportsRubrosStatic": "Reports areas storage units",
         "companies": "Companies",
         "static-units": "Storage units",
+        "areas": "Areas",
         "my-info": "My info"
     },
     "DASHBOARD": {
@@ -41,7 +45,8 @@
         "temperature": "Temperature",
         "unitId": "Unit ID",
         "info": "Info",
-        "search": "Search"
+        "search": "Search",
+        "status": "Status"
     },
     "USERS": {
         "createUser": "Create User",
@@ -122,5 +127,18 @@
         "description": "Description",
         "addStaticUnit": "Add Storage unit",
         "editTitle": "Edit Storage unit"
+    },
+    "AREAS": {
+        "areasTitle": "Areas",
+        "name": "Name",
+        "type": "Type",
+        "min": "Min",
+        "max": "Max",
+        "addArea": "Add Area",
+        "editTitle": "Edit Area",
+        "createArea": "Create Area",
+        "area": "Rubro",
+        "maxTemp": "Max temperature",
+        "minTemp": "Min temperature"
     }
 }

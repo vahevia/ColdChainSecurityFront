@@ -48,8 +48,26 @@ export class AppComponent {
         icon: 'clipboard'
       },
       {
-        title: 'MENU.reports',
+        title: 'MENU.reportsStatic',
         url: '/reports',
+        direct: 'forward',
+        icon: 'stats'
+      },
+      {
+        title: 'MENU.reportsTrucks',
+        url: '/reports-trucks',
+        direct: 'forward',
+        icon: 'stats'
+      },
+      {
+        title: 'MENU.reportsRubrosTrucks',
+        url: '/reports-rubros-transp',
+        direct: 'forward',
+        icon: 'stats'
+      },
+      {
+        title: 'MENU.reportsRubrosStatic',
+        url: '/reports-rubros-storage',
         direct: 'forward',
         icon: 'stats'
       },
@@ -70,6 +88,12 @@ export class AppComponent {
         url: '/static-units',
         direct: 'forward',
         icon: 'filing'
+      },
+      {
+        title: 'MENU.areas',
+        url: '/areas',
+        direct: 'forward',
+        icon: 'hammer'
       },
       {
         title: 'MENU.my-info',

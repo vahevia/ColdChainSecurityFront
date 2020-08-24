@@ -241,6 +241,12 @@ ion-item {
   background: white;
 }
 
+ion-select-popover ion-list ion-item ion-radio {
+  --color: transparent;
+  --color-checked: transparent;
+}
+
+
 
   // .datatable-header{
   //   background-color: #ccd1e1;

@@ -28,7 +28,7 @@
             <ion-label>
               {{ 'LOGIN.language' | translate }}
             </ion-label>
-            <ion-select placeholder="{{ 'USERS.choose' | translate }}" interface="popover" [(ngModel)]="selectedLanguage" (ionChange)="languageChanged()">
+            <ion-select placeholder="{{ 'USERS.choose' | translate }}" interface="popover" mode="ios" [(ngModel)]="selectedLanguage" (ionChange)="languageChanged()">
               <ion-select-option value="en">English</ion-select-option>
               <ion-select-option value="es">Español</ion-select-option>
             </ion-select>

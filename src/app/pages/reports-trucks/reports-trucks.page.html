@@ -24,7 +24,7 @@
                 <ion-text color="light">{{ 'WAREHOUSE.company' | translate }}</ion-text>
               </h2>
             </ion-label>
-            <ion-select placeholder="{{ 'WAREHOUSE.company' | translate }}" [(ngModel)]="company" interface="popover" (ionChange)="onChangeCompany()">
+            <ion-select placeholder="{{ 'WAREHOUSE.company' | translate }}" [(ngModel)]="company" interface="popover" mode="ios" (ionChange)="onChangeCompany()">
               <ion-select-option *ngFor="let compania of companias" value="{{compania.com_nombre}}">{{compania.com_nombre}}</ion-select-option>
             </ion-select>
           </ion-item>
@@ -38,7 +38,7 @@
                 <ion-text color="light">{{ 'REPORTS.unitId' | translate }}</ion-text>
               </h2>
             </ion-label>
-            <ion-select placeholder="{{ 'REPORTS.unitId' | translate }}" [(ngModel)]="unit" interface="popover">
+            <ion-select placeholder="{{ 'REPORTS.unitId' | translate }}" [(ngModel)]="unit" interface="popover" mode="ios">
               <ion-select-option *ngFor="let unidad of unidades" value="{{unidad.unidad_placa}}">{{unidad.unidad_placa}}</ion-select-option>
             </ion-select>
           </ion-item>

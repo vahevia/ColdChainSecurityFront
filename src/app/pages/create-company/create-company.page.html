@@ -38,7 +38,7 @@
             </ion-list>
             <ion-label position="fixed">{{ 'USERS.schedule' | translate }}</ion-label>
             <ion-list class="line-input">
-              <ion-select placeholder="{{ 'USERS.choose' | translate }}" [(ngModel)]="horario" interface="popover" (ionChange)="onChangeState()">
+              <ion-select placeholder="{{ 'USERS.choose' | translate }}" [(ngModel)]="horario" interface="popover" mode="ios" (ionChange)="onChangeState()">
                 <ion-select-option *ngFor="let schedule of horarios" value="{{schedule.hor_com_descripcion}}">{{schedule.hor_com_descripcion}}</ion-select-option>
               </ion-select>
             </ion-list>
@@ -118,7 +118,7 @@
               <ion-col>
                 <ion-label position="fixed">{{ 'WAREHOUSE.country' | translate }}</ion-label>
                 <ion-list class="line-input">
-                  <ion-select placeholder="{{ 'USERS.choose' | translate }}" [(ngModel)]="pais" interface="popover" (ionChange)="onChangeCountry()">
+                  <ion-select placeholder="{{ 'USERS.choose' | translate }}" [(ngModel)]="pais" interface="popover" mode="ios" (ionChange)="onChangeCountry()">
                     <ion-select-option *ngFor="let country of countries" value="{{country.lugar_nombre}}">{{country.lugar_nombre}}</ion-select-option>
                   </ion-select>
                 </ion-list>
@@ -126,7 +126,7 @@
               <ion-col>
                 <ion-label position="fixed">{{ 'WAREHOUSE.state' | translate }}</ion-label>
                 <ion-list class="line-input">
-                  <ion-select placeholder="{{ 'USERS.choose' | translate }}" [(ngModel)]="estado" interface="popover" (ionChange)="onChangeState()">
+                  <ion-select placeholder="{{ 'USERS.choose' | translate }}" [(ngModel)]="estado" interface="popover" mode="ios" (ionChange)="onChangeState()">
                     <ion-select-option *ngFor="let state of states" value="{{state.estado}}">{{state.estado}}</ion-select-option>
                   </ion-select>
                 </ion-list>

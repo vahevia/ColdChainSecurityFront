@@ -24,9 +24,12 @@
     },
     "DASHBOARD": {
         "dashboard": "Mapa",
-        "activeUnit": "Unidad de almacenamiento activa",
+        "unitType": "Tipo de unidad",
+        "truck": "Unidad de trasporte",
+        "storage": "Unidad de almacenamiento",
         "activeTruck": "Unidad de transporte activa",
         "activeUnits": "Unidades activas",
+        "activeUnit": "Unidad activa",
         "chartTitle": "Temperatura de las unidades por hora",
         "unit": "Unidad {{number}}",
         "temp": "Temperatura",

@@ -35,7 +35,7 @@ export class HomeResultsPage implements OnInit {
   units: Array<any> = [];
   unit: string;
   trucks: Array<any> = [];
-  truck: string;
+  isTruck: boolean;
   aux = {};
   dataArray: any = [{}];
   graphicData: Array<any> = [];
@@ -59,12 +59,13 @@ export class HomeResultsPage implements OnInit {
     this.services.getStaticUnits()
     .subscribe(
       (unidades) => {
+        this.units = [];
         for(let data in unidades){
           this.units.push({
             id: unidades[data].eslabon_serial_id,
           });
       }
-      console.log('unidades', this.units);
+      this.isTruck = false;
     },
       (error) => {
         console.error(error);
@@ -76,12 +77,13 @@ export class HomeResultsPage implements OnInit {
     this.services.getTrucks()
     .subscribe(
       (camiones) => {
+        this.units = [];
         for(let data in camiones){
-          this.trucks.push({
-            plate: camiones[data].unidad_placa,
+          this.units.push({
+            id: camiones[data].unidad_placa,
           });
       }
-      console.log('camiones', this.trucks);
+      this.isTruck = true;
     },
       (error) => {
         console.error(error);
@@ -91,8 +93,8 @@ export class HomeResultsPage implements OnInit {
 
   getMapsInfo(){
 
-    this.truck ?
-    this.services.geTruckUnitByPlateFromHLF(this.truck)
+    this.isTruck ?
+    this.services.geTruckUnitByPlateFromHLF(this.unit)
     .subscribe(
       (registers: any) => {
         this.aux = registers.data;
@@ -163,11 +165,16 @@ export class HomeResultsPage implements OnInit {
 
   ngOnInit(): void {
 
-    this.getTrucks();
-    this.getStaticUnits();
     this.getMapsInfo();
     this.getGraphicValues()
     
+  }
+
+  onTypeChange(value) {
+    value == 1 ?
+    this.getTrucks()
+    :
+    this.getStaticUnits()
   }
 
   

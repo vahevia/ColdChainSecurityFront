@@ -13,29 +13,45 @@
 
 <ion-content>
   <ion-card no-margin class="no-radius">
-    <ion-item lines="none" color="tertiary">
-      <ion-label>
-        <h2 no-margin class="fw500 no-margin">
-          <ion-text color="light">{{ 'DASHBOARD.activeUnit' | translate }}</ion-text>
-        </h2>
-      </ion-label>
-      <ion-select placeholder="{{ 'DASHBOARD.activeUnit' | translate }}" [(ngModel)]="unit" interface="popover" mode="ios">
-        <ion-select-option *ngFor="let unit of units" value="{{unit.id}}">{{unit.id}}</ion-select-option>
-      </ion-select>
-    </ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-item lines="none" color="tertiary">
+            <ion-label>
+              <h2 no-margin class="fw500 no-margin">
+                <ion-text color="light" class="text-custom">{{ 'DASHBOARD.unitType' | translate }}</ion-text>
+              </h2>
+            </ion-label>
+            <select [(ngModel)]="unitType" style="background-color: inherit; border-color: transparent;" (change)="onTypeChange($event.target.value)">
+              <option selected [value]="none" disabled style="text-align: right; color: black;">{{ 'USERS.choose' | translate }}</option>
+              <option [value]="1" style="text-align: right; color: black;">
+                {{ 'DASHBOARD.truck' | translate }}
+              </option>
+              <option [value]="2" style="text-align: right; color: black;">
+                {{ 'DASHBOARD.storage' | translate }}
+              </option>
+            </select>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item lines="none" color="tertiary">
+            <ion-label>
+              <h2 no-margin class="fw500 no-margin">
+                <ion-text color="light">{{ 'DASHBOARD.activeUnit' | translate }}</ion-text>
+              </h2>
+            </ion-label>
+            <select [(ngModel)]="unit" style="background-color: inherit; border-color: transparent;" [disabled]="!unitType">
+              <option selected [value]="none" disabled style="text-align: right; color: black;">{{ 'USERS.choose' | translate }}</option>
+              <option *ngFor="let unit of units" [value]="unit.id" style="text-align: right; color: black;">
+                {{unit.id}}
+              </option>
+            </select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-card>
-  <ion-card no-margin class="no-radius">
-    <ion-item lines="none" color="tertiary">
-      <ion-label>
-        <h2 no-margin class="fw500 no-margin">
-          <ion-text color="light">{{ 'DASHBOARD.activeTruck' | translate }}</ion-text>
-        </h2>
-      </ion-label>
-      <ion-select placeholder="{{ 'DASHBOARD.activeTruck' | translate }}" [(ngModel)]="truck" interface="popover" mode="ios">
-        <ion-select-option *ngFor="let truck of trucks" value="{{truck.plate}}">{{truck.plate}}</ion-select-option>
-      </ion-select>
-    </ion-item>
-  </ion-card>
+  
   <ion-card>
     <ion-button size="medium" expand="block" (click)="getMapsInfo()" color='primary'>
       {{ 'DASHBOARD.show' | translate }}

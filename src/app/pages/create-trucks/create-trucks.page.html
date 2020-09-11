@@ -69,17 +69,23 @@
                   <ion-label position="stacked" >{{ 'AREAS.areasTitle' | translate }}</ion-label>
                   <ion-list class="line-input">
                     <ion-item>
-                      <ion-select placeholder="{{ 'AREAS.areasTitle' | translate }}" [(ngModel)]="rubro" interface="popover" mode="ios">
-                        <ion-select-option *ngFor="let rubro of rubros" value="{{rubro.rubro_nombre}}">{{rubro.rubro_nombre}}</ion-select-option>
-                      </ion-select>
+                      <select [(ngModel)]="rubro" style="background-color: inherit; border-color: transparent;">
+                        <option selected [value]="none" disabled style="text-align: right; " >{{ 'AREAS.areasTitle' | translate }}</option>
+                        <option *ngFor="let rubro of rubros" [value]="rubro.rubro_nombre" style="text-align: right; color: black;" >
+                          {{rubro.rubro_nombre}}
+                        </option>
+                      </select>
                     </ion-item>
                   </ion-list>
                   <ion-label position="stacked" *ngIf="isSuper">{{ 'TRUCKS.company' | translate }}</ion-label>
                   <ion-list class="line-input">
                     <ion-item *ngIf="isSuper">
-                      <ion-select placeholder="{{ 'TRUCKS.company' | translate }}" [(ngModel)]="company" interface="popover" mode="ios">
-                        <ion-select-option *ngFor="let compania of companias" value="{{compania.com_nombre}}">{{compania.com_nombre}}</ion-select-option>
-                      </ion-select>
+                      <select [(ngModel)]="company" style="background-color: inherit; border-color: transparent;">
+                        <option selected [value]="none" disabled style="text-align: right; " >{{ 'TRUCKS.company' | translate }}</option>
+                        <option *ngFor="let compania of companias" [value]="compania.com_nombre" style="text-align: right; color: black;" >
+                          {{compania.com_nombre}}
+                        </option>
+                      </select>
                     </ion-item>
                   </ion-list>
                 </ion-card-content>

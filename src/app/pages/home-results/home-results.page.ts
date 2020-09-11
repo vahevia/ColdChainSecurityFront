@@ -39,6 +39,8 @@ export class HomeResultsPage implements OnInit {
   aux = {};
   dataArray: any = [{}];
   graphicData: Array<any> = [];
+  graphData: Array<any> = [];
+  promArray: Array<any> = [];
   marks: Array<any> = [];
   commerce: string;
 
@@ -143,22 +145,72 @@ export class HomeResultsPage implements OnInit {
     museumMarker.setMap(this.map);
   }
 
+  calculateAvg(arreglo){
+    var ocurrencyArray: Array<any> = arreglo.reduce(
+      (counter, record) => {
+        var acum: {} = counter
+        acum[record.date.getHours()] = (acum[record.date.getHours()] || 0) + 1
+        return acum
+      }, {}
+    )
+
+    var tempArray: Array<any> = arreglo.reduce(
+      (counter, record) => {
+        var acum: {} = counter
+        acum[record.date.getHours()] = (acum[record.date.getHours()] || 0) + record.temp
+        return acum
+      }, {}
+    )
+    
+    for(let i in tempArray){
+      this.graphData.push({
+        name: i,
+        value: tempArray[i] / ocurrencyArray[i]
+      })
+    }
+
+  }
+
   getGraphicValues(){
-    this.services.getDataFromHLFByCommerce('Locatel')
+
+    // this.isTruck ?
+    this.services.geTruckUnitByPlateFromHLF(this.unit)
+    .subscribe(
+      (data1: any) => {
+        let aux = data1.data
+        for (let i in aux) {
+          this.promArray.push({
+            temp: Number(aux[i].Record.temperatura),
+            date: new Date(aux[i].Record.fecha)
+          })
+        }
+        this.calculateAvg(this.promArray);
+      }
+    )
+    // :
+    // this.services.getStaticUnitBySerialIDFromHLF(this.unit)
+    // .subscribe(
+    //   (data: any) => {
+    //     console.log('DATA UNIT', data)
+    //   }
+    // )
+
+    this.services.getDataFromHLFByCommerce('Plumrose')
     .subscribe(
       (data1: any) => {
         this.dataArray = data1.data
-        for (let i in this.dataArray){
-          this.graphicData.push({
-            name: this.dataArray[i].Record.unidadAlmacen,
-            series: [{
-              name: this.dataArray[i].Record.fecha,
-              value: Number(this.dataArray[i].Record.temperatura)
-            }] 
-          })
-        }
-        console.log('DATAARRAY', this.graphicData)
-        console.log('MULTI', this.multi)
+        console.log('dataArray', this.dataArray)
+        // for (let i in this.dataArray){
+        //   this.graphicData.push({
+        //     name: this.dataArray[i].Record.unidadAlmacen,
+        //     series: [{
+        //       name: this.dataArray[i].Record.fecha,
+        //       value: Number(this.dataArray[i].Record.temperatura)
+        //     }] 
+        //   })
+        // }
+        // console.log('DATAARRAY', this.graphicData)
+        // console.log('MULTI', this.multi)
       }
     )
   }
@@ -166,7 +218,7 @@ export class HomeResultsPage implements OnInit {
   ngOnInit(): void {
 
     this.getMapsInfo();
-    this.getGraphicValues()
+    this.getGraphicValues();
     
   }
 

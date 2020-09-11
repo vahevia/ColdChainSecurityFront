@@ -38,9 +38,17 @@
             </ion-list>
             <ion-label position="fixed" >{{ 'AREAS.areasTitle' | translate }}</ion-label>
             <ion-list class="line-input" >
-              <ion-select placeholder="{{ 'USERS.choose' | translate }}" [(ngModel)]="rubro" interface="popover" mode="ios">
+              <ion-item>
+                <select [(ngModel)]="rubro" style="background-color: inherit; border-color: transparent;">
+                  <option selected [value]="none" disabled style="text-align: right; " >{{ 'AREAS.areasTitle' | translate }}</option>
+                  <option *ngFor="let rubro of rubros" [value]="rubro.rubro_nombre" style="text-align: right; color: black;" >
+                    {{rubro.rubro_nombre}}
+                  </option>
+                </select>
+              </ion-item>
+              <!-- <ion-select placeholder="{{ 'USERS.choose' | translate }}" [(ngModel)]="rubro" interface="popover" mode="ios">
                 <ion-select-option *ngFor="let rubro of rubros" value="{{rubro.rubro_nombre}}">{{rubro.rubro_nombre}}</ion-select-option>
-              </ion-select>
+              </ion-select> -->
             </ion-list>
             <ion-label position="fixed" *ngIf="editando">{{ 'WAREHOUSE.warehouse' | translate }}</ion-label>
             <ion-list class="line-input" *ngIf="editando">
@@ -56,9 +64,17 @@
             </ion-list>
             <ion-label position="fixed" *ngIf="!editando">{{ 'WAREHOUSE.warehouse' | translate }}</ion-label>
             <ion-list class="line-input" *ngIf="!editando">
-              <ion-select placeholder="{{ 'USERS.choose' | translate }}" [(ngModel)]="almacen" interface="popover" mode="ios">
+              <ion-item>
+                <select [(ngModel)]="almacen" style="background-color: inherit; border-color: transparent;">
+                  <option selected [value]="none" disabled style="text-align: right; " >{{ 'USERS.choose' | translate }}</option>
+                  <option *ngFor="let almacen of almacenes" [value]="almacen.nombre_almacen" style="text-align: right; color: black;" >
+                    {{almacen.nombre_almacen}}
+                  </option>
+                </select>
+              </ion-item>
+              <!-- <ion-select placeholder="{{ 'USERS.choose' | translate }}" [(ngModel)]="almacen" interface="popover" mode="ios">
                 <ion-select-option *ngFor="let almacen of almacenes" value="{{almacen.nombre_almacen}}">{{almacen.nombre_almacen}}</ion-select-option>
-              </ion-select>
+              </ion-select> -->
             </ion-list>
 
             <div id="padding"></div>

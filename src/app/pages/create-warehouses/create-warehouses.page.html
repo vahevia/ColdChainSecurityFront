@@ -32,9 +32,14 @@
             </ion-list> -->
             <ion-label *ngIf="isSuper" position="fixed">{{ 'WAREHOUSE.company' | translate }}</ion-label>
             <ion-list *ngIf="isSuper" class="line-input">
-              <ion-select placeholder="{{ 'USERS.choose' | translate }}" [(ngModel)]="compania" interface="popover" mode="ios">
-                <ion-select-option *ngFor="let compania of companias" value="{{compania.comercio_nombre}}">{{compania.comercio_nombre}}</ion-select-option>
-              </ion-select>
+              <ion-item>
+                <select [(ngModel)]="compania" style="background-color: inherit; border-color: transparent;">
+                  <option selected [value]="none" disabled style="text-align: right; " >{{ 'USERS.choose' | translate }}</option>
+                  <option *ngFor="let compania of companias" [value]="compania.comercio_nombre" style="text-align: right; color: black;" >
+                    {{compania.comercio_nombre}}
+                  </option>
+                </select>
+              </ion-item>
             </ion-list>
             <ion-label position="fixed">{{ 'WAREHOUSE.avenue' | translate }}</ion-label>
             <ion-list class="line-input">
@@ -92,15 +97,25 @@
             </ion-list>
             <ion-label position="fixed">{{ 'WAREHOUSE.country' | translate }}</ion-label>
             <ion-list class="line-input">
-              <ion-select placeholder="{{ 'USERS.choose' | translate }}" [(ngModel)]="pais" interface="popover" mode="ios" (ionChange)="onChangeCountry()">
-                <ion-select-option *ngFor="let country of countries" value="{{country.lugar_nombre}}">{{country.lugar_nombre}}</ion-select-option>
-              </ion-select>
+              <ion-item>
+                <select [(ngModel)]="pais" style="background-color: inherit; border-color: transparent;" (change)="onChangeCountry()">
+                  <option selected [value]="none" disabled style="text-align: right; " >{{ 'USERS.choose' | translate }}</option>
+                  <option *ngFor="let country of countries" [value]="country.lugar_nombre" style="text-align: right; color: black;" >
+                    {{country.lugar_nombre}}
+                  </option>
+                </select>
+              </ion-item>
             </ion-list>
             <ion-label position="fixed">{{ 'WAREHOUSE.state' | translate }}</ion-label>
             <ion-list class="line-input">
-              <ion-select placeholder="{{ 'USERS.choose' | translate }}" [(ngModel)]="estado" interface="popover" mode="ios" (ionChange)="onChangeState()">
-                <ion-select-option *ngFor="let state of states" value="{{state.estado}}">{{state.estado}}</ion-select-option>
-              </ion-select>
+              <ion-item>
+                <select [(ngModel)]="pais" style="background-color: inherit; border-color: transparent;" (change)="onChangeState()">
+                  <option selected [value]="none" disabled style="text-align: right; " >{{ 'USERS.choose' | translate }}</option>
+                  <option *ngFor="let state of states" [value]="state.estado" style="text-align: right; color: black;" >
+                    {{state.estado}}
+                  </option>
+                </select>
+              </ion-item>
             </ion-list>
           </ion-card-content>
         </ion-card>

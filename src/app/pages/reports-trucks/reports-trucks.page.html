@@ -24,9 +24,12 @@
                 <ion-text color="light">{{ 'WAREHOUSE.company' | translate }}</ion-text>
               </h2>
             </ion-label>
-            <ion-select placeholder="{{ 'WAREHOUSE.company' | translate }}" [(ngModel)]="company" interface="popover" mode="ios" (ionChange)="onChangeCompany()">
-              <ion-select-option *ngFor="let compania of companias" value="{{compania.com_nombre}}">{{compania.com_nombre}}</ion-select-option>
-            </ion-select>
+            <select [(ngModel)]="company" style="background-color: inherit; border-color: transparent;" (change)="onChangeCompany()">
+              <option selected [value]="none" disabled style="text-align: right; color: black;">{{ 'WAREHOUSE.company' | translate }}</option>
+              <option *ngFor="let compania of companias" [value]="compania.com_nombre" style="text-align: right; color: black;">
+                {{compania.com_nombre}}
+              </option>
+            </select>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -38,9 +41,12 @@
                 <ion-text color="light">{{ 'REPORTS.unitId' | translate }}</ion-text>
               </h2>
             </ion-label>
-            <ion-select placeholder="{{ 'REPORTS.unitId' | translate }}" [(ngModel)]="unit" interface="popover" mode="ios">
-              <ion-select-option *ngFor="let unidad of unidades" value="{{unidad.unidad_placa}}">{{unidad.unidad_placa}}</ion-select-option>
-            </ion-select>
+            <select [(ngModel)]="unit" style="background-color: inherit; border-color: transparent;">
+              <option selected [value]="none" disabled style="text-align: right; color: black;">{{ 'REPORTS.unitId' | translate }}</option>
+              <option *ngFor="let unidad of unidades" [value]="unidad.unidad_placa" style="text-align: right; color: black;">
+                {{unidad.unidad_placa}}
+              </option>
+            </select>
           </ion-item>
         </ion-col>
       </ion-row>

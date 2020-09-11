@@ -220,7 +220,6 @@ export class ServicesService {
   }
 
   getDataFromHLFByCommerce(commerce){
-    console.log(this.urlHLF + '/' + commerce)
     return this.http.get(this.urlHLF + '/' + commerce)
   }
 

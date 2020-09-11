@@ -105,13 +105,18 @@ export class ReportsRubrosTranspPage implements OnInit {
   }
 
   onChangeUnit() {
-    this.reportService.getRubroByStaticUnit(this.unit)
+    console.log(this.unit)
+    this.reportService.getRubroByTransportUnit(this.unit)
     .subscribe(
       (data: any) => {
+        console.log('data', data)
         this.rubro = data[0].rubro_nombre,
         this.tmax = data[0].rubro_max,
         this.tmin = data[0].rubro_min
         console.log(this.rubro)
+      },
+      (error) => {
+        console.error(error);
       }
     )
   }

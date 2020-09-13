@@ -111,8 +111,20 @@ export class AppComponent {
     }).catch(() => {});
   }
 
+  showOption(option){
+    if (this.isSuper && option == 'MENU.areas')
+      return false;
+    if (!this.isSuper && option == 'MENU.companies')
+      return false;
+    return true;
+  }
+
   get isAdmin() {
     return this.currentUser && this.currentUser.rol === Role.Admin;
+  }
+
+  get isSuper() {
+    return this.currentUser && this.currentUser.rol === Role.super;
   }
 
   languageChanged(){

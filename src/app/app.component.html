@@ -15,7 +15,7 @@
           
 
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
-            <ion-item [routerLink]="[p.url]" color="dark">
+            <ion-item [routerLink]="[p.url]" color="dark" *ngIf="showOption(p.title)">
               <ion-icon slot="start" [name]="p.icon" color="light"></ion-icon>
               <ion-label class="text-custom">
                 {{ p.title | translate}}

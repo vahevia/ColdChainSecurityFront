@@ -5,7 +5,7 @@
     </ion-buttons>
     <ion-title>
         <ion-text color="light">
-          <ion-text color="light" class="fw700">{{ 'AREAS.areasTitle' | translate }}</ion-text>
+          <ion-text color="light" class="fw700" *ngIf="!editando" >{{ 'AREAS.areasTitle' | translate }}</ion-text>
           <ion-text color="light" *ngIf="editando" class="fw700">{{ 'AREAS.editTitle' | translate }}</ion-text>
         </ion-text>
     </ion-title>
@@ -21,25 +21,25 @@
             <ion-label position="stacked">{{ 'AREAS.name' | translate }}</ion-label>
             <ion-list class="line-input">
               <ion-item>
-                <ion-input placeholder="{{ 'AREAS.name' | translate }}" [(ngModel)]="plate" [disabled]="isdisabled"></ion-input>
+                <ion-input placeholder="{{ 'AREAS.name' | translate }}" [(ngModel)]="name" [disabled]="isDisabled"></ion-input>
               </ion-item>
             </ion-list>
             <ion-label position="stacked">{{ 'AREAS.type' | translate }}</ion-label>
             <ion-list class="line-input">
               <ion-item>
-                <ion-input placeholder="{{ 'AREAS.type' | translate }}" [(ngModel)]="brand"></ion-input>
+                <ion-input placeholder="{{ 'AREAS.type' | translate }}" [(ngModel)]="type"></ion-input>
               </ion-item>
             </ion-list>
             <ion-label position="stacked">{{ 'AREAS.min' | translate }}</ion-label>
             <ion-list class="line-input">
               <ion-item>
-                <ion-input placeholder="{{ 'AREAS.min' | translate }}" [(ngModel)]="model"></ion-input>
+                <ion-input placeholder="{{ 'AREAS.min' | translate }}" [(ngModel)]="min"></ion-input>
               </ion-item>
             </ion-list>
             <ion-label position="stacked">{{ 'AREAS.max' | translate }}</ion-label>
             <ion-list class="line-input">
               <ion-item>
-                <ion-input placeholder="{{ 'AREAS.max' | translate }}" [(ngModel)]="year"></ion-input>
+                <ion-input placeholder="{{ 'AREAS.max' | translate }}" [(ngModel)]="max"></ion-input>
               </ion-item>
             </ion-list>
           </ion-card-content>
@@ -48,8 +48,8 @@
     </ion-row>
     <ion-row justify-content-center>
       <div id="padding"></div>
-      <ion-button size="large" expand="block" *ngIf="editando" (click)="createTruck()" color='primary' >{{ 'USERS.update' | translate }}</ion-button>
-      <ion-button size="large" expand="block" *ngIf="!editando" (click)="createTruck()" color='primary' >{{ 'AREAS.addArea' | translate }}</ion-button>
+      <ion-button size="large" expand="block" *ngIf="editando" (click)="createArea()" color='primary' >{{ 'USERS.update' | translate }}</ion-button>
+      <ion-button size="large" expand="block" *ngIf="!editando" (click)="createArea()" color='primary' >{{ 'AREAS.addArea' | translate }}</ion-button>
       <div id="padding"></div>
     </ion-row>
   </ion-grid>

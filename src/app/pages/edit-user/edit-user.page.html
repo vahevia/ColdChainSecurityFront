@@ -44,9 +44,12 @@
           <ion-label *ngIf="!isSuper" position="fixed">{{ 'USERS.schedule' | translate }}</ion-label>
           <ion-list *ngIf="!isSuper" class="line-input">
             <ion-item>
-              <ion-select placeholder="{{ 'USERS.choose' | translate }}" [(ngModel)]="horario" interface="popover" mode="ios">
-                <ion-select-option *ngFor="let horario of horarios" value="{{horario.hor_emp_descripcion}}">{{horario.hor_emp_descripcion}}</ion-select-option>
-              </ion-select>
+              <select [(ngModel)]="horario" style="background-color: inherit; border-color: transparent;" >
+                <option selected [value]="none" disabled style="text-align: right; color: black;">{{ 'USERS.choose' | translate }}</option>
+                <option *ngFor="let horario of horarios" [value]="horario.hor_emp_descripcion" style="text-align: right; color: black;">
+                  {{horario.hor_emp_descripcion}}
+                </option>
+              </select>
             </ion-item>
           </ion-list>
           </ion-card-content>

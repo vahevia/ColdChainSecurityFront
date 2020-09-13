@@ -57,11 +57,11 @@ export class AreasPage implements OnInit {
     this.navCtrl.navigateForward('create-areas');
   }
 
-  editArea(plate){
+  editArea(name){
     let navigationExtras: NavigationExtras = {
       state: {
         editando: true,
-        id: plate 
+        id: name 
       }
     }
     this.router.navigate(['create-areas'], navigationExtras); 

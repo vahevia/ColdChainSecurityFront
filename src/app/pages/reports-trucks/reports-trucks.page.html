@@ -51,6 +51,14 @@
         </ion-col>
       </ion-row>
       <ion-row>
+        <ion-item lines="none">
+          <ion-label>Fecha inicio</ion-label>
+          <ion-datetime displayFormat="MM/DD/YY" mode="ios" [(ngModel)]="iniDate" placeholder="MM/DD/YY"></ion-datetime>
+          <ion-label>Fecha fin</ion-label>
+          <ion-datetime displayFormat="MM/DD/YY" mode="ios" [max]="maxDate" [(ngModel)]="finDate" placeholder="MM/DD/YY"></ion-datetime>
+        </ion-item>
+      </ion-row>
+      <ion-row>
         <ion-button size="medium" expand="block" (click)="getReports()" color='primary'>{{ 'REPORTS.search' | translate }}</ion-button>
       </ion-row>
     </ion-grid>

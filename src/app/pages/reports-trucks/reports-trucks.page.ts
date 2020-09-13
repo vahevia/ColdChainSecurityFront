@@ -46,6 +46,10 @@ export class ReportsTrucksPage implements OnInit {
   currentUser: User;
   isAdmin: boolean;
   isSuper: boolean;
+  minDate: Date;
+  iniDate: string;
+  finDate: String;
+  maxDate: String;
 
   constructor(private reportService: ServicesService, 
     public navCtrl: NavController,
@@ -57,6 +61,7 @@ export class ReportsTrucksPage implements OnInit {
       this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
       this.isAdmin = this.currentUser.rol === Role.Admin
       this.isSuper = this.currentUser.rol === Role.super
+      this.maxDate = new Date().toJSON().split('T')[0]
     }
 
   ngOnInit() {
@@ -177,33 +182,59 @@ export class ReportsTrucksPage implements OnInit {
     )
   }
 
-getReports(){
-  this.reportService.geTruckUnitByPlateFromHLF(this.unit)
-  .subscribe(
-    (data1: any) => {
-      console.log('DATA', data1)
-      this.dataArray = data1.data
-      console.log('DATAARRAY!!', this.dataArray)
-      this.rows=[]
-      for (let i in this.dataArray){
-        if (this.dataArray[i].Record.unidad !== 'null'){
-          this.rows.push({
-            almacen: this.dataArray[i].Record.almacen,
-            comercio: this.dataArray[i].Record.comercio,
-            fecha: this.dataArray[i].Record.fecha,
-            latitud: this.dataArray[i].Record.latitud,
-            longitud: this.dataArray[i].Record.longitud,
-            temperatura: this.dataArray[i].Record.temperatura,
-            unidad: this.dataArray[i].Record.unidad
-          })
-        }
+  filterByDate(data){
+    var iniDia = Number(this.iniDate.split('-')[2])
+    var iniMes = Number(this.iniDate.split('-')[1])
+    var iniYear = Number(this.iniDate.split('-')[0])
+    var finDia = Number(this.finDate.split('-')[2])
+    var finMes = Number(this.finDate.split('-')[1])
+    var finYear = Number(this.finDate.split('-')[0])
+    for (let i in data){
+      var fechaData = new Date(data[i].Record.fecha)
+      var iniFecha = new Date(iniYear+'/'+iniMes+'/'+iniDia)
+      var finFecha = new Date(finYear+'/'+finMes+'/'+finDia)
+    if ( iniFecha <= fechaData && fechaData <= finFecha ){
+        this.rows.push({
+          almacen: this.dataArray[i].Record.almacen,
+          comercio: this.dataArray[i].Record.comercio,
+          fecha: this.dataArray[i].Record.fecha,
+          latitud: this.dataArray[i].Record.latitud,
+          longitud: this.dataArray[i].Record.longitud,
+          temperatura: this.dataArray[i].Record.temperatura,
+          unidad: this.dataArray[i].Record.unidad
+        })
       }
-      this.rows=[...this.rows]
-      this.rows1 = this.rows
-      console.log('ROWS', this.rows)
     }
-  )
-}
+  }
+
+  getReports(){
+    this.reportService.geTruckUnitByPlateFromHLF(this.unit)
+    .subscribe(
+      (data1: any) => {
+        console.log('DATA', data1)
+        this.dataArray = data1.data
+        console.log('DATAARRAY!!', this.dataArray)
+        this.rows=[]
+        this.filterByDate(this.dataArray)
+        // for (let i in this.dataArray){
+        //   if (this.dataArray[i].Record.unidad !== 'null'){
+        //     this.rows.push({
+        //       almacen: this.dataArray[i].Record.almacen,
+        //       comercio: this.dataArray[i].Record.comercio,
+        //       fecha: this.dataArray[i].Record.fecha,
+        //       latitud: this.dataArray[i].Record.latitud,
+        //       longitud: this.dataArray[i].Record.longitud,
+        //       temperatura: this.dataArray[i].Record.temperatura,
+        //       unidad: this.dataArray[i].Record.unidad
+        //     })
+        //   }
+        // }
+        this.rows=[...this.rows]
+        this.rows1 = this.rows
+        console.log('ROWS', this.rows)
+      }
+    )
+  }
 
 
 }

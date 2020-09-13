@@ -198,6 +198,11 @@ export class ServicesService {
   }
 
   // Areas
+
+  getRubroByNameAndCompany(name) {
+    return this.http.get(this.urlArea +'/'+ name +'/'+this.getCurrentUserComercio(), this.httpOptions);
+  }
+
   getAllRubrosByCompanyId() {
     return this.http.get(this.urlArea + '/'+ this.getCurrentUserComercio(), this.httpOptions);
   }
@@ -208,6 +213,14 @@ export class ServicesService {
 
   getRubroByTransportUnit(id) {
     return this.http.get(this.urlArea + '/unidadTransporte/'+ id, this.httpOptions);
+  }
+
+  addRubro(rubro) {
+    return this.http.post(this.urlArea, rubro, this.httpOptions);
+  }
+
+  updateRubro(rubro) {
+    return this.http.put(this.urlArea, rubro, this.httpOptions);
   }
 
   deleteRubro(name){

@@ -70,17 +70,17 @@
       </ion-row>
       <ion-row>
         <ion-col>
-          <ion-item>
+          <ion-item lines="none">
             <ion-label>
               <h2 no-margin >
                 <ion-text color="#1D2731">{{ 'AREAS.area' | translate }}</ion-text>
               </h2>
             </ion-label>
-            <ion-input placeholder=" - " [(ngModel)]="rubro" readonly color="#1D2731" class="ion-text-center"></ion-input>
+            <ion-input placeholder=" - " [(ngModel)]="rubro" readonly color="#1D2731" ></ion-input>
           </ion-item>
         </ion-col>
         <ion-col>
-          <ion-item>
+          <ion-item  lines="none">
             <ion-label>
               <h2 no-margin class="fw500 no-margin">
                 <ion-text color="dark">{{ 'AREAS.minTemp' | translate }}</ion-text>
@@ -90,7 +90,7 @@
           </ion-item>
         </ion-col>
         <ion-col>
-          <ion-item>
+          <ion-item  lines="none">
             <ion-label>
               <h2 no-margin class="fw500 no-margin">
                 <ion-text color="dark">{{ 'AREAS.maxTemp' | translate }}</ion-text>

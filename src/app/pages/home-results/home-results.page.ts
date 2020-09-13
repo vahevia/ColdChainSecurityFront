@@ -9,7 +9,8 @@ import {
 import { TranslateConfigService } from '../../translate-config.service';
 import { ServicesService } from '../../Services/services.service';
 import { Chart } from 'chart.js';
-
+import { User } from 'src/app/models/user';
+import { Role } from 'src/app/models/role';
 
 declare var google;
 
@@ -23,8 +24,9 @@ declare var google;
 export class HomeResultsPage implements OnInit {
 
   map;
-  @ViewChild("lineCanvas") lineCanvas: ElementRef;
+  //@ViewChild("lineCanvas") lineCanvas: ElementRef;
   @ViewChild('mapElement') mapElement;
+  @ViewChild('lineCanvas') lineCanvas;
   
   private lineChart: Chart;
 
@@ -38,11 +40,23 @@ export class HomeResultsPage implements OnInit {
   isTruck: boolean;
   aux = {};
   dataArray: any = [{}];
-  graphicData: Array<any> = [];
-  graphData: Array<any> = [];
+  //graphicData = {};
+  graphData = { labels: [], values: [] };
   promArray: Array<any> = [];
   marks: Array<any> = [];
   commerce: string;
+  activeUnits = 0;
+  activeTransportUnits = 0;
+  activeStaticUnits = 0;
+  avgUnit = 0;
+  compania: string;
+  isSuper: boolean;
+  currentUser: User;
+  graphDataExist: boolean = false;
+
+  //canva graph
+  bars: any;
+  colorArray: any;
 
   constructor(
     public navCtrl: NavController,
@@ -55,6 +69,47 @@ export class HomeResultsPage implements OnInit {
     private translateConfigService: TranslateConfigService
   ) {
     this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
+    //this.isSuper = this.currentUser.rol === Role.super
+  }
+
+  ngOnInit(): void {
+
+    //this.getMapsInfo();
+    //this.getGraphicValues();
+    this.getActiveUnits();
+    !this.isSuper && this.getCurrentCompany();    
+  }
+
+  createBarChart() {
+    this.bars = new Chart(this.lineCanvas.nativeElement, {
+      type: 'line',
+      //data: this.graphData,
+      data: {
+        labels: this.graphData.labels,
+        datasets: [{
+          label: 'Temperatura promedio',
+          data: this.graphData.values,
+          backgroundColor: 'rgba(0,0,0,0)', // array should have same number of elements as number of dataset
+          borderColor: 'rgba(96, 175, 254)',// array should have same number of elements as number of dataset
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              suggestedMin: -10,
+              beginAtZero: false
+            }
+          }],
+          xAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      }
+    });
   }
 
   getStaticUnits() {
@@ -94,7 +149,8 @@ export class HomeResultsPage implements OnInit {
   }
 
   getMapsInfo(){
-
+    this.getGraphicValues();
+    this.getAvg();
     this.isTruck ?
     this.services.geTruckUnitByPlateFromHLF(this.unit)
     .subscribe(
@@ -161,23 +217,73 @@ export class HomeResultsPage implements OnInit {
         return acum
       }, {}
     )
-    
-    for(let i in tempArray){
-      this.graphData.push({
-        name: i,
-        value: tempArray[i] / ocurrencyArray[i]
-      })
-    }
+    console.log(' tempArray ', tempArray)
+    console.log( ' ocurrencyArray', ocurrencyArray)
 
+    var labels = Object.keys(tempArray)
+    console.log(' labels ', labels) 
+    var values = [];
+    labels.forEach(index => {
+      values.push(tempArray[index]/ocurrencyArray[index]) 
+    })
+    console.log(' values ', values)
+   
+    if (labels && values){
+      this.graphData.labels = labels;
+      this.graphData.values = values;
+    }
+    console.log(this.graphData)
+    
+    this.createBarChart()
+  }
+
+  getCurrentCompany(){
+    this.services.getCompaniesByID()
+    .subscribe(
+      (comp) => {
+        this.compania = comp[0].comercio_nombre
+      },
+      (error) => {
+        console.error(error);
+      }
+    )
+  }
+
+  getAvg() {
+    this.isTruck ?
+    this.services.geTruckUnitByPlateFromHLF(this.unit)
+    .subscribe((registers: any) => {
+      var aux = registers.data;
+      var acumT = 0, countT = 0
+      for (let i in aux){
+        acumT += Number(aux[i].Record.temperatura)
+        countT++
+      }
+      this.avgUnit = acumT/countT
+    })
+    :
+    this.services.getStaticUnitBySerialIDFromHLF(this.unit)
+    .subscribe(
+      (registers: any) => {
+        var aux = registers.data;
+        var acumS = 0, countS = 0
+        for (let i in aux){
+          acumS += Number(aux[i].Record.temperatura)
+          countS++
+        }
+        this.avgUnit = acumS/countS
+      }
+    )
   }
 
   getGraphicValues(){
 
-    // this.isTruck ?
+    this.isTruck ?
     this.services.geTruckUnitByPlateFromHLF(this.unit)
     .subscribe(
       (data1: any) => {
         let aux = data1.data
+        this.promArray = []
         for (let i in aux) {
           this.promArray.push({
             temp: Number(aux[i].Record.temperatura),
@@ -187,39 +293,36 @@ export class HomeResultsPage implements OnInit {
         this.calculateAvg(this.promArray);
       }
     )
-    // :
-    // this.services.getStaticUnitBySerialIDFromHLF(this.unit)
-    // .subscribe(
-    //   (data: any) => {
-    //     console.log('DATA UNIT', data)
-    //   }
-    // )
-
-    this.services.getDataFromHLFByCommerce('Plumrose')
+    :
+    this.services.getStaticUnitBySerialIDFromHLF(this.unit)
     .subscribe(
       (data1: any) => {
-        this.dataArray = data1.data
-        console.log('dataArray', this.dataArray)
-        // for (let i in this.dataArray){
-        //   this.graphicData.push({
-        //     name: this.dataArray[i].Record.unidadAlmacen,
-        //     series: [{
-        //       name: this.dataArray[i].Record.fecha,
-        //       value: Number(this.dataArray[i].Record.temperatura)
-        //     }] 
-        //   })
-        // }
-        // console.log('DATAARRAY', this.graphicData)
-        // console.log('MULTI', this.multi)
+        let aux = data1.data
+        this.promArray = []
+        for (let i in aux) {
+          this.promArray.push({
+            temp: Number(aux[i].Record.temperatura),
+            date: new Date(aux[i].Record.fecha)
+          })
+        }
+        this.calculateAvg(this.promArray);
       }
     )
+
   }
 
-  ngOnInit(): void {
+  getActiveUnits(){
+    this.services.getStaticUnits()
+    .subscribe((n) => {
+      this.activeUnits = Object.keys(n).length
+      this.activeStaticUnits = Object.keys(n).length
+    })
 
-    this.getMapsInfo();
-    this.getGraphicValues();
-    
+    this.services.getTrucks()
+    .subscribe((c)=> {
+      this.activeUnits += Object.keys(c).length
+      this.activeTransportUnits = Object.keys(c).length
+    })
   }
 
   onTypeChange(value) {

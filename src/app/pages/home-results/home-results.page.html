@@ -69,23 +69,9 @@
                   <ion-card-title >{{ 'DASHBOARD.chartTitle' | translate }}</ion-card-title>
                 </ion-card-header>
               
-                <ion-card-content>
+                <ion-card-content style="justify-content: center;">
                   <div class="graph">
-                    <ngx-charts-line-chart
-                      [scheme]="colorScheme"
-                      [showXAxisLabel]="showXAxisLabel"
-                      [showYAxisLabel]="showYAxisLabel"
-                      [xAxis]="xAxis"
-                      [yAxis]="yAxis"
-                      [xAxisLabel]="xAxisLabel"
-                      [yAxisLabel]="yAxisLabel"
-                      [trimXAxisTicks]="false"
-                      [autoScale]="true"
-                      [timeline]="timeline"
-                      [results]="multi"
-                      
-                      >
-                    </ngx-charts-line-chart> 
+                    <canvas #lineCanvas style="width: 80%; min-height: 50px"></canvas>
                   </div>
                   <div class="padding"></div>
                 </ion-card-content>
@@ -101,7 +87,15 @@
               </ion-card-header>
             
               <ion-card-content>
-                <h1 style=" text-align: center;" >3</h1>
+                <ion-row>
+                  <ion-col>
+                    <h1 class="activeCard">{{'DASHBOARD.activeTrucks' | translate}} <br> <b>{{activeTransportUnits}}</b></h1>
+                    <h1></h1>
+                  </ion-col>
+                  <ion-col>
+                    <h1 class="activeCard">{{'DASHBOARD.activeStatic' | translate}} <br> <b>{{activeStaticUnits}}</b></h1>
+                  </ion-col>
+                </ion-row>
               </ion-card-content>
             </ion-card>
           </ion-col>
@@ -112,7 +106,7 @@
               </ion-card-header>
             
               <ion-card-content>
-                <h1 style="text-align: center;" >27</h1>
+                <h1 class="center"><b>{{avgUnit? avgUnit : 0}}</b></h1>
               </ion-card-content>
             </ion-card>
           </ion-col>

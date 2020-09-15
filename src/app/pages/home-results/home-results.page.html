@@ -13,17 +13,49 @@
 
 <ion-content>
   <ion-card no-margin class="no-radius">
-    <ion-item lines="none" color="tertiary">
-      <ion-label>
-        <h2 no-margin class="fw500 no-margin">
-          <ion-text color="light">{{ 'DASHBOARD.activeUnit' | translate }}</ion-text>
-        </h2>
-      </ion-label>
-      <ion-select placeholder="{{ 'DASHBOARD.activeUnit' | translate }}" [(ngModel)]="unit"
-        okText="OK" cancelText="{{ 'DASHBOARD.cancel' | translate }}">
-        <ion-select-option *ngFor="let unit of units" value="{{unit.name}}">{{unit.name}}</ion-select-option>
-      </ion-select>
-    </ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-item lines="none" color="tertiary">
+            <ion-label>
+              <h2 no-margin class="fw500 no-margin">
+                <ion-text color="light" class="text-custom">{{ 'DASHBOARD.unitType' | translate }}</ion-text>
+              </h2>
+            </ion-label>
+            <select [(ngModel)]="unitType" style="background-color: inherit; border-color: transparent;" (change)="onTypeChange($event.target.value)" >
+              <option selected [value]="none" disabled style="text-align: right; color: black;" >{{ 'USERS.choose' | translate }}</option>
+              <option [value]="1" style="text-align: right; color: black;">
+                {{ 'DASHBOARD.truck' | translate }}
+              </option>
+              <option [value]="2" style="text-align: right; color: black;">
+                {{ 'DASHBOARD.storage' | translate }}
+              </option>
+            </select>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item lines="none" color="tertiary">
+            <ion-label>
+              <h2 no-margin class="fw500 no-margin">
+                <ion-text color="light" >{{ 'DASHBOARD.activeUnit' | translate }}</ion-text>
+              </h2>
+            </ion-label>
+            <select [(ngModel)]="unit" style="background-color: inherit; border-color: transparent;" [disabled]="!unitType" (change)="getGraphicValues()">
+              <option selected [value]="none" disabled style="text-align: right; color: black;" >{{ 'USERS.choose' | translate }}</option>
+              <option *ngFor="let unit of units" [value]="unit.id" style="text-align: right; color: black;" >
+                {{unit.id}}
+              </option>
+            </select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+  
+  <ion-card>
+    <ion-button size="medium" expand="block" (click)="getMapsInfo()" color='primary' >
+      {{ 'DASHBOARD.show' | translate }}
+    </ion-button>
   </ion-card>
 
 
@@ -34,28 +66,12 @@
             <ion-col>
               <ion-card >
                 <ion-card-header color="primary">
-                  <ion-card-title>{{ 'DASHBOARD.chartTitle' | translate }}</ion-card-title>
+                  <ion-card-title >{{ 'DASHBOARD.chartTitle' | translate }}</ion-card-title>
                 </ion-card-header>
               
-                <ion-card-content>
+                <ion-card-content style="justify-content: center;">
                   <div class="graph">
-                    <ngx-charts-line-chart
-                      [scheme]="colorScheme"
-                      [showXAxisLabel]="showXAxisLabel"
-                      [showYAxisLabel]="showYAxisLabel"
-                      [xAxis]="xAxis"
-                      [yAxis]="yAxis"
-                      [xAxisLabel]="xAxisLabel"
-                      [yAxisLabel]="yAxisLabel"
-                      [trimXAxisTicks]="false"
-                      [autoScale]="true"
-                      [timeline]="timeline"
-                      [results]="multi"
-                      (select)="onSelect($event)"
-                      (activate)="onActivate($event)"
-                      (deactivate)="onDeactivate($event)"
-                      >
-                    </ngx-charts-line-chart> 
+                    <canvas #lineCanvas style="width: 80%; min-height: 50px"></canvas>
                   </div>
                   <div class="padding"></div>
                 </ion-card-content>
@@ -67,22 +83,30 @@
           <ion-col>
             <ion-card >
               <ion-card-header color="primary">
-                <ion-card-title>{{ 'DASHBOARD.activeUnits' | translate }}</ion-card-title>
+                <ion-card-title >{{ 'DASHBOARD.activeUnits' | translate }}</ion-card-title>
               </ion-card-header>
             
               <ion-card-content>
-                <h1 style=" text-align: center;">3</h1>
+                <ion-row>
+                  <ion-col>
+                    <h1 class="activeCard">{{'DASHBOARD.activeTrucks' | translate}} <br> <b>{{activeTransportUnits}}</b></h1>
+                    <h1></h1>
+                  </ion-col>
+                  <ion-col>
+                    <h1 class="activeCard">{{'DASHBOARD.activeStatic' | translate}} <br> <b>{{activeStaticUnits}}</b></h1>
+                  </ion-col>
+                </ion-row>
               </ion-card-content>
             </ion-card>
           </ion-col>
           <ion-col>
             <ion-card>
               <ion-card-header color="primary">
-                <ion-card-title>{{ 'DASHBOARD.averageTemp' | translate }}</ion-card-title>
+                <ion-card-title >{{ 'DASHBOARD.averageTemp' | translate }}</ion-card-title>
               </ion-card-header>
             
               <ion-card-content>
-                <h1 style="text-align: center;">27</h1>
+                <h1 class="center"><b>{{avgUnit? avgUnit : 0}}</b></h1>
               </ion-card-content>
             </ion-card>
           </ion-col>

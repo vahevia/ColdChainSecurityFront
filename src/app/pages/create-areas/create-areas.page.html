@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button color="secondary"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+        <ion-text color="light">
+          <ion-text color="light" class="fw700" *ngIf="!editando" >{{ 'AREAS.areasTitle' | translate }}</ion-text>
+          <ion-text color="light" *ngIf="editando" class="fw700">{{ 'AREAS.editTitle' | translate }}</ion-text>
+        </ion-text>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="background-content">
+  <ion-grid>
+    <ion-row justify-content-center>
+      <ion-col align-self-center size-md="6" size-lg="5" size-xs="12" >
+        <ion-card class="card-color">
+          <ion-card-content>
+            <ion-label position="stacked">{{ 'AREAS.name' | translate }}</ion-label>
+            <ion-list class="line-input">
+              <ion-item>
+                <ion-input placeholder="{{ 'AREAS.name' | translate }}" [(ngModel)]="name" [disabled]="isDisabled"></ion-input>
+              </ion-item>
+            </ion-list>
+            <ion-label position="stacked">{{ 'AREAS.type' | translate }}</ion-label>
+            <ion-list class="line-input">
+              <ion-item>
+                <ion-input placeholder="{{ 'AREAS.type' | translate }}" [(ngModel)]="type"></ion-input>
+              </ion-item>
+            </ion-list>
+            <ion-label position="stacked">{{ 'AREAS.min' | translate }}</ion-label>
+            <ion-list class="line-input">
+              <ion-item>
+                <ion-input placeholder="{{ 'AREAS.min' | translate }}" [(ngModel)]="min"></ion-input>
+              </ion-item>
+            </ion-list>
+            <ion-label position="stacked">{{ 'AREAS.max' | translate }}</ion-label>
+            <ion-list class="line-input">
+              <ion-item>
+                <ion-input placeholder="{{ 'AREAS.max' | translate }}" [(ngModel)]="max"></ion-input>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row justify-content-center>
+      <div id="padding"></div>
+      <ion-button size="large" expand="block" *ngIf="editando" (click)="createArea()" color='primary' >{{ 'USERS.update' | translate }}</ion-button>
+      <ion-button size="large" expand="block" *ngIf="!editando" (click)="createArea()" color='primary' >{{ 'AREAS.addArea' | translate }}</ion-button>
+      <div id="padding"></div>
+    </ion-row>
+  </ion-grid>
+  
+  
+</ion-content>

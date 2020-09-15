@@ -4,6 +4,9 @@ import { Platform, NavController } from '@ionic/angular';
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { TranslateConfigService } from '../../translate-config.service';
 import { ColumnMode } from '@swimlane/ngx-datatable';
+import { AuthenticationService } from '../../Services/authentication.service';
+import { User } from 'src/app/models/user';
+import { Role } from 'src/app/models/role';
 
 
 @Component({
@@ -25,15 +28,21 @@ export class UsersPage implements OnInit {
   password: string;
   selectedLanguage: string;
   update: boolean;
+  currentUser: User;
+  isAdmin: boolean;
+  isSuper: boolean;
 
   constructor(
     private route: ActivatedRoute,
     private usuarioService: ServicesService, 
     public navCtrl: NavController,
     private router: Router,
-    private translateConfigService: TranslateConfigService) {
-      this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
-      
+    private translateConfigService: TranslateConfigService,
+    private authenticationService: AuthenticationService) {
+      this.translateConfigService.getDefaultLanguage();
+      this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+      this.isAdmin = this.currentUser.rol === Role.Admin
+      this.isSuper = this.currentUser.rol === Role.super
   }
 
   ngOnInit() {

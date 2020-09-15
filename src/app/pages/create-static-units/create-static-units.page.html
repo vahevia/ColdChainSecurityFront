@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button color="secondary"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+        <ion-text color="light">
+          <ion-text color="light" *ngIf="editando" class="fw700">{{ 'STATICUNITS.editTitle' | translate }}</ion-text>
+          <ion-text color="light" *ngIf="!editando" class="fw700">{{ 'STATICUNITS.createStaticUnit' | translate }}</ion-text>
+        </ion-text>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="background-content">
+  <ion-grid>
+    <ion-row justify-content-center>
+      <ion-col align-self-center size-md="6" size-lg="5" size-xs="12" >
+        <ion-card class="card-color">
+          <ion-card-content>
+            <ion-label position="fixed" *ngIf="!editando">{{ 'STATICUNITS.id' | translate }}</ion-label>
+            <ion-list class="line-input" *ngIf="!editando">
+              <ion-item>
+                <ion-input placeholder="{{ 'STATICUNITS.id' | translate }}" [(ngModel)]="id" [disabled]="isdisabled"></ion-input>
+              </ion-item>
+            </ion-list>
+            <ion-label position="fixed" *ngIf="!editando">{{ 'STATICUNITS.type' | translate }}</ion-label>
+            <ion-list class="line-input" *ngIf="!editando">
+              <ion-item>
+                <ion-input placeholder="{{ 'STATICUNITS.type' | translate }}" [(ngModel)]="tipo" [disabled]="isdisabled"></ion-input>
+              </ion-item>
+            </ion-list>
+            <ion-label position="fixed" *ngIf="!editando">{{ 'STATICUNITS.description' | translate }}</ion-label>
+            <ion-list class="line-input" *ngIf="!editando">
+              <ion-item >
+                <ion-input placeholder="{{ 'STATICUNITS.description' | translate }}" [(ngModel)]="descripcion" [disabled]="isdisabled"></ion-input>
+              </ion-item>
+            </ion-list>
+            <ion-label position="fixed" >{{ 'AREAS.areasTitle' | translate }}</ion-label>
+            <ion-list class="line-input" >
+              <ion-item>
+                <select [(ngModel)]="rubro" style="background-color: inherit; border-color: transparent;">
+                  <option selected [value]="none" disabled style="text-align: right; " >{{ 'AREAS.areasTitle' | translate }}</option>
+                  <option *ngFor="let rubro of rubros" [value]="rubro.rubro_nombre" style="text-align: right; color: black;" >
+                    {{rubro.rubro_nombre}}
+                  </option>
+                </select>
+              </ion-item>
+            </ion-list>
+            <ion-label position="fixed" *ngIf="editando">{{ 'WAREHOUSE.warehouse' | translate }}</ion-label>
+            <ion-list class="line-input" *ngIf="editando">
+              <ion-item >
+                <ion-input placeholder="{{ 'WAREHOUSE.warehouse' | translate }}" [(ngModel)]="almacen" [disabled]="isdisabled"></ion-input>
+              </ion-item>
+            </ion-list>
+            <ion-label position="fixed" *ngIf="editando">{{ 'WAREHOUSE.warehouse' | translate }}</ion-label>
+            <ion-list class="line-input" *ngIf="editando">
+              <ion-item>
+                <select [(ngModel)]="almacenNuevo" style="background-color: inherit; border-color: transparent;" >
+                  <option selected [value]="none" disabled style="text-align: right; color: black;">{{ 'USERS.choose' | translate }}</option>
+                  <option *ngFor="let almacen of almacenes" [value]="almacen.nombre_almacen" style="text-align: right; color: black;">
+                    {{almacen.nombre_almacen}}
+                  </option>
+                </select>
+              </ion-item>
+            </ion-list>
+            <ion-label position="fixed" *ngIf="!editando">{{ 'WAREHOUSE.warehouse' | translate }}</ion-label>
+            <ion-list class="line-input" *ngIf="!editando">
+              <ion-item>
+                <select [(ngModel)]="almacen" style="background-color: inherit; border-color: transparent;">
+                  <option selected [value]="none" disabled style="text-align: right; " >{{ 'USERS.choose' | translate }}</option>
+                  <option *ngFor="let almacen of almacenes" [value]="almacen.nombre_almacen" style="text-align: right; color: black;" >
+                    {{almacen.nombre_almacen}}
+                  </option>
+                </select>
+              </ion-item>
+            </ion-list>
+
+            <div id="padding"></div>
+
+          <ion-button size="large" expand="block" *ngIf="editando" (click)="updateStaticUnit()" color='primary' no-margin>{{ 'USERS.update' | translate }}</ion-button>
+          <ion-button size="large" expand="block" *ngIf="!editando" (click)="createsStaticUnit()" color='primary' >{{ 'STATICUNITS.createUnit' | translate }}</ion-button>
+          <div id="padding"></div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+          
+

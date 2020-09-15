@@ -1,0 +1,144 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button color="secondary"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+        <ion-text color="light">
+          <ion-text color="light" class="fw700">{{ 'MENU.reportsStatic' | translate }}</ion-text>
+        </ion-text>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card no-margin class="no-radius">
+    <ion-grid>
+      <ion-row class="full">
+        <ion-col>
+          <ion-item lines="none" color="tertiary" *ngIf="isSuper">
+            <ion-label>
+              <h2 no-margin class="fw500 no-margin">
+                <ion-text color="light">{{ 'WAREHOUSE.company' | translate }}</ion-text>
+              </h2>
+            </ion-label>
+            <select [(ngModel)]="company" style="background-color: inherit; border-color: transparent;" (change)="onChangeCompany()">
+              <option selected [value]="none" disabled style="text-align: right; color: black;">{{ 'WAREHOUSE.company' | translate }}</option>
+              <option *ngFor="let compania of companias" [value]="compania.com_nombre" style="text-align: right; color: black;">
+                {{compania.com_nombre}}
+              </option>
+            </select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row class="full">
+        <ion-col>
+          <ion-item lines="none" color="tertiary" >
+            <ion-label>
+              <h2 no-margin class="fw500 no-margin">
+                <ion-text color="light">{{ 'WAREHOUSE.warehouse' | translate }}</ion-text>
+              </h2>
+            </ion-label>
+            <select [(ngModel)]="warehouse" style="background-color: inherit; border-color: transparent;" (change)="onChangeWarehouse()">
+              <option selected [value]="none" disabled style="text-align: right; color: black;">{{ 'WAREHOUSE.warehouse' | translate }}</option>
+              <option *ngFor="let warehouse of almacenes" [value]="warehouse.nombre_almacen" style="text-align: right; color: black;">
+                {{warehouse.nombre_almacen}}
+              </option>
+            </select>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item lines="none" color="tertiary" >
+            <ion-label>
+              <h2 no-margin class="fw500 no-margin">
+                <ion-text color="light">{{ 'REPORTS.unitId' | translate }}</ion-text>
+              </h2>
+            </ion-label>
+            <select [(ngModel)]="unit" style="background-color: inherit; border-color: transparent;" (change)="onChangeUnit()">
+              <option selected [value]="none" disabled style="text-align: right; color: black;">{{ 'REPORTS.unitId' | translate }}</option>
+              <option *ngFor="let unidad of unidades" [value]="unidad.eslabon_serial_nombre" style="text-align: right; color: black;">
+                {{unidad.eslabon_serial_nombre}}
+              </option>
+            </select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-item lines="none" class="dateItem">
+          <ion-label>Fecha inicio</ion-label>
+          <ion-datetime displayFormat="MM-DD-YY" mode="ios" [(ngModel)]="iniDate" placeholder="MM/DD/YY"></ion-datetime>
+          <ion-label>Fecha fin</ion-label>
+          <ion-datetime displayFormat="MM-DD-YY" mode="ios" [max]="maxDate" [(ngModel)]="finDate" placeholder="MM/DD/YY"></ion-datetime>
+        </ion-item>
+      </ion-row>
+      <ion-row>
+        <ion-button size="medium" expand="block" (click)="getReports()" color='primary'>{{ 'REPORTS.search' | translate }}</ion-button>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <div id="padding"></div>
+
+  <ngx-datatable
+    class="material" 
+    [rows]="rows1"
+    [rowHeight]="auto"
+    [headerHeight]="50"
+    [footerHeight]="50"
+    [columnMode]="force"
+    [scrollbarH]="true"
+    >
+
+    <ngx-datatable-column name="{{ 'REPORTS.latitude' | translate }}" [flexGrow]="5/2">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{row.latitud}}
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="{{ 'REPORTS.longitude' | translate }}" [flexGrow]="5/2">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{row.longitud}}
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="{{ 'REPORTS.date' | translate }}" [flexGrow]="2">
+    <ng-template let-row="row" ngx-datatable-cell-template>
+      {{row.fecha}}
+    </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="{{ 'REPORTS.temperature' | translate }}" [flexGrow]="2">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{row.temperatura}}
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="{{ 'REPORTS.unitId' | translate }}" [flexGrow]="2">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{row.unidadAlmacen}}
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="{{ 'WAREHOUSE.warehouse' | translate }}" [flexGrow]="2">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{row.almacen}}
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="{{ 'WAREHOUSE.company' | translate }}" [flexGrow]="2" *ngIf="isSuper">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{row.comercio}}
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="{{ 'REPORTS.info' | translate }}" sortable="false" prop="cedula" [flexGrow]="1">
+      <ng-template let-row="data" let-value="value"  ngx-datatable-cell-template>
+        <ion-button md-icon-button color="warning" (click)="editUser(value)">
+          <ion-icon name="information-circle"></ion-icon>
+        </ion-button>
+      </ng-template>
+    </ngx-datatable-column>
+
+  </ngx-datatable>
+
+</ion-content>

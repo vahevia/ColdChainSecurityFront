@@ -6,7 +6,6 @@ import { IonicModule } from '@ionic/angular';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { PopmenuComponent } from './../../components/popmenu/popmenu.component';
 
 import { HomeResultsPage } from './home-results.page';
 
@@ -27,6 +26,6 @@ const routes: Routes = [
     TranslateModule.forChild(),
     RouterModule.forChild(routes)
   ],
-  declarations: [HomeResultsPage, PopmenuComponent]
+  declarations: [HomeResultsPage]
 })
 export class HomeResultsPageModule {}

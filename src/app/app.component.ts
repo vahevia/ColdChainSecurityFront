@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { Platform, NavController } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { AuthenticationService } from './Services/authentication.service';
+import { Role } from './models/role';
+import { User } from './models/user';
+import { TranslateConfigService } from './translate-config.service';
 
 import { Pages } from './interfaces/pages';
 
@@ -14,56 +16,90 @@ import { Pages } from './interfaces/pages';
 export class AppComponent {
 
   public appPages: Array<Pages>;
+  currentUser: User;
+  selectedLanguage: any;
 
   constructor(
     private platform: Platform,
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar,
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    private router: Router,
+    private authenticationService: AuthenticationService,
+    private translateConfigService: TranslateConfigService
   ) {
+    this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
     this.appPages = [
       {
-        title: 'Home',
+        title: 'MENU.home',
         url: '/home-results',
         direct: 'root',
         icon: 'home'
       },
       {
-        title: 'Users',
+        title: 'MENU.users',
         url: '/users',
         direct: 'forward',
         icon: 'people'
       },
       {
-        title: 'Units',
+        title: 'MENU.companies',
+        url: '/company',
+        direct: 'forward',
+        icon: 'clipboard'
+      },
+      {
+        title: 'MENU.reportsStatic',
+        url: '/reports',
+        direct: 'forward',
+        icon: 'stats'
+      },
+      {
+        title: 'MENU.reportsTrucks',
+        url: '/reports-trucks',
+        direct: 'forward',
+        icon: 'stats'
+      },
+      {
+        title: 'MENU.reportsRubrosTrucks',
+        url: '/reports-rubros-transp',
+        direct: 'forward',
+        icon: 'stats'
+      },
+      {
+        title: 'MENU.reportsRubrosStatic',
+        url: '/reports-rubros-storage',
+        direct: 'forward',
+        icon: 'stats'
+      },
+      {
+        title: 'MENU.units',
         url: '/trucks',
         direct: 'forward',
         icon: 'car'
       },
       {
-        title: 'Warehouses',
+        title: 'MENU.warehouses',
         url: '/warehouses',
         direct: 'forward',
         icon: 'home'
       },
-      // {
-      //   title: 'About',
-      //   url: '/about',
-      //   direct: 'forward',
-      //   icon: 'information-circle-outline'
-      // },
-
-      // {
-      //   title: 'App Settings',
-      //   url: '/settings',
-      //   direct: 'forward',
-      //   icon: 'cog'
-      // },
       {
-        title: 'Log Out',
-        url: '/',
+        title: 'MENU.static-units',
+        url: '/static-units',
         direct: 'forward',
-        icon: 'log-out'
+        icon: 'filing'
+      },
+      {
+        title: 'MENU.areas',
+        url: '/areas',
+        direct: 'forward',
+        icon: 'hammer'
+      },
+      {
+        title: 'MENU.my-info',
+        url: '/edit-user',
+        direct: 'forward',
+        icon: 'contact'
       }
     ];
 
@@ -72,16 +108,31 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
     }).catch(() => {});
   }
 
-  goToEditProgile() {
-    this.navCtrl.navigateForward('edit-profile');
+  showOption(option){
+    if (this.isSuper && option == 'MENU.areas')
+      return false;
+    if (!this.isSuper && option == 'MENU.companies')
+      return false;
+    return true;
+  }
+
+  get isAdmin() {
+    return this.currentUser && this.currentUser.rol === Role.Admin;
+  }
+
+  get isSuper() {
+    return this.currentUser && this.currentUser.rol === Role.super;
+  }
+
+  languageChanged(){
+    this.translateConfigService.setLanguage(this.selectedLanguage);
   }
 
   logout() {
-    this.navCtrl.navigateRoot('/');
+    this.authenticationService.logout();
+    this.router.navigate(['/'])
   }
 }

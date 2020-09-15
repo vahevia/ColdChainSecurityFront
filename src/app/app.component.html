@@ -1,45 +1,45 @@
 <ion-app>
-  <ion-split-pane>
-    <ion-menu>
+    <ion-menu type="overlay">
       <ion-header>
         <ion-toolbar color="dark" class="user-profile">
-
-          <ion-item margin-bottom>
-           
+          <ion-item >
               <ion-menu-toggle class="mto" auto-hide="false">
-                <ion-text color="light" >
-                  <strong>ColdChain</strong>
-                </ion-text>
-                <!-- <a class="text08" tappable (click)="goToEditProgile()">
-                  <ion-text color="medium">
-                    <ion-icon name="contact"></ion-icon>
-                    <strong>edit profile</strong>
-                  </ion-text> 
-                </a> <ion-text color="secondary"> | </ion-text>  -->
+                <div class="logo"></div> 
               </ion-menu-toggle>
-
           </ion-item>
-
         </ion-toolbar>
       </ion-header>
 
       <ion-content class="bg-profile">
         <ion-list>
-          <ion-list-header color="dark">
-            <ion-label>Menu</ion-label>
-          </ion-list-header>
+          
 
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
-            <ion-item [routerLink]="[p.url]" color="dark">
+            <ion-item [routerLink]="[p.url]" color="dark" *ngIf="showOption(p.title)">
               <ion-icon slot="start" [name]="p.icon" color="light"></ion-icon>
-              <ion-label>
-                {{p.title}}
+              <ion-label class="text-custom">
+                {{ p.title | translate}}
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
+          <ion-item button color="dark" (click)="languageChanged()" >
+            <ion-icon slot="start" name="text" color="light"></ion-icon>
+            <ion-label class="text-custom">
+              {{ 'LOGIN.language' | translate }}
+            </ion-label>
+            <ion-select placeholder="{{ 'USERS.choose' | translate }}" interface="popover" mode="ios" [(ngModel)]="selectedLanguage" (ionChange)="languageChanged()" class="text-custom">
+              <ion-select-option value="en">English</ion-select-option>
+              <ion-select-option value="es">Español</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item button color="dark" (click)= "logout()">
+            <ion-icon slot="start" name="log-out" color="light"></ion-icon>
+            <ion-label class="text-custom">
+              {{ 'LOGIN.logout' | translate }}
+            </ion-label>
+          </ion-item>
         </ion-list>
       </ion-content>
     </ion-menu>
     <ion-router-outlet main></ion-router-outlet>
-  </ion-split-pane>
 </ion-app>

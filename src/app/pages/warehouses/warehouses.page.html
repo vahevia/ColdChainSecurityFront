@@ -5,64 +5,73 @@
     </ion-buttons>
     <ion-title>
         <ion-text color="light">
-          <ion-text color="light" class="fw700">Warehouses</ion-text>
+          <ion-text color="light" class="fw700">{{ 'WAREHOUSE.warehouses' | translate }}</ion-text>
         </ion-text>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  
-  <div >
-  <ngx-datatable 
-      [rows]="rows"
-      class="material"
-      [rowHeight]="auto"
-      [headerHeight]="50"
-      [footerHeight]="50"
-      [columnMode]="ColumnMode.flex"
-      [scrollbarH]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ngx-datatable 
+          [rows]="rows"
+          class="material"
+          [rowHeight]="auto"
+          [headerHeight]="50"
+          [footerHeight]="50"
+          [columnMode]="force"
+          [scrollbarH]="true">
 
-        <ngx-datatable-column name="{{ 'WAREHOUSE.wname' | translate }}" [flexGrow]="2">
-          <ng-template let-row="row" ngx-datatable-cell-template>
-            {{row.almacen_nombre}}
-          </ng-template>
-        </ngx-datatable-column>
+            <ngx-datatable-column name="{{ 'WAREHOUSE.wname' | translate }}">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.almacen_nombre}}
+              </ng-template>
+            </ngx-datatable-column>
 
-      <ngx-datatable-column name="{{ 'WAREHOUSE.numberUnit' | translate }}" [flexGrow]="1">
-          <ng-template let-row="row" ngx-datatable-cell-template>
-            {{row.almacen_cantidad_unidades}}
-          </ng-template>
-      </ngx-datatable-column>
+            <ngx-datatable-column name="{{ 'WAREHOUSE.numberUnit' | translate }}">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{row.almacen_cantidad_unidades}}
+                </ng-template>
+            </ngx-datatable-column>
 
-      <ngx-datatable-column name="{{ 'WAREHOUSE.address' | translate }}" [flexGrow]="3">
-        <ng-template  let-row="row" ngx-datatable-cell-template>
-          <span style="white-space: normal;">
-            {{row.direccion}}
-          </span> 
-        </ng-template>
-      </ngx-datatable-column>
+            <ngx-datatable-column name="{{ 'WAREHOUSE.address' | translate }}">
+              <ng-template  let-row="row" ngx-datatable-cell-template>
+                <span style="white-space: normal;">
+                  {{row.direccion}}
+                </span> 
+              </ng-template>
+            </ngx-datatable-column>
 
-        <ngx-datatable-column name="{{ 'USERS.edit' | translate }}" sortable="false" prop="almacen_nombre" [flexGrow]="1">
-          <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
-            <ion-button md-icon-button color="warning" (click)="editWareh(value)">
-              <ion-icon name="create"></ion-icon>
-            </ion-button>
-          </ng-template>
-        </ngx-datatable-column>
+            <ngx-datatable-column *ngIf="isSuper" name="{{ 'WAREHOUSE.company' | translate }}">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.almacen_comercio}}
+              </ng-template>
+            </ngx-datatable-column>
 
-        <ngx-datatable-column name="{{ 'USERS.delete' | translate }}" sortable="false" prop="almacen_nombre" [flexGrow]="1">
-          <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
-            <ion-button md-icon-button color="warning" (click)="deleteWareh(value)" > 
-              <ion-icon name="trash"></ion-icon>
-            </ion-button>
-          </ng-template>
-        </ngx-datatable-column>
+            <ngx-datatable-column *ngIf="isAdmin || isSuper" name="{{ 'USERS.edit' | translate }}" sortable="false" prop="almacen_nombre">
+              <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
+                <ion-button md-icon-button color="warning" (click)="editWareh(value)">
+                  <ion-icon name="create"></ion-icon>
+                </ion-button>
+              </ng-template>
+            </ngx-datatable-column>
 
-      </ngx-datatable>
+            <ngx-datatable-column *ngIf="isAdmin || isSuper" name="{{ 'USERS.delete' | translate }}" sortable="false" prop="almacen_nombre">
+              <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
+                <ion-button md-icon-button color="warning" (click)="deleteWareh(value)" > 
+                  <ion-icon name="trash"></ion-icon>
+                </ion-button>
+              </ng-template>
+            </ngx-datatable-column>
 
-      <div id="padding"></div>
-    <ion-button size="large" expand="full" color="primary" (click)="createWareh()" no-margin>Add warehouse</ion-button>
-    <div id="padding"></div>
-  </div>
-  </ion-content>
+          </ngx-datatable>
+
+          <div id="padding"></div>
+        <ion-button  *ngIf="isAdmin || isSuper" size="large" expand="full" color="primary" (click)="createWareh()" no-margin>{{ 'WAREHOUSE.addWareh' | translate }}</ion-button>
+        <div id="padding"></div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -5,7 +5,7 @@
     </ion-buttons>
     <ion-title>
         <ion-text color="light">
-          <ion-text color="light" class="fw700">Units</ion-text>
+          <ion-text color="light" class="fw700">{{ 'TRUCKS.truckTitle' | translate }}</ion-text>
         </ion-text>
     </ion-title>
   </ion-toolbar>
@@ -66,13 +66,13 @@
       </ng-template>
      </ngx-datatable-column>
 
-     <ngx-datatable-column name="{{ 'TRUCKS.wareHouse' | translate  }}">
+     <ngx-datatable-column name="{{ 'TRUCKS.company' | translate  }}">
       <ng-template let-row="row" ngx-datatable-cell-template>
-        {{row.unidad_almacen}}
+        {{row.unidad_comercio}}
       </ng-template>
      </ngx-datatable-column>
 
-      <ngx-datatable-column name="{{ 'USERS.edit' | translate }}" sortable="false" prop="unidad_placa">
+      <ngx-datatable-column *ngIf="isAdmin || isSuper" name="{{ 'USERS.edit' | translate }}" sortable="false" prop="unidad_placa">
         <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
           <ion-button md-icon-button color="warning" (click)="editTruck(value)">
             <ion-icon name="create"></ion-icon>
@@ -80,7 +80,7 @@
         </ng-template>
       </ngx-datatable-column>
 
-      <ngx-datatable-column name="{{ 'USERS.delete' | translate }}" sortable="false" prop="unidad_placa">
+      <ngx-datatable-column *ngIf="isAdmin || isSuper" name="{{ 'USERS.delete' | translate }}" sortable="false" prop="unidad_placa">
         <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
           <ion-button md-icon-button color="warning" (click)="deleteTruck(value)" > 
             <ion-icon name="trash"></ion-icon>
@@ -91,6 +91,6 @@
     </ngx-datatable>
 
     <div id="padding"></div>
-    <ion-button size="large" expand="full" color="primary" (click)="createTruck()" no-margin>Add unit</ion-button>
+    <ion-button *ngIf="isAdmin || isSuper" size="large" expand="full" color="primary" (click)="createTruck()" no-margin>{{ 'TRUCKS.addTruck' | translate  }}</ion-button>
     <div id="padding"></div>
   </ion-content>

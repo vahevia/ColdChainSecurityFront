@@ -158,19 +158,19 @@ ion-item {
     }
   
     .auth-content {
-      margin: 0 5%;
+      margin: 0 20%;
   
       .logo {
-        width: 60px;
-        height: 60px;
+        width: 200px;
+        height: 200px;
         margin: 20px auto 8px;
         border-radius: 10%;
-        background: url("/assets/img/ionic4start-ico.png") no-repeat;
+        background: url("/assets/img/coldchain-logo-trans.png") no-repeat;
         background-size: 100%;
       }
   
       .list-form {
-        padding: 0;
+        padding: 10%;
         margin-bottom: 0;
   
         ion-item {
@@ -206,21 +206,47 @@ ion-item {
         &.ion-color-dark {
           --ion-color-base: var(--ion-color-primary) !important;
           // linear-gradient(135deg, var(--ion-color-dark), var(--ion-color-primary))
+          }
         }
       }
     }
-  }
   
   .mto {
-    margin-top: 12px;
-    ion-icon {
-      margin-bottom: -2px;
-    }
+    margin: auto;
   }
 
   .no-scroll {
     --overflow: hidden;
   }
+
+  // Ion-input styles
+  .line-input {
+    margin-bottom: 0!important;
+    ion-item {
+        --border-color: transparent!important;
+        --highlight-height: 0;
+        border: 1px solid #dedede;
+        border-radius: 4px;
+        &.item-has-focus {
+            border: 1px solid var(--ion-color-primary);
+        }
+    }
+}
+
+.background-content{
+  --background:  #F8F8F8
+}
+
+.card-color{
+  background: white;
+}
+
+ion-select-popover ion-list ion-item ion-radio {
+  --color: transparent;
+  --color-checked: transparent;
+}
+
+
 
   // .datatable-header{
   //   background-color: #ccd1e1;

@@ -1,0 +1,95 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button color="secondary"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+        <ion-text color="light">
+          <ion-text color="light" class="fw700">{{ 'MENU.companies' | translate }}</ion-text>
+        </ion-text>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ngx-datatable 
+          [rows]="rows"
+          class="material"
+          [rowHeight]="auto"
+          [headerHeight]="50"
+          [footerHeight]="50"
+          [columnMode]="force"
+          [scrollbarH]="true">
+
+            <ngx-datatable-column name="{{ 'COMPANIES.name' | translate }}">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.comercio_nombre}}
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="{{ 'COMPANIES.id' | translate }}">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.comercio_rif}}
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="{{ 'COMPANIES.description' | translate }}">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.comercio_descripcion}}
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="{{ 'COMPANIES.numberUnit' | translate }}">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{row.comercio_cantidad_unidades}}
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="{{ 'COMPANIES.numberWareH' | translate }}">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.comercio_cantidad_almacen}}
+              </ng-template>
+            </ngx-datatable-column>
+
+          <ngx-datatable-column name="{{ 'COMPANIES.address' | translate }}">
+            <ng-template  let-row="row" ngx-datatable-cell-template>
+              <span style="white-space: normal;">
+                {{row.direccion}}
+              </span> 
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="{{ 'USERS.schedule' | translate }}">
+            <ng-template  let-row="row" ngx-datatable-cell-template>
+              {{row.comercio_horario}}
+            </ng-template>
+          </ngx-datatable-column>
+
+            <ngx-datatable-column name="{{ 'USERS.edit' | translate }}" sortable="false" prop="comercio_rif">
+              <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
+                <ion-button md-icon-button color="warning" (click)="editCompany(value)">
+                  <ion-icon name="create"></ion-icon>
+                </ion-button>
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="{{ 'USERS.delete' | translate }}" sortable="false" prop="comercio_rif">
+              <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
+                <ion-button md-icon-button color="warning" (click)="deleteCompany(value)" > 
+                  <ion-icon name="trash"></ion-icon>
+                </ion-button>
+              </ng-template>
+            </ngx-datatable-column>
+
+          </ngx-datatable>
+
+          <div id="padding"></div>
+        <ion-button size="large" expand="full" color="primary" (click)="createCompany()" no-margin>{{ 'COMPANIES.addCompany' | translate }}</ion-button>
+        <div id="padding"></div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

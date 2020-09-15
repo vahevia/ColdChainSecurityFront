@@ -13,15 +13,24 @@
         "users": "Users",
         "units": "Transport units",
         "warehouses": "Warehouses",
-        "reports": "Reports",
+        "reportsStatic": "Reports storage units",
+        "reportsTrucks": "Reports transport units",
+        "reportsRubrosTrucks": "Reports areas transport units",
+        "reportsRubrosStatic": "Reports areas storage units",
         "companies": "Companies",
         "static-units": "Storage units",
+        "areas": "Areas",
         "my-info": "My info"
     },
     "DASHBOARD": {
         "dashboard": "Map",
-        "activeUnit": "Active unit",
+        "unitType": "Unit type",
+        "truck": "Transport unit",
+        "storage": "Storage unit",
+        "activeTrucks": "Transport",
+        "activeStatic": "Static",
         "activeUnits": "Active units",
+        "activeUnit": "Active unit",
         "chartTitle": "Temperature of the units per hour",
         "unit": "Unit {{number}}",
         "temp": "Temperature",
@@ -30,10 +39,18 @@
         "averageTemp": "Average temperature",
         "blockChain": "BlockChain",
         "blockChainDesc": "Number of blocks: {{number}} \n Other relevant information" ,
-        "cancel": "cancel"       
+        "cancel": "cancel",
+        "show": "Show on map"       
     },
     "REPORTS": {
-        
+        "latitude": "Latitude",
+        "longitude": "Longitude",
+        "date": "Date",
+        "temperature": "Temperature",
+        "unitId": "Unit ID",
+        "info": "Info",
+        "search": "Search",
+        "status": "Status"
     },
     "USERS": {
         "createUser": "Create User",
@@ -87,7 +104,8 @@
         "description": "Description",
         "numberUnit": "Number of units",
         "numberWareH": "Number of warehouses",
-        "addCompany": "Add Company"
+        "addCompany": "Create Company",
+        "editCompany": "Edit Company"
     },
     "TRUCKS": {
         "createTruck": "Create Transport unit",
@@ -106,11 +124,25 @@
     },
     "STATICUNITS": {
         "createStaticUnit": "Create Storage unit",
+        "createUnit": "Create Unit",
         "staticUnitTitle": "Storage units",
         "id": "ID",
         "type": "Type",
         "description": "Description",
         "addStaticUnit": "Add Storage unit",
         "editTitle": "Edit Storage unit"
+    },
+    "AREAS": {
+        "areasTitle": "Areas",
+        "name": "Name",
+        "type": "Type",
+        "min": "Min",
+        "max": "Max",
+        "addArea": "Add Area",
+        "editTitle": "Edit Area",
+        "createArea": "Create Area",
+        "area": "Rubro",
+        "maxTemp": "Max temperature",
+        "minTemp": "Min temperature"
     }
 }

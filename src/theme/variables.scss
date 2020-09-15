@@ -76,5 +76,14 @@
 --ion-color-dark-tint: #225b7a;
 
 /** font family **/
---ion-font-family: 'Lato';
+--ion-font-family: 'custom' !important;
+font-family: 'custom' !important;
+}
+
+@font-face {
+  font-family: 'custom';
+  src: url('../assets/fonts/ProximaNova-Regular.ttf');
+}
+.text-custom{ 
+  font-family: "custom";
 }

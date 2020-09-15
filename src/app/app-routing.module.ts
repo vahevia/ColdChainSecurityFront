@@ -52,6 +52,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   { 
+    path: 'reports-trucks', 
+    loadChildren: './pages/reports-trucks/reports-trucks.module#ReportsTrucksPageModule',
+    canActivate: [AuthGuard] 
+  },
+  { 
     path: 'create-company', 
     loadChildren: './pages/create-company/create-company.module#CreateCompanyPageModule',
     canActivate: [AuthGuard],
@@ -79,10 +84,27 @@ const routes: Routes = [
     loadChildren: './pages/edit-user/edit-user.module#EditUserPageModule',
     canActivate: [AuthGuard] 
   },
-
-
-
-
+  { 
+    path: 'areas', 
+    loadChildren: './pages/areas/areas.module#AreasPageModule',
+    canActivate: [AuthGuard],
+    data: { roles: [Role.Admin] }
+  },
+  { 
+    path: 'create-areas', 
+    loadChildren: './pages/create-areas/create-areas.module#CreateAreasPageModule',
+    canActivate: [AuthGuard] 
+  },
+  { 
+    path: 'reports-rubros-transp', 
+    loadChildren: './pages/reports-rubros-transp/reports-rubros-transp.module#ReportsRubrosTranspPageModule',
+    canActivate: [AuthGuard]  
+  },
+  { 
+    path: 'reports-rubros-storage', 
+    loadChildren: './pages/reports-rubros-storage/reports-rubros-storage.module#ReportsRubrosStoragePageModule',
+    canActivate: [AuthGuard]  
+  }
 ];
 
 @NgModule({

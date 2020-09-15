@@ -68,7 +68,7 @@
             </ng-template>
           </ngx-datatable-column>
 
-            <ngx-datatable-column name="{{ 'USERS.edit' | translate }}" sortable="false" prop="almacen_nombre">
+            <ngx-datatable-column name="{{ 'USERS.edit' | translate }}" sortable="false" prop="comercio_rif">
               <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
                 <ion-button md-icon-button color="warning" (click)="editCompany(value)">
                   <ion-icon name="create"></ion-icon>
@@ -76,7 +76,7 @@
               </ng-template>
             </ngx-datatable-column>
 
-            <ngx-datatable-column name="{{ 'USERS.delete' | translate }}" sortable="false" prop="almacen_nombre">
+            <ngx-datatable-column name="{{ 'USERS.delete' | translate }}" sortable="false" prop="comercio_rif">
               <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
                 <ion-button md-icon-button color="warning" (click)="deleteCompany(value)" > 
                   <ion-icon name="trash"></ion-icon>

@@ -13,15 +13,24 @@
         "users": "Usuarios",
         "units": "Unidades de transporte",
         "warehouses": "Almacenes",
-        "reports": "Reportes",
+        "reportsStatic": "Reportes unidades de almacenamiento",
+        "reportsTrucks": "Reportes unidades de transporte",
+        "reportsRubrosTrucks": "Reportes rubros unidad de transporte",
+        "reportsRubrosStatic": "Reportes rubros unidad de almacenamiento",
         "companies": "Compañías",
         "static-units": "Unidades de almacenamiento",
+        "areas": "Rubros",
         "my-info": "Mi info"
     },
     "DASHBOARD": {
         "dashboard": "Mapa",
-        "activeUnit": "Unidad activa",
+        "unitType": "Tipo de unidad",
+        "truck": "Unidad de trasporte",
+        "storage": "Unidad de almacenamiento",
+        "activeTrucks": "Transporte",
+        "activeStatic": "Almacenamiento",
         "activeUnits": "Unidades activas",
+        "activeUnit": "Unidad activa",
         "chartTitle": "Temperatura de las unidades por hora",
         "unit": "Unidad {{number}}",
         "temp": "Temperatura",
@@ -30,7 +39,18 @@
         "averageTemp": "Temperatura promedio",
         "blockChain": "BlockChain",
         "blockChainDesc": "Número de bloques: {{number}} \n Informacion relevante",
-        "cancel": "cancelar"        
+        "cancel": "cancelar",
+        "show": "Mostrar en mapa"        
+    },
+    "REPORTS": {
+        "latitude": "Latitud",
+        "longitude": "Longitud",
+        "date": "Fecha",
+        "temperature": "Temperatura",
+        "unitId": "ID de unidad",
+        "info": "Info",
+        "search": "Buscar",
+        "status": "Estatus"
     },
     "USERS": {
         "createUser": "Crear Usuario",
@@ -84,7 +104,8 @@
         "description": "Descripción",
         "numberUnit": "Número de unidades de transporte",
         "numberWareH": "Número de almacenes",
-        "addCompany": "Crear Compañía"
+        "addCompany": "Crear Compañía",
+        "editCompany": "Editar Compañía"
     },
     "TRUCKS": {
         "createTruck": "Crear Unidad de transporte",
@@ -96,18 +117,32 @@
         "plate": "Placa",
         "year": "Año",
         "capacity": "Capacidad",
-        "rute": "Ruta",
+        "routee": "Ruta",
         "company": "Compañía",
         "addTruck": "Crear Unidad de transporte",
         "editTitle": "Editar Unidad de transporte"
     },
     "STATICUNITS": {
         "createStaticUnit": "Crear Unidad de almacenamiento",
+        "createUnit": "Crear Unidad",
         "staticUnitTitle": "Unidades de almacenamiento",
         "id": "ID",
         "type": "Tipo",
         "description": "Descripción",
         "addStaticUnit": "Crear Unidad de almacenamiento",
         "editTitle": "Editar Unidad de almacenamiento"
+    },
+    "AREAS": {
+        "areasTitle": "Rubros",
+        "name": "Nombre",
+        "type": "Tipo",
+        "min": "Min",
+        "max": "Max",
+        "addArea": "Agregar Rubro",
+        "editTitle": "Editar Rubro",
+        "createArea": "Crear Area",
+        "area": "Rubro",
+        "maxTemp": "Temperatura máxima",
+        "minTemp": "Temperatura mínima"
     }
 }

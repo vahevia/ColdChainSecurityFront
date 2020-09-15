@@ -44,7 +44,7 @@ export class CompanyPage implements OnInit {
     private router: Router,
     private translateConfigService: TranslateConfigService
     ) {
-      this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
+      this.translateConfigService.getDefaultLanguage();
      }
 
      ngOnInit() {
@@ -81,19 +81,17 @@ export class CompanyPage implements OnInit {
     }
   
     createCompany(){
-      console.log('me falta')
-      // this.navCtrl.navigateForward('create-company');
+      this.navCtrl.navigateForward('create-company');
     }
   
-    editCompany(id){
-      console.log('me falta')
-      // let navigationExtras: NavigationExtras = {
-      //   state: {
-      //     editando: true,
-      //     id: id 
-      //   }
-      // }
-      // this.router.navigate(['create-company'], navigationExtras);
+    editCompany(rif){
+      let navigationExtras: NavigationExtras = {
+        state: {
+          editando: true,
+          id: rif 
+        }
+      }
+      this.router.navigate(['create-company'], navigationExtras);
     }
   
     deleteCompany(rif){

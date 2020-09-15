@@ -48,8 +48,26 @@ export class AppComponent {
         icon: 'clipboard'
       },
       {
-        title: 'MENU.reports',
+        title: 'MENU.reportsStatic',
         url: '/reports',
+        direct: 'forward',
+        icon: 'stats'
+      },
+      {
+        title: 'MENU.reportsTrucks',
+        url: '/reports-trucks',
+        direct: 'forward',
+        icon: 'stats'
+      },
+      {
+        title: 'MENU.reportsRubrosTrucks',
+        url: '/reports-rubros-transp',
+        direct: 'forward',
+        icon: 'stats'
+      },
+      {
+        title: 'MENU.reportsRubrosStatic',
+        url: '/reports-rubros-storage',
         direct: 'forward',
         icon: 'stats'
       },
@@ -72,6 +90,12 @@ export class AppComponent {
         icon: 'filing'
       },
       {
+        title: 'MENU.areas',
+        url: '/areas',
+        direct: 'forward',
+        icon: 'hammer'
+      },
+      {
         title: 'MENU.my-info',
         url: '/edit-user',
         direct: 'forward',
@@ -87,8 +111,20 @@ export class AppComponent {
     }).catch(() => {});
   }
 
+  showOption(option){
+    if (this.isSuper && option == 'MENU.areas')
+      return false;
+    if (!this.isSuper && option == 'MENU.companies')
+      return false;
+    return true;
+  }
+
   get isAdmin() {
     return this.currentUser && this.currentUser.rol === Role.Admin;
+  }
+
+  get isSuper() {
+    return this.currentUser && this.currentUser.rol === Role.super;
   }
 
   languageChanged(){

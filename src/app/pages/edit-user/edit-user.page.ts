@@ -34,7 +34,7 @@ export class EditUserPage implements OnInit {
   constructor( private usuarioService: ServicesService, 
     private navCtrl: NavController, private translateConfigService: TranslateConfigService,
     private authenticationService: AuthenticationService) {
-      this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
+      this.translateConfigService.getDefaultLanguage();
       this.authenticationService.currentUser.subscribe(x => {this.currentUser = x; console.log(x)});
       this.isAdmin = this.currentUser.rol === Role.Admin
       this.isSuper = this.currentUser.rol === Role.super

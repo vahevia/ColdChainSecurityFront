@@ -1,6 +1,5 @@
 <ion-app>
-  <ion-split-pane>
-    <ion-menu>
+    <ion-menu type="overlay">
       <ion-header>
         <ion-toolbar color="dark" class="user-profile">
           <ion-item >
@@ -16,26 +15,26 @@
           
 
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
-            <ion-item [routerLink]="[p.url]" color="dark">
+            <ion-item [routerLink]="[p.url]" color="dark" *ngIf="showOption(p.title)">
               <ion-icon slot="start" [name]="p.icon" color="light"></ion-icon>
-              <ion-label>
+              <ion-label class="text-custom">
                 {{ p.title | translate}}
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
           <ion-item button color="dark" (click)="languageChanged()" >
             <ion-icon slot="start" name="text" color="light"></ion-icon>
-            <ion-label>
+            <ion-label class="text-custom">
               {{ 'LOGIN.language' | translate }}
             </ion-label>
-            <ion-select placeholder="{{ 'USERS.choose' | translate }}" interface="popover" [(ngModel)]="selectedLanguage" (ionChange)="languageChanged()">
+            <ion-select placeholder="{{ 'USERS.choose' | translate }}" interface="popover" mode="ios" [(ngModel)]="selectedLanguage" (ionChange)="languageChanged()" class="text-custom">
               <ion-select-option value="en">English</ion-select-option>
               <ion-select-option value="es">Español</ion-select-option>
             </ion-select>
           </ion-item>
           <ion-item button color="dark" (click)= "logout()">
             <ion-icon slot="start" name="log-out" color="light"></ion-icon>
-            <ion-label>
+            <ion-label class="text-custom">
               {{ 'LOGIN.logout' | translate }}
             </ion-label>
           </ion-item>
@@ -43,5 +42,4 @@
       </ion-content>
     </ion-menu>
     <ion-router-outlet main></ion-router-outlet>
-  </ion-split-pane>
 </ion-app>

@@ -127,7 +127,6 @@ export class CreateWarehousesPage implements OnInit {
   }
 
   onChangeCountry(){
-    console.log('COUNTRY', this.pais)
     if (this.pais){
       this.warehouseService.getStateByCountry(this.pais)
         .subscribe(
@@ -146,7 +145,6 @@ export class CreateWarehousesPage implements OnInit {
   }
 
   onChangeState() {
-    console.log('STATE', this.estado)
     // if (this.estado){
     //   this.warehouseService.getCitiesByState(this.estado)
     //     .subscribe(
@@ -164,7 +162,6 @@ export class CreateWarehousesPage implements OnInit {
   }
 
   createWareHouse(event) {
-    console.log('NOMBRE', this.nombre)
     var warehouse = {
       nombre: this.nombre,
       avenida: this.avenida,

@@ -1,9 +1,161 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>create-company</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button color="secondary"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+        <ion-text color="light">
+          <ion-text color="light" *ngIf="editando" class="fw700">{{ 'COMPANIES.editCompany' | translate }}</ion-text>
+          <ion-text color="light" *ngIf="!editando" class="fw700">{{ 'COMPANIES.addCompany' | translate }}</ion-text>
+        </ion-text>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-
+<ion-content padding class="background-content">
+  <ion-grid>
+    <ion-row justify-content-center>
+      <ion-col align-self-center size-md="6" size-lg="5" size-xs="12" >
+        <ion-card class="card-color">
+          <ion-card-content>
+            <ion-label position="fixed">{{ 'COMPANIES.name' | translate }}</ion-label>
+            <ion-list class="line-input">
+              <ion-item>
+                <ion-input placeholder="{{ 'COMPANIES.name' | translate }}" [(ngModel)]="nombre" [disabled]="isdisabled"></ion-input>
+              </ion-item>
+            </ion-list>
+            <ion-label position="fixed">{{ 'COMPANIES.description' | translate }}</ion-label>
+            <ion-list class="line-input">
+              <ion-item>
+                <ion-input placeholder="{{ 'COMPANIES.description' | translate }}" [(ngModel)]="nombre" [disabled]="isdisabled"></ion-input>
+              </ion-item>
+            </ion-list>
+            <ion-label position="fixed">{{ 'COMPANIES.id' | translate }}</ion-label>
+            <ion-list class="line-input">
+              <ion-item>
+                <ion-input placeholder="{{ 'COMPANIES.id' | translate }}" [(ngModel)]="nombre" [disabled]="isdisabled"></ion-input>
+              </ion-item>
+            </ion-list>
+            <ion-label position="fixed">{{ 'USERS.schedule' | translate }}</ion-label>
+            <ion-list class="line-input">
+              <ion-item>
+                <select [(ngModel)]="horario" style="background-color: inherit; border-color: transparent;">
+                  <option selected [value]="none" disabled style="text-align: right; color: black;" >{{ 'USERS.choose' | translate }}</option>
+                  <option *ngFor="let horario of horarios" [value]="horario.hor_com_descripcion" style="text-align: right; color: black;" >
+                    {{horario.hor_com_descripcion}}
+                  </option>
+                </select>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card class="card-color">
+          <ion-card-content>
+            <ion-label position="fixed">{{ 'WAREHOUSE.avenue' | translate }}</ion-label>
+            <ion-list class="line-input">
+              <ion-item>
+                <ion-input placeholder="{{ 'WAREHOUSE.avenue' | translate }}" [(ngModel)]="avenida"></ion-input>
+              </ion-item>
+            </ion-list>
+            <ion-label position="fixed">{{ 'WAREHOUSE.street' | translate }}</ion-label>
+            <ion-list class="line-input">
+              <ion-item >
+                <ion-input placeholder="{{ 'WAREHOUSE.street' | translate }}" [(ngModel)]="calle"></ion-input>
+              </ion-item>
+            </ion-list>
+            <ion-row>
+              <ion-col>
+                <ion-label position="fixed">{{ 'WAREHOUSE.zone' | translate }}</ion-label>
+                <ion-list class="line-input">
+                  <ion-item>
+                    <ion-input placeholder="{{ 'WAREHOUSE.zone' | translate }}" [(ngModel)]="zona"></ion-input>
+                  </ion-item>
+                </ion-list>
+              </ion-col>
+              <ion-col>
+                <ion-label position="fixed">{{ 'WAREHOUSE.building' | translate }}</ion-label>
+                <ion-list class="line-input">
+                  <ion-item>
+                    <ion-input placeholder="{{ 'WAREHOUSE.building' | translate }}" [(ngModel)]="edificio"></ion-input>
+                  </ion-item>
+                </ion-list>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-label position="fixed">{{ 'WAREHOUSE.apartment' | translate }}</ion-label>
+                <ion-list class="line-input">
+                  <ion-item>
+                    <ion-input placeholder="{{ 'WAREHOUSE.apartment' | translate }}" [(ngModel)]="apartamento"></ion-input>
+                  </ion-item>
+                </ion-list>
+              </ion-col>
+              <ion-col>
+                <ion-label position="fixed">{{ 'WAREHOUSE.apartmentNumber' | translate }}</ion-label>
+                <ion-list class="line-input">
+                  <ion-item>
+                    <ion-input placeholder="{{ 'WAREHOUSE.apartmentNumber' | translate }}" [(ngModel)]="nroApartamento"></ion-input>
+                  </ion-item>
+                </ion-list>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-label position="fixed">{{ 'WAREHOUSE.house' | translate }}</ion-label>
+              <ion-list class="line-input">
+                <ion-item>
+                  <ion-input placeholder="{{ 'WAREHOUSE.house' | translate }}" [(ngModel)]="casa"></ion-input>
+                </ion-item>
+              </ion-list>
+              </ion-col>
+              <ion-col>
+                <ion-label position="fixed">{{ 'WAREHOUSE.houseNumber' | translate }}</ion-label>
+              <ion-list class="line-input">
+                <ion-item>
+                  <ion-input placeholder="{{ 'WAREHOUSE.houseNumber' | translate }}" [(ngModel)]="nroCasa"></ion-input>
+                </ion-item>
+              </ion-list>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-label position="fixed">{{ 'WAREHOUSE.country' | translate }}</ion-label>
+                <ion-list class="line-input">
+                  <ion-item>
+                    <select [(ngModel)]="pais" style="background-color: inherit; border-color: transparent;" (change)="onChangeCountry()">
+                      <option selected [value]="none" disabled style="text-align: right; color: black;" >{{ 'USERS.choose' | translate }}</option>
+                      <option *ngFor="let country of countries" [value]="country.lugar_nombre" style="text-align: right; color: black;" >
+                        {{country.lugar_nombre}}
+                      </option>
+                    </select>
+                  </ion-item>
+                </ion-list>
+              </ion-col>
+              <ion-col>
+                <ion-label position="fixed">{{ 'WAREHOUSE.state' | translate }}</ion-label>
+                <ion-list class="line-input">
+                  <ion-item>
+                    <select [(ngModel)]="estado" style="background-color: inherit; border-color: transparent;" (change)="onChangeState()">
+                      <option selected [value]="none" disabled style="text-align: right; color: black;" >{{ 'USERS.choose' | translate }}</option>
+                      <option *ngFor="let state of states" [value]="state.estado" style="text-align: right; color: black;" >
+                        {{state.estado}}
+                      </option>
+                    </select>
+                  </ion-item>
+                </ion-list>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row justify-content-center>
+      <div id="padding"></div>
+      <ion-button size="large" expand="block" *ngIf="editando" (click)="createCompany()" color='primary' no-margin>{{ 'USERS.update' | translate }}</ion-button>
+      <ion-button size="large" expand="block" *ngIf="!editando" (click)="createCompany()" color='primary' no-margin>{{ 'COMPANIES.addCompany' | translate }}</ion-button>
+      <div id="padding"></div>
+    </ion-row>
+  </ion-grid>
 </ion-content>

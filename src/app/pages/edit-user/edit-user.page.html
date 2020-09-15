@@ -44,12 +44,21 @@
           <ion-label *ngIf="!isSuper" position="fixed">{{ 'USERS.schedule' | translate }}</ion-label>
           <ion-list *ngIf="!isSuper" class="line-input">
             <ion-item>
-              <ion-select placeholder="{{ 'USERS.choose' | translate }}" [(ngModel)]="horario" interface="popover">
-                <ion-select-option *ngFor="let horario of horarios" value="{{horario.hor_emp_descripcion}}">{{horario.hor_emp_descripcion}}</ion-select-option>
-              </ion-select>
+              <select [(ngModel)]="horario" style="background-color: inherit; border-color: transparent;" >
+                <option selected [value]="none" disabled style="text-align: right; color: black;">{{ 'USERS.choose' | translate }}</option>
+                <option *ngFor="let horario of horarios" [value]="horario.hor_emp_descripcion" style="text-align: right; color: black;">
+                  {{horario.hor_emp_descripcion}}
+                </option>
+              </select>
             </ion-item>
           </ion-list>
-          <ion-label position="fixed">{{ 'LOGIN.user' | translate }}</ion-label>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card class="card-color">
+          <ion-card-content>
+            <ion-label position="fixed">{{ 'LOGIN.user' | translate }}</ion-label>
             <ion-list class="line-input">
                 <ion-item>
                   <ion-input placeholder="{{ 'LOGIN.user' | translate }}" [(ngModel)]="username"></ion-input>
@@ -61,16 +70,17 @@
                 <ion-input placeholder="{{ 'LOGIN.password' | translate }}" [(ngModel)]="passwordCambio"></ion-input>
               </ion-item>
             </ion-list>
-
-            <div id="padding"></div>
-
-            <ion-button size="large" expand="block" (click)="salvarCambios()" color='primary'>{{ 'USERS.save' | translate }}</ion-button>
-
-            <div id="padding"></div>
           </ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>
+    <ion-row justify-content-center>
+      <div id="padding"></div>
+
+      <ion-button size="large" expand="block" (click)="salvarCambios()" color='primary'>{{ 'USERS.save' | translate }}</ion-button>
+
+      <div id="padding"></div>
+    </ion-row>    
   </ion-grid>
 </ion-content>
   

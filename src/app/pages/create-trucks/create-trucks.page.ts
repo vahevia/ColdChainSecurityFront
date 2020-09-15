@@ -3,6 +3,9 @@ import { NavController } from '@ionic/angular';
 import { ServicesService } from '../../Services/services.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TranslateConfigService } from '../../translate-config.service';
+import { AuthenticationService } from '../../Services/authentication.service';
+import { User } from 'src/app/models/user';
+import { Role } from 'src/app/models/role';
 
 @Component({
   selector: 'app-create-trucks',
@@ -21,22 +24,30 @@ export class CreateTrucksPage implements OnInit {
   driver: string;
   routee: string;
   company: string;
+  rubro: string;
   companias: {};
+  rubros: {};
   isdisabled: boolean = false;
+  currentUser: User;
+  isAdmin: boolean;
+  isSuper: boolean;
 
   constructor(
     private route: ActivatedRoute, 
     private router: Router, private truckService: ServicesService, 
-    private navCtrl: NavController, private translateConfigService: TranslateConfigService
-  ) {
-    this.selectedLanguage = this.translateConfigService.getDefaultLanguage();
-    this.route.queryParams.subscribe(params => {
-      if (this.router.getCurrentNavigation().extras.state) {
-        this.editando = this.router.getCurrentNavigation().extras.state.editando;
-        if (this.editando === true) {
-          this.plate = this.router.getCurrentNavigation().extras.state.id;
-          this.isdisabled = true;
-        }
+    private navCtrl: NavController, private translateConfigService: TranslateConfigService,
+    private authenticationService: AuthenticationService) {
+      this.translateConfigService.getDefaultLanguage();
+      this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+      this.isAdmin = this.currentUser.rol === Role.Admin
+      this.isSuper = this.currentUser.rol === Role.super
+      this.route.queryParams.subscribe(params => {
+        if (this.router.getCurrentNavigation().extras.state) {
+          this.editando = this.router.getCurrentNavigation().extras.state.editando;
+          if (this.editando === true) {
+            this.plate = this.router.getCurrentNavigation().extras.state.id;
+            this.isdisabled = true;
+          }
       }
     })
    }
@@ -58,6 +69,8 @@ export class CreateTrucksPage implements OnInit {
           console.log(error)
         }
       )
+    } else {
+      this.getCurrentUserCompanyName()
     }
 
     this.truckService.getCompaniesNames()
@@ -71,6 +84,28 @@ export class CreateTrucksPage implements OnInit {
         }
       );
 
+      this.getRubros()
+  }
+
+  getCurrentUserCompanyName(){
+    this.truckService.getCompaniesByID()
+    .subscribe(
+      (nombre) => {
+        this.company = nombre[0].comercio_nombre
+      }
+    )
+  }
+
+  getRubros(){
+    this.truckService.getAllRubrosByCompanyId()
+    .subscribe(
+      (ru) => {
+        this.rubros = ru
+      },
+      (error) => {
+        console.error(error)
+      }
+    )
   }
 
   createTruck(){
@@ -82,7 +117,8 @@ export class CreateTrucksPage implements OnInit {
         placa: this.plate,
         ruta: this.routee,
         nombreComercio: this.company,
-        ano: this.year
+        ano: this.year,
+        rubro: this.rubro
       }
       if (this.editando === true) {
         this.truckService.updateTruck(truck)

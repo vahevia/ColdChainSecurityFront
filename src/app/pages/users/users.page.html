@@ -12,7 +12,8 @@
 </ion-header>
 
 <ion-content padding>
-  
+<div class="contentContainer">
+  <div class="tableContainer">
       <ngx-datatable
         class="material" 
         [rows]="rows"
@@ -70,8 +71,12 @@
       </ngx-datatable-column>
 
     </ngx-datatable>
+  </div>
 
     <div id="padding"></div>
-  <ion-button *ngIf="isAdmin || isSuper" size="large" expand="full" color="primary" (click)="createUser()" no-margin>{{ 'USERS.addUser' | translate }}</ion-button>
+    <div class=" buttonContainer">
+      <ion-button *ngIf="isAdmin || isSuper" class="centeredButton" color="primary" (click)="createUser()" no-margin>{{ 'USERS.addUser' | translate }}</ion-button>
+    </div>
   <div id="padding"></div>
+</div>
 </ion-content>

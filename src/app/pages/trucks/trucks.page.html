@@ -91,6 +91,8 @@
     </ngx-datatable>
 
     <div id="padding"></div>
-    <ion-button *ngIf="isAdmin || isSuper" size="large" expand="full" color="primary" (click)="createTruck()" no-margin>{{ 'TRUCKS.addTruck' | translate  }}</ion-button>
+    <div class=buttonContainer>
+      <ion-button *ngIf="isAdmin || isSuper" class="centeredButton" color="primary" (click)="createTruck()" no-margin>{{ 'TRUCKS.addTruck' | translate  }}</ion-button>
+    </div>
     <div id="padding"></div>
   </ion-content>

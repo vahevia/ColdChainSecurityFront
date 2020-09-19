@@ -76,7 +76,7 @@
                 <ion-text color="#1D2731">{{ 'AREAS.area' | translate }}</ion-text>
               </h2>
             </ion-label>
-            <ion-input placeholder=" - " [(ngModel)]="rubro" readonly color="#1D2731" ></ion-input>
+            <ion-input placeholder=" - " [(ngModel)]="rubro" readonly color="#1D2731" class="ion-text-center"></ion-input>
           </ion-item>
         </ion-col>
         <ion-col>
@@ -105,7 +105,8 @@
 
   <div id="padding"></div>
 
-  <ngx-datatable
+  <div class="tableContainer">
+    <ngx-datatable
     class="material" 
     [rows]="rows1"
     [rowHeight]="auto"
@@ -143,4 +144,6 @@
 
   </ngx-datatable>
 
+  </div>
+  
 </ion-content>

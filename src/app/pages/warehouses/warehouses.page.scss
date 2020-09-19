@@ -1,3 +1,21 @@
 #padding {
     padding-bottom: 20px;
 }
+
+.buttonContainer{
+    display: flex;
+}
+
+.centeredButton{
+    margin: auto !important;
+    height: 40px;
+    width: 200px;
+}
+
+@media (min-width: 768px) {
+    .tableContainer{
+        max-width: 70%;
+        display: block;
+        margin: auto;
+    }
+}

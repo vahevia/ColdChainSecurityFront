@@ -1,0 +1,11 @@
+#padding {
+    padding-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+    .tableContainer{
+        max-width: 45%;
+        display: block;
+        margin: auto;
+    }
+}

@@ -9,3 +9,11 @@
 #padding{
     padding: 15px;
 }
+
+@media (min-width: 768px) {
+    .tableContainer{
+        max-width: 80%;
+        display: block;
+        margin: auto;
+    }
+}

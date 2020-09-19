@@ -13,3 +13,11 @@
 .dateItem {
     justify-content: space-evenly;
 }
+
+@media (min-width: 768px) {
+    .tableContainer{
+        max-width: 95%;
+        display: block;
+        margin: auto;
+    }
+}

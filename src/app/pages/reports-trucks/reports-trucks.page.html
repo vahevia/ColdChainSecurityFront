@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-menu-button color="secondary"></ion-menu-button>
+      <ion-menu-button color="light"></ion-menu-button>
     </ion-buttons>
     <ion-title>
         <ion-text color="light">
@@ -52,7 +52,7 @@
       </ion-row>
       <ion-row>
         <ion-item lines="none">
-          <ion-label>Fecha inicio</ion-label>
+          <ion-label style="overflow: unset;">Fecha inicio</ion-label>
           <ion-datetime displayFormat="MM/DD/YY" mode="ios" [(ngModel)]="iniDate" placeholder="MM/DD/YY"></ion-datetime>
           <ion-label>Fecha fin</ion-label>
           <ion-datetime displayFormat="MM/DD/YY" mode="ios" [max]="maxDate" [(ngModel)]="finDate" placeholder="MM/DD/YY"></ion-datetime>

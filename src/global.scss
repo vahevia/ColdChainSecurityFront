@@ -246,14 +246,16 @@ ion-select-popover ion-list ion-item ion-radio {
   --color-checked: transparent;
 }
 
+ //ion-alert
 
+ @media (min-width: 768px) {
+  .alertClass {
+    --width: 400px;
+    --max-width: 400px;
 
-  // .datatable-header{
-  //   background-color: #ccd1e1;
-  // }
-
-  // .datatable-header-cell{
-  //   display: flex !important;
-  //   align-items: center !important;
-  //   justify-content: center;
-  // }
+    .alert-wrapper .alert-head {
+      text-align: center;
+    }
+  }  
+ }
+ 

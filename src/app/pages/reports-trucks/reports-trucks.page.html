@@ -113,9 +113,15 @@
       </ng-template>
     </ngx-datatable-column>
 
-    <ngx-datatable-column name="{{ 'REPORTS.info' | translate }}" sortable="false" prop="cedula" [flexGrow]="1">
+    <ngx-datatable-column name="id" *ngIf=false>
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{row.id}}
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="{{ 'REPORTS.info' | translate }}" sortable="false" prop="id" [flexGrow]="1">
       <ng-template let-row="data" let-value="value"  ngx-datatable-cell-template>
-        <ion-button md-icon-button color="warning" (click)="editUser(value)">
+        <ion-button md-icon-button color="warning" (click)="presentAlert(value)">
           <ion-icon name="information-circle"></ion-icon>
         </ion-button>
       </ng-template>

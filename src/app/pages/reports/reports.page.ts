@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 import { ServicesService } from '../../Services/services.service';
 import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
@@ -24,6 +25,7 @@ export class ReportsPage implements OnInit {
   almacenes: Array<any>=[{}];
   companias: {};
   unidades: {};
+  alertMessage: any = {};
   dataArray: any = [{}];
   warehouse: string;
   company: string;
@@ -42,14 +44,14 @@ export class ReportsPage implements OnInit {
     public navCtrl: NavController,
     private router: Router,
     private translateConfigService: TranslateConfigService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    public alertController: AlertController
     ) {
       this.translateConfigService.getDefaultLanguage();
       this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
       this.isAdmin = this.currentUser.rol === Role.Admin
       this.isSuper = this.currentUser.rol === Role.super
       this.maxDate = new Date().toJSON().split('T')[0]
-      console.log(this.maxDate)
     }
 
   ngOnInit() {
@@ -67,16 +69,33 @@ export class ReportsPage implements OnInit {
 
   }
 
+  async presentAlert(value) {
+    this.reportService.getDataFromHLFByID(value)
+    .subscribe(
+      async (data: any) => {
+        this.alertMessage = data.data[0]
+        const alert = await this.alertController.create({
+          cssClass: 'alertClass',
+          header: 'Info',
+          message: '<b>'+'Transaction ID: '+'</b>'+this.alertMessage.TxId +'</br>'+'<b>'+'TimeStamp: '+'</b>'+ this.alertMessage.Timestamp,
+          buttons: ['OK']
+        });
+        await alert.present();
+      }
+    )
+    this.alertMessage = {}
+  }
+
   getAllReports(){
     this.reportService.getAllDataFromHLF()
     .subscribe(
       (data1: any) => {
-        console.log('DATA', data1)
         this.dataArray = data1.data
-        console.log('DATAARRAY!!', this.dataArray)
+        this.rows = []
         for (let i in this.dataArray){
           if (this.dataArray[i].Record.unidadAlmacen !== 'null'){
             this.rows.push({
+              id: this.dataArray[i].Record.id,
               almacen: this.dataArray[i].Record.almacen,
               comercio: this.dataArray[i].Record.comercio,
               fecha: this.dataArray[i].Record.fecha,
@@ -89,7 +108,6 @@ export class ReportsPage implements OnInit {
           }
         }
         this.rows1 = this.rows
-        console.log('ROWS', this.rows)
       }
     )
   }
@@ -108,12 +126,12 @@ export class ReportsPage implements OnInit {
     this.reportService.getDataFromHLFByCommerce(compania)
     .subscribe(
       (data1: any) => {
-        console.log('DATA', data1)
         this.dataArray = data1.data
-        console.log('DATAARRAY!!', this.dataArray)
+        this.rows = []
         for (let i in this.dataArray){
           if (this.dataArray[i].Record.unidadAlmacen !== 'null'){
             this.rows.push({
+              id: this.dataArray[i].Record.id,
               almacen: this.dataArray[i].Record.almacen,
               comercio: this.dataArray[i].Record.comercio,
               fecha: this.dataArray[i].Record.fecha,
@@ -126,7 +144,6 @@ export class ReportsPage implements OnInit {
           }
         }
         this.rows1 = this.rows
-        console.log('ROWS', this.rows)
       }
     )
   }
@@ -135,7 +152,6 @@ export class ReportsPage implements OnInit {
     this.reportService.getCompaniesNames()
       .subscribe(
         (co) => {
-          console.log(co)
           this.companias = co
       },
         (error) => {
@@ -148,6 +164,7 @@ export class ReportsPage implements OnInit {
     this.reportService.getWareHousesNames()
       .subscribe(
         (wh: any) => {
+          this.almacenes = []
           for (let i in wh){
             this.almacenes.push({
               nombre_almacen: wh[i].nombre_almacen
@@ -230,21 +247,15 @@ export class ReportsPage implements OnInit {
     }
   }
 
-  // getReports(){
-  //   console.log('INI ', this.iniDate)
-  //   console.log('MES', this.iniDate.split('-')[1])
-  //   console.log('FIN ', this.finDate)
-  // }
-
   getReports(){
     this.reportService.getStaticUnitBySerialIDFromHLF(this.unit)
     .subscribe(
       (data1: any) => {
-        console.log('DATA', data1)
         this.dataArray = data1.data
-        console.log('DATAARRAY!!', this.dataArray)
         this.rows=[]
-        //this.filterByDate(this.dataArray)
+        if( this.iniDate != undefined ) {
+          this.filterByDate(this.dataArray)
+        }
         for (let i in this.dataArray){
           if (this.dataArray[i].Record.unidad !== 'null'){
             this.rows.push({
@@ -260,7 +271,6 @@ export class ReportsPage implements OnInit {
         }
         this.rows=[...this.rows]
         this.rows1 = this.rows
-        console.log('ROWS', this.rows)
       }
     )
   }

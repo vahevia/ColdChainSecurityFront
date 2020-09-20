@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 import { ServicesService } from '../../Services/services.service';
 import { Platform, NavController } from '@ionic/angular';
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
@@ -17,20 +18,6 @@ export class ReportsTrucksPage implements OnInit {
 
   ColumnMode = ColumnMode;
 
-  // rows = [
-  //   {
-  //   'lat': 66,
-  //   'lon': 77,
-  //   'date': '24-07-20 10:02',
-  //   'temp': 22
-  //   },
-  //   {
-  //     'lat': 66.22,
-  //     'lon': 77.56,
-  //     'date': '24-07-20 10:07',
-  //     'temp': 22
-  //     },
-  // ]
   tableStyle='material';
   selectedLanguage: string;
   rows: Array<any>=[{}];
@@ -38,6 +25,7 @@ export class ReportsTrucksPage implements OnInit {
   almacenes: {};
   companias: {};
   unidades: {};
+  alertMessage: any = {};
   dataArray: any = [{}];
   company: string;
   unit: string;
@@ -55,7 +43,8 @@ export class ReportsTrucksPage implements OnInit {
     public navCtrl: NavController,
     private router: Router,
     private translateConfigService: TranslateConfigService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    public alertController: AlertController
     ) {
       this.translateConfigService.getDefaultLanguage();
       this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
@@ -79,16 +68,33 @@ export class ReportsTrucksPage implements OnInit {
 
   }
 
+  async presentAlert(value) {
+    this.reportService.getDataFromHLFByID(value)
+    .subscribe(
+      async (data: any) => {
+        this.alertMessage = data.data[0]
+        const alert = await this.alertController.create({
+          cssClass: 'alertClass',
+          header: 'Info',
+          message: '<b>'+'Transaction ID: '+'</b>'+this.alertMessage.TxId +'</br>'+'<b>'+'TimeStamp: '+'</b>'+ this.alertMessage.Timestamp,
+          buttons: ['OK']
+        });
+        await alert.present();
+      }
+    )
+    this.alertMessage = {}
+  }
+
   getAllReports(){
     this.reportService.getAllDataFromHLF()
     .subscribe(
       (data1: any) => {
-        //console.log('DATA', data1)
         this.dataArray = data1.data
-        //console.log('DATAARRAY!!', this.dataArray)
+        this.rows = []
         for (let i in this.dataArray){
           if (this.dataArray[i].Record.unidad !== 'null'){
             this.rows.push({
+              id: this.dataArray[i].Record.id,
               almacen: this.dataArray[i].Record.almacen,
               comercio: this.dataArray[i].Record.comercio,
               fecha: this.dataArray[i].Record.fecha,
@@ -101,7 +107,6 @@ export class ReportsTrucksPage implements OnInit {
           }
         }
         this.rows1 = this.rows
-        //console.log('ROWS', this.rows)
       }
     )
   }
@@ -120,12 +125,12 @@ export class ReportsTrucksPage implements OnInit {
     this.reportService.getDataFromHLFByCommerce(compania)
     .subscribe(
       (data1: any) => {
-        console.log('DATA', data1)
         this.dataArray = data1.data
-        console.log('DATAARRAY!!', this.dataArray)
+        this.rows = [];
         for (let i in this.dataArray){
           if (this.dataArray[i].Record.unidad !== 'null'){
             this.rows.push({
+              id: this.dataArray[i].Record.id,
               almacen: this.dataArray[i].Record.almacen,
               comercio: this.dataArray[i].Record.comercio,
               fecha: this.dataArray[i].Record.fecha,
@@ -137,7 +142,6 @@ export class ReportsTrucksPage implements OnInit {
           }
         }
         this.rows1 = this.rows
-        console.log('ROWS', this.rows)
       }
     )
   }
@@ -215,23 +219,24 @@ export class ReportsTrucksPage implements OnInit {
         this.dataArray = data1.data
         console.log('DATAARRAY!!', this.dataArray)
         this.rows=[]
-        this.filterByDate(this.dataArray)
-        // for (let i in this.dataArray){
-        //   if (this.dataArray[i].Record.unidad !== 'null'){
-        //     this.rows.push({
-        //       almacen: this.dataArray[i].Record.almacen,
-        //       comercio: this.dataArray[i].Record.comercio,
-        //       fecha: this.dataArray[i].Record.fecha,
-        //       latitud: this.dataArray[i].Record.latitud,
-        //       longitud: this.dataArray[i].Record.longitud,
-        //       temperatura: this.dataArray[i].Record.temperatura,
-        //       unidad: this.dataArray[i].Record.unidad
-        //     })
-        //   }
-        // }
+        if( this.iniDate != undefined ) {
+          this.filterByDate(this.dataArray)
+        }
+        for (let i in this.dataArray){
+          if (this.dataArray[i].Record.unidad !== 'null'){
+            this.rows.push({
+              almacen: this.dataArray[i].Record.almacen,
+              comercio: this.dataArray[i].Record.comercio,
+              fecha: this.dataArray[i].Record.fecha,
+              latitud: this.dataArray[i].Record.latitud,
+              longitud: this.dataArray[i].Record.longitud,
+              temperatura: this.dataArray[i].Record.temperatura,
+              unidad: this.dataArray[i].Record.unidad
+            })
+          }
+        }
         this.rows=[...this.rows]
         this.rows1 = this.rows
-        console.log('ROWS', this.rows)
       }
     )
   }

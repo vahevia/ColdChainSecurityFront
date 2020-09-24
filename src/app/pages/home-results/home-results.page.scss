@@ -46,3 +46,13 @@
     text-align: center;
     margin: 10px 0 5px 0;
 }
+
+.buttonContainer{
+    display: flex;
+    width: 100%;
+    padding: 5px;
+}
+
+.centeredButton{
+    margin: auto !important;
+}

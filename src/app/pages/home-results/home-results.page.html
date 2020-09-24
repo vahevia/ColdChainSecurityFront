@@ -49,14 +49,17 @@
           </ion-item>
         </ion-col>
       </ion-row>
+      <ion-row>
+        <div class="buttonContainer">
+          <ion-button class="centeredButton" (click)="getMapsInfo()" color='primary' >
+            {{ 'DASHBOARD.show' | translate }}
+          </ion-button>
+        </div>
+      </ion-row>
     </ion-grid>
   </ion-card>
   
-  <ion-card>
-    <ion-button size="medium" expand="block" (click)="getMapsInfo()" color='primary' >
-      {{ 'DASHBOARD.show' | translate }}
-    </ion-button>
-  </ion-card>
+  
 
 
       <div #mapElement class="map"></div>

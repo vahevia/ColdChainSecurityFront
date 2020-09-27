@@ -208,11 +208,11 @@ export class ServicesService {
   }
 
   getRubroByStaticUnit(id) {
-    return this.http.get(this.urlArea + '/unidadEstatica/'+ id, this.httpOptions);
+    return this.http.get(this.urlArea + 'unidadEstatica/'+ id, this.httpOptions);
   }
 
   getRubroByTransportUnit(id) {
-    return this.http.get(this.urlArea + '/unidadTransporte/'+ id, this.httpOptions);
+    return this.http.get(this.urlArea + 'unidadTransporte/'+ id, this.httpOptions);
   }
 
   addRubro(rubro) {

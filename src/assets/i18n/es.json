@@ -25,7 +25,7 @@
     "DASHBOARD": {
         "dashboard": "Mapa",
         "unitType": "Tipo de unidad",
-        "truck": "Unidad de trasporte",
+        "truck": "Unidad de transporte",
         "storage": "Unidad de almacenamiento",
         "activeTrucks": "Transporte",
         "activeStatic": "Almacenamiento",
@@ -140,7 +140,7 @@
         "max": "Max",
         "addArea": "Agregar Rubro",
         "editTitle": "Editar Rubro",
-        "createArea": "Crear Area",
+        "createArea": "Crear Rubro",
         "area": "Rubro",
         "maxTemp": "Temperatura máxima",
         "minTemp": "Temperatura mínima"

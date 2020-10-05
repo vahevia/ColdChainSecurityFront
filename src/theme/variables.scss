@@ -78,6 +78,15 @@
 /** font family **/
 --ion-font-family: 'custom' !important;
 font-family: 'custom' !important;
+
+ion-input {
+  font-size: 14px;
+}
+
+}
+
+:host {
+  font-size: 14px;
 }
 
 @font-face {

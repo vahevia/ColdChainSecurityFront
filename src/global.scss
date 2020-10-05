@@ -70,23 +70,23 @@ ion-item {
   }
   
   .text08 {
-    font-size: .8rem;
+    font-size: .5rem;
   }
   
   .text1 {
-    font-size: 1rem !important;
+    font-size: 0.8rem !important;
   }
 
   .text12 {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 
   .text15 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
   
   .text20 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
   
   .text-white {
@@ -244,6 +244,10 @@ ion-item {
 ion-select-popover ion-list ion-item ion-radio {
   --color: transparent;
   --color-checked: transparent;
+}
+
+ion-item {
+  font-size: 14px;
 }
 
  //ion-alert

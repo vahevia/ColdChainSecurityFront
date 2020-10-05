@@ -10,6 +10,18 @@
     padding: 15px;
 }
 
+:host {
+
+ion-card {
+    &.no-radius {
+        border-radius: 0;
+        max-width: 80%;
+        margin: auto;
+    }
+  }
+}
+
+
 .dateItem {
     justify-content: space-evenly;
 }

@@ -67,6 +67,7 @@ ion-item {
   
   .fw700 {
       font-weight: 700 !important;
+      font-size: 18px;
   }
   
   .text08 {
@@ -247,7 +248,15 @@ ion-select-popover ion-list ion-item ion-radio {
 }
 
 ion-item {
-  font-size: 14px;
+  font-size: 13px;
+}
+
+ion-button {
+  font-size: 13px;
+}
+
+ion-text {
+  font-size: 13px;
 }
 
  //ion-alert

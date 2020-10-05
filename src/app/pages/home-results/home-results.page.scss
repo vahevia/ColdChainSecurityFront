@@ -12,13 +12,30 @@
     ion-card {
         &.no-radius {
             border-radius: 0;
+            max-width: 60%;
+            margin: auto;
         }
     }
 }
 .map {
-    height: 50%;
+    height: 100%;
     width: 100%;
   }
+
+.content {
+    max-width: 95%;
+  }
+
+.card {
+    height: 100%;
+    width: 100%;
+    border:var(--ion-color-primary) solid;
+    margin: 10px;
+}
+
+.grafica {
+    width:100%
+}
 
 .graph {
     display: grid;
@@ -38,6 +55,11 @@
     background-color: inherit;
 }
 
+.pickers {
+    width: 90%;
+    margin: auto;
+}
+
 .activeCard {
     text-align: left;
 }
@@ -49,10 +71,12 @@
 
 .buttonContainer{
     display: flex;
-    width: 100%;
+    width: 90%;
     padding: 5px;
+    justify-content: flex-end;
+    margin: auto;
 }
 
-.centeredButton{
-    margin: auto !important;
+ion-card-title {
+    font-size: 16px;
 }

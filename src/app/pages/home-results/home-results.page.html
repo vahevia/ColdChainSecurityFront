@@ -14,9 +14,9 @@
 <ion-content>
   <ion-card no-margin class="no-radius">
     <ion-grid>
-      <ion-row>
+      <ion-row class="pickers">
         <ion-col>
-          <ion-item lines="none" color="tertiary">
+          <ion-item lines="none" color="tertiary" >
             <ion-label>
               <h2 no-margin class="fw500 no-margin">
                 <ion-text color="light" class="text-custom">{{ 'DASHBOARD.unitType' | translate }}</ion-text>
@@ -51,70 +51,64 @@
       </ion-row>
       <ion-row>
         <div class="buttonContainer">
-          <ion-button class="centeredButton" (click)="getMapsInfo()" color='primary' >
+          <ion-button  (click)="getMapsInfo()" color='primary' >
             {{ 'DASHBOARD.show' | translate }}
           </ion-button>
         </div>
       </ion-row>
     </ion-grid>
   </ion-card>
-  
-  
 
-
-      <div #mapElement class="map"></div>
-
-        <ion-grid>
+        <ion-grid class="content">
           <ion-row>
             <ion-col>
-              <ion-card >
-                <ion-card-header color="primary">
-                  <ion-card-title >{{ 'DASHBOARD.chartTitle' | translate }}</ion-card-title>
-                </ion-card-header>
-              
-                <ion-card-content style="justify-content: center;">
-                  <div class="graph">
-                    <canvas #lineCanvas style="width: 80%; min-height: 50px"></canvas>
-                  </div>
-                  <div class="padding"></div>
-                </ion-card-content>
-              </ion-card>
+              <div class="card">
+                <div #mapElement class="map"></div>
+              </div>
             </ion-col>
-          </ion-row>    
-      
-        <ion-row>
-          <ion-col>
-            <ion-card >
-              <ion-card-header color="primary">
-                <ion-card-title >{{ 'DASHBOARD.activeUnits' | translate }}</ion-card-title>
-              </ion-card-header>
-            
-              <ion-card-content>
-                <ion-row>
-                  <ion-col>
-                    <h1 class="activeCard">{{'DASHBOARD.activeTrucks' | translate}} <br> <b>{{activeTransportUnits}}</b></h1>
-                    <h1></h1>
-                  </ion-col>
-                  <ion-col>
-                    <h1 class="activeCard">{{'DASHBOARD.activeStatic' | translate}} <br> <b>{{activeStaticUnits}}</b></h1>
-                  </ion-col>
-                </ion-row>
-              </ion-card-content>
-            </ion-card>
-          </ion-col>
-          <ion-col>
-            <ion-card>
-              <ion-card-header color="primary">
-                <ion-card-title >{{ 'DASHBOARD.averageTemp' | translate }}</ion-card-title>
-              </ion-card-header>
-            
-              <ion-card-content>
-                <h1 class="center"><b>{{avgUnit? avgUnit : 0}}</b></h1>
-              </ion-card-content>
-            </ion-card>
-          </ion-col>
-        </ion-row>
+            <ion-col size="auto">
+              <ion-row>
+                <ion-card class="grafica">
+                  <ion-card-header color="primary">
+                    <ion-card-title >{{ 'DASHBOARD.chartTitle' | translate }}</ion-card-title>
+                  </ion-card-header>
+                
+                  <ion-card-content style="justify-content: center;">
+                    <div class="graph">
+                      <canvas #lineCanvas style="width: 100%; min-height: 50px"></canvas>
+                    </div>
+                    <div class="padding"></div>
+                  </ion-card-content>
+                </ion-card>
+              </ion-row>
+              <ion-row>
+                <ion-card >
+                  <ion-card-header color="primary">
+                    <ion-card-title >{{ 'DASHBOARD.activeUnits' | translate }}</ion-card-title>
+                  </ion-card-header>
+                  <ion-card-content>
+                    <ion-row>
+                      <ion-col>
+                        <h2 class="activeCard">{{'DASHBOARD.activeTrucks' | translate}} <br> <b>{{activeTransportUnits}}</b></h2>
+                      </ion-col>
+                      <ion-col>
+                        <h2 class="activeCard">{{'DASHBOARD.activeStatic' | translate}} <br> <b>{{activeStaticUnits}}</b></h2>
+                      </ion-col>
+                    </ion-row>
+                  </ion-card-content>
+                </ion-card>
+                <ion-card>
+                  <ion-card-header color="primary">
+                    <ion-card-title >{{ 'DASHBOARD.averageTemp' | translate }}</ion-card-title>
+                  </ion-card-header>
+                  <ion-card-content>
+                    <h2 class="center"><b>{{avgUnit? avgUnit : 0}}</b></h2>
+                  </ion-card-content>
+                </ion-card>
+              </ion-row>
+            </ion-col>
+          </ion-row>
     </ion-grid>
     
-</ion-content>
+</ion-content >
   

@@ -25,6 +25,10 @@
     margin: 10px;
 }
 
+.no-radius {
+    background: var(--ion-item-background,transparent);
+}
+
 .grafica {
     width:100%
 }
@@ -66,4 +70,10 @@
 
 ion-card-title {
     font-size: 16px;
+    color: var(--ion-color-primary);
+    font-weight: 700;
+}
+
+ion-card-header {
+    background-color: white;
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 import { ServicesService } from '../../Services/services.service';
 import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
@@ -36,12 +37,15 @@ export class ReportsRubrosTranspPage implements OnInit {
   rubro: string;
   tmin: number;
   tmax: number;
+  alertMessage: any = {};
+
 
   constructor(private reportService: ServicesService, 
     public navCtrl: NavController,
     private router: Router,
     private translateConfigService: TranslateConfigService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    public alertController: AlertController
     ) {
       this.translateConfigService.getDefaultLanguage();
       this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
@@ -129,6 +133,7 @@ export class ReportsRubrosTranspPage implements OnInit {
         this.rows=[]
         for (let i in this.dataArray){
           this.rows.push({
+            id: this.dataArray[i].Record.id,
             almacen: this.dataArray[i].Record.almacen,
             comercio: this.dataArray[i].Record.comercio,
             fecha: this.dataArray[i].Record.fecha,
@@ -143,6 +148,23 @@ export class ReportsRubrosTranspPage implements OnInit {
         this.rows1 = this.rows
       }
     )
+  }
+
+  async presentAlert(value) {
+    this.reportService.getDataFromHLFByID(value)
+    .subscribe(
+      async (data: any) => {
+        this.alertMessage = data.data[0]
+        const alert = await this.alertController.create({
+          cssClass: 'alertClass',
+          header: 'Info',
+          message: '<b>'+'Transaction ID: '+'</b>'+this.alertMessage.TxId +'</br>'+'<b>'+'TimeStamp: '+'</b>'+ this.alertMessage.Timestamp,
+          buttons: ['OK']
+        });
+        await alert.present();
+      }
+    )
+    this.alertMessage = {}
   }
 
 }

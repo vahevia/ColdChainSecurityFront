@@ -16,7 +16,7 @@
 
   <ion-card no-margin class="no-radius">
     <ion-grid>
-      <ion-row class="full">
+      <ion-row class="pickers">
         <ion-col>
           <ion-item lines="none" color="tertiary" *ngIf="isSuper">
             <ion-label>
@@ -33,7 +33,7 @@
           </ion-item>
         </ion-col>
       </ion-row>
-      <ion-row class="full">
+      <ion-row class="pickers">
         <ion-col>
           <ion-item lines="none" color="tertiary" >
             <ion-label>
@@ -50,7 +50,7 @@
           </ion-item>
         </ion-col>
       </ion-row>
-      <ion-row>
+      <ion-row class="pickers">
         <ion-item lines="none">
           <ion-label style="overflow: unset;">Fecha inicio</ion-label>
           <ion-datetime displayFormat="MM/DD/YY" mode="ios" [(ngModel)]="iniDate" placeholder="MM/DD/YY"></ion-datetime>
@@ -58,7 +58,7 @@
           <ion-datetime displayFormat="MM/DD/YY" mode="ios" [max]="maxDate" [(ngModel)]="finDate" placeholder="MM/DD/YY"></ion-datetime>
         </ion-item>
       </ion-row>
-      <ion-row>
+      <ion-row class="buttonContainer">
         <ion-button size="medium" expand="block" (click)="getReports()" color='primary'>{{ 'REPORTS.search' | translate }}</ion-button>
       </ion-row>
     </ion-grid>

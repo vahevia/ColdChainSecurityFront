@@ -26,16 +26,21 @@ ion-grid {
     height: $height100;
 }
 
+.card-content-md {
+    padding-top: 0px;
+}
+
 .log-form {
     padding-top: 50px;
 }
 
 .logo {
     width: 200px;
-    height: 150px;
+    height: 100px;
     margin: auto ;
     background: url("/assets/img/coldchain-logo-trans.png") no-repeat;
     background-size: 100%;
+    background-position: center;
   }
 
 .loginButton {

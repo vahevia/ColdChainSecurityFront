@@ -18,10 +18,10 @@
     <ion-grid>
       <ion-row class="pickers">
         <ion-col>
-          <ion-item lines="none" color="tertiary" *ngIf="isSuper">
+          <ion-item lines="none" color="white" *ngIf="isSuper">
             <ion-label>
               <h2 no-margin class="fw500 no-margin">
-                <ion-text color="light">{{ 'WAREHOUSE.company' | translate }}</ion-text>
+                <ion-text color="black">{{ 'WAREHOUSE.company' | translate }}</ion-text>
               </h2>
             </ion-label>
             <select [(ngModel)]="company" style="background-color: inherit; border-color: transparent;" (change)="onChangeCompany()">
@@ -35,10 +35,10 @@
       </ion-row>
       <ion-row class="pickers">
         <ion-col>
-          <ion-item lines="none" color="tertiary" >
+          <ion-item lines="none" color="white" >
             <ion-label>
               <h2 no-margin class="fw500 no-margin">
-                <ion-text color="light">{{ 'REPORTS.unitId' | translate }}</ion-text>
+                <ion-text color="black">{{ 'REPORTS.unitId' | translate }}</ion-text>
               </h2>
             </ion-label>
             <select [(ngModel)]="unit" style="background-color: inherit; border-color: transparent;">

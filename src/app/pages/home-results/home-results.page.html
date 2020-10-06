@@ -16,10 +16,10 @@
     <ion-grid>
       <ion-row class="pickers">
         <ion-col>
-          <ion-item lines="none" color="tertiary" >
+          <ion-item lines="none" color="white" >
             <ion-label>
               <h2 no-margin class="fw500 no-margin">
-                <ion-text color="light" class="text-custom">{{ 'DASHBOARD.unitType' | translate }}</ion-text>
+                <ion-text color="black">{{ 'DASHBOARD.unitType' | translate }}</ion-text>
               </h2>
             </ion-label>
             <select [(ngModel)]="unitType" style="background-color: inherit; border-color: transparent;" (change)="onTypeChange($event.target.value)" >
@@ -34,10 +34,10 @@
           </ion-item>
         </ion-col>
         <ion-col>
-          <ion-item lines="none" color="tertiary">
+          <ion-item lines="none" color="white">
             <ion-label>
               <h2 no-margin class="fw500 no-margin">
-                <ion-text color="light" >{{ 'DASHBOARD.activeUnit' | translate }}</ion-text>
+                <ion-text color="black" >{{ 'DASHBOARD.activeUnit' | translate }}</ion-text>
               </h2>
             </ion-label>
             <select [(ngModel)]="unit" style="background-color: inherit; border-color: transparent;" [disabled]="!unitType" (change)="getGraphicValues()">
@@ -63,6 +63,7 @@
           <ion-row>
             <ion-col>
               <div class="card">
+                <h2 class="card-title">Ubicacion de la unidad seleccionada</h2>
                 <div #mapElement class="map"></div>
               </div>
             </ion-col>

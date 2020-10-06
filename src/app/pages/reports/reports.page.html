@@ -11,7 +11,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content >
   <ion-card no-margin class="no-radius">
     <ion-grid>
       <ion-row class="pickers">
@@ -33,10 +33,10 @@
       </ion-row>
       <ion-row class="pickers">
         <ion-col>
-          <ion-item lines="none" color="tertiary" >
+          <ion-item lines="none" color="white" >
             <ion-label>
               <h2 no-margin class="fw500 no-margin">
-                <ion-text color="light">{{ 'WAREHOUSE.warehouse' | translate }}</ion-text>
+                <ion-text color="black">{{ 'WAREHOUSE.warehouse' | translate }}</ion-text>
               </h2>
             </ion-label>
             <select [(ngModel)]="warehouse" style="background-color: inherit; border-color: transparent;" (change)="onChangeWarehouse()">
@@ -48,10 +48,10 @@
           </ion-item>
         </ion-col>
         <ion-col>
-          <ion-item lines="none" color="tertiary" >
+          <ion-item lines="none" color="white" >
             <ion-label>
               <h2 no-margin class="fw500 no-margin">
-                <ion-text color="light">{{ 'REPORTS.unitId' | translate }}</ion-text>
+                <ion-text color="black">{{ 'REPORTS.unitId' | translate }}</ion-text>
               </h2>
             </ion-label>
             <select [(ngModel)]="unit" style="background-color: inherit; border-color: transparent;" (change)="onChangeUnit()">

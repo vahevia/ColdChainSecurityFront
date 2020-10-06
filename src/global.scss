@@ -107,7 +107,7 @@ ion-item {
   }
   
   .pickers {
-    width: 90%;
+    width: 100%;
     margin: auto;
   }
 
@@ -149,7 +149,7 @@ ion-item {
   ion-card {
     &.no-radius {
         border-radius: 0;
-        max-width: 60%;
+        max-width: 50%;
         margin: auto;
     }
   }
@@ -281,6 +281,10 @@ ion-button {
 
 ion-text {
   font-size: 13px;
+}
+
+ion-content {
+  --background: var(--ion-color-light);
 }
 
  //ion-alert

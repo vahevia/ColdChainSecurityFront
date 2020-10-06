@@ -77,7 +77,8 @@ export class HomeResultsPage implements OnInit {
     //this.getMapsInfo();
     //this.getGraphicValues();
     this.getActiveUnits();
-    !this.isSuper && this.getCurrentCompany();    
+    this.displayGoogleMap(10.4965604, -66.8259419);
+    //!this.isSuper && this.getCurrentCompany();    
   }
 
   createBarChart() {
@@ -335,181 +336,6 @@ export class HomeResultsPage implements OnInit {
   
    // Grafica
 
-  multi: any[] = [
-      {
-        "name":"Unidad 1",
-        "series": [
-          {
-            "name":"12",
-            "value": 22
-          },
-          {
-            "name":"12:10",
-            "value": 23
-          },
-          {
-            "name":"12:20",
-            "value": 28
-          },
-          {
-            "name":"12:30",
-            "value": 26
-          },
-          {
-            "name":"12:40 ",
-            "value": 27
-          },
-          {
-            "name":"12:50 ",
-            "value": 29
-          },
-          {
-            "name":"13 ",
-            "value": 27
-          },
-          {
-            "name":"13:10 ",
-            "value": 23
-          },
-          {
-            "name":"13:20 ",
-            "value": 28
-          },
-          {
-            "name":"13:30 ",
-            "value": 26
-          },
-          {
-            "name":"13:40 ",
-            "value": 27
-          },
-          {
-            "name":"13:50 ",
-            "value": 29
-          },
-          {
-            "name":"14 ",
-            "value": 27
-          }
-        ]
-      },
-      {
-      "name":"Unidad 2",
-      "series": [
-        {
-          "name":"12 ",
-          "value": 22
-        },
-        {
-          "name":"12:10 ",
-          "value": 24
-        },
-        {
-          "name":"12:20 ",
-          "value": 23
-        },
-        {
-          "name":"12:30 ",
-          "value": 24
-        },
-        {
-          "name":"12:40 ",
-          "value": 25
-        },
-        {
-          "name":"12:50 ",
-          "value": 28
-        },
-        {
-          "name":"13 ",
-          "value": 22
-        },
-        {
-          "name":"13:10 ",
-          "value": 24
-        },
-        {
-          "name":"13:20 ",
-          "value": 23
-        },
-        {
-          "name":"13:30 ",
-          "value": 24
-        },
-        {
-          "name":"13:40 ",
-          "value": 25
-        },
-        {
-          "name":"13:50 ",
-          "value": 28
-        },
-        {
-          "name":"14 ",
-          "value": 29
-        }
-      ]
-    },
-    {
-      "name":"Unidad 3",
-      "series": [
-        {
-          "name":"12 ",
-          "value": 20
-        },
-        {
-          "name":"12:10 ",
-          "value": 22
-        },
-        {
-          "name":"12:20 ",
-          "value": 21
-        },
-        {
-          "name":"12:30 ",
-          "value": 23
-        },
-        {
-          "name":"12:40 ",
-          "value": 25
-        },
-        {
-          "name":"12:50 ",
-          "value": 24
-        },
-        {
-          "name":"13 ",
-          "value": 20
-        },
-        {
-          "name":"13:10 ",
-          "value": 22
-        },
-        {
-          "name":"13:20 ",
-          "value": 21
-        },
-        {
-          "name":"13:30 ",
-          "value": 23
-        },
-        {
-          "name":"13:40 ",
-          "value": 25
-        },
-        {
-          "name":"13:50 ",
-          "value": 24
-        },
-        {
-          "name":"14 ",
-          "value": 26
-        }
-      ]
-    },
-    ];
-  
-
   
   // options
   animations: boolean = true;
@@ -521,17 +347,11 @@ export class HomeResultsPage implements OnInit {
   xAxisLabel: string;
   yAxisLabel: string;
 
-
   colorScheme = {
     domain: ['#3073CA', '#3D5C86', '#0554BA', '#0E6DE9', '#558CD4', '#2E65AE']
   };
   ionViewWillEnter() {
     this.menuCtrl.enable(true);
   }
-
-  settings() {
-    this.navCtrl.navigateForward('settings');
-  }
-
 
 }

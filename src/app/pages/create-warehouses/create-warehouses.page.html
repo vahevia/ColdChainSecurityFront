@@ -125,7 +125,7 @@
             <ion-label position="fixed">{{ 'WAREHOUSE.state' | translate }}</ion-label>
             <ion-list class="line-input">
               <ion-item>
-                <select [(ngModel)]="pais" style="background-color: inherit; border-color: transparent;" (change)="onChangeState()">
+                <select [(ngModel)]="estado" style="background-color: inherit; border-color: transparent;">
                   <option selected [value]="none" disabled style="text-align: right; " >{{ 'USERS.choose' | translate }}</option>
                   <option *ngFor="let state of states" [value]="state.estado" style="text-align: right; color: black;" >
                     {{state.estado}}

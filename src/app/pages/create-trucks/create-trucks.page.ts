@@ -127,6 +127,7 @@ export class CreateTrucksPage implements OnInit {
             this.navCtrl.navigateRoot('/trucks')
             console.log(truck)
             console.log(response)
+            this.editando = false;
           })
       } else {
       this.truckService.addNewTruck(truck)

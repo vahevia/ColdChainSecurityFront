@@ -77,7 +77,7 @@ export class StaticUnitsPage implements OnInit {
     this.router.navigate(['create-static-units'], navigationExtras);
   }
 
-  deleteWareh(id){
+  deleteStaticUnit(id){
     this.staticUnitsServices.deleteStaticUnit(id)
     .subscribe(
       (response) => {

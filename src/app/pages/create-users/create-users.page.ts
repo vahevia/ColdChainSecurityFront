@@ -125,7 +125,7 @@ export class CreateUsersPage implements OnInit {
     )
   }
 
-  crearUsuario(event){
+  crearUsuario(){
     if (this.editando === true) {
       var usuarioE = {
         nombre: this.nombre,
@@ -172,8 +172,8 @@ export class CreateUsersPage implements OnInit {
           console.log(error)
         }
       )
+      this.editando = false;
     }
-    this.editando = false;
   }
 
 }

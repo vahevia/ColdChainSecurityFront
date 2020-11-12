@@ -71,6 +71,7 @@ export class AreasPage implements OnInit {
     this.areaServices.deleteRubro(value)
     .subscribe(
       (response) => {
+        this.getAreas()
         console.log(response)
       },
       (error) => {

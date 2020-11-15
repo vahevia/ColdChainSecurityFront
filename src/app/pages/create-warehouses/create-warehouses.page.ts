@@ -34,7 +34,7 @@ export class CreateWarehousesPage implements OnInit {
   selectedLanguage: any;
   isdisabled: boolean = false;
   companias: {};
-  compania: String;
+  compania: number;
   currentUser: User;
   isSuper: boolean;
 
@@ -98,30 +98,18 @@ export class CreateWarehousesPage implements OnInit {
     this.getCompanies()
     
     if (!this.isSuper) {
-      this.getCompanyName()
-    } 
+      this.compania = Number(this.currentUser.id_comercio)
+    }
   }
 
   getCompanies(){
-    this.warehouseService.getCompanies()
+    this.warehouseService.getCompaniesNames()
     .subscribe(
       (comp) => {
       this.companias = comp
       },
       (error) => {
         console.error(error);
-      }
-    )
-  }
-
-  getCompanyName(){
-    this.warehouseService.getCompaniesByID()
-    .subscribe(
-      (comp) => {
-        this.compania = comp[0]
-      },
-      (error) => {
-        console.error(error)
       }
     )
   }
@@ -164,17 +152,17 @@ export class CreateWarehousesPage implements OnInit {
   createWareHouse(event) {
     var warehouse = {
       nombre: this.nombre,
-      avenida: this.avenida,
-      calle: this.calle,
-      zona: this.zona,
-      edificio: this.edificio,
-      apartamento: this.apartamento,
-      nro_apartamento: this.nroApartamento,
-      casa: this.casa,
-      nro_casa: this.nroCasa,
+      avenida: this.avenida ? this.avenida : '',
+      calle: this.calle ? this.calle : '',
+      zona: this.zona ? this.zona : '',
+      edificio: this.edificio ? this.edificio : '',
+      apartamento: this.apartamento ? this.apartamento : '',
+      nro_apartamento: this.nroApartamento ? this.nroApartamento : '',
+      casa: this.casa ? this.casa : '',
+      nro_casa: this.nroCasa ? this.nroCasa : '',
       lugar: this.estado,
-      nombreNuevo: this.nuevoNombre,
-      compania: this.compania
+      nombreNuevo: this.nuevoNombre ? this.nuevoNombre : '',
+      comercio: Number(this.compania)
     }
     if (this.editando) {
       this.warehouseService.updateWareHouse(warehouse)
@@ -185,6 +173,7 @@ export class CreateWarehousesPage implements OnInit {
           this.editando = false;
         })
     } else {
+      console.log(warehouse)
     this.warehouseService.addNewWarehouse(warehouse)
     .subscribe(
       (response) => {

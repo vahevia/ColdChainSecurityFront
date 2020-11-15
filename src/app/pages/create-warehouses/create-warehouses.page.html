@@ -35,8 +35,8 @@
               <ion-item>
                 <select [(ngModel)]="compania" style="background-color: inherit; border-color: transparent;">
                   <option selected [value]="none" disabled style="text-align: right; " >{{ 'USERS.choose' | translate }}</option>
-                  <option *ngFor="let compania of companias" [value]="compania.comercio_nombre" style="text-align: right; color: black;" >
-                    {{compania.comercio_nombre}}
+                  <option *ngFor="let compania of companias" [value]="compania.com_id" style="text-align: right; color: black;" >
+                    {{compania.com_nombre}}
                   </option>
                 </select>
               </ion-item>

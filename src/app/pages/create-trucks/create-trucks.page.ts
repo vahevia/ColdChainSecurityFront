@@ -69,7 +69,7 @@ export class CreateTrucksPage implements OnInit {
           console.log(error)
         }
       )
-    } else {
+    } else if (this.currentUser.rol != 'super'){
       this.getCurrentUserCompanyName()
     }
 

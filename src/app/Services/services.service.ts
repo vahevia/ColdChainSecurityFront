@@ -160,6 +160,14 @@ export class ServicesService {
     return this.http.request('delete', this.urlCompany, { headers: { 'x-access-token': this.currentUser.token }, body: { "rif": rif } });
   }
 
+  addNewCompany(company) {
+    return this.http.post(this.urlCompany, company, this.httpOptions);
+  }
+
+  updateCompany(company) {
+    return this.http.put(this.urlCompany, company, this.httpOptions);
+  }
+
   getCompaniesSchedules(){
     return this.http.request('get',this.baseurl +'/horarioC' , { headers: { 'x-access-token': this.currentUser.token}} )
   }

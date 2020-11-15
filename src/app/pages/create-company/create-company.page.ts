@@ -156,19 +156,19 @@ export class CreateCompanyPage implements OnInit {
       horario: this.horario
     }
     if (this.editando) {
-      this.companyService.updateWareHouse(company)
+      this.companyService.updateCompany(company)
       .subscribe(
         (response) => {
           console.log(response)
-          this.navCtrl.navigateRoot('/warehouses')
+          this.navCtrl.navigateRoot('/company')
           this.editando = false;
         })
     } else {
-    this.companyService.addNewWarehouse(company)
+    this.companyService.addNewCompany(company)
     .subscribe(
       (response) => {
         console.log(response)
-        this.navCtrl.navigateRoot('/warehouses')
+        this.navCtrl.navigateRoot('/company')
         this.editando = false;
       })
     }

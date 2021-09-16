@@ -51,7 +51,7 @@
     "ngx-charts": "^3.0.2",
     "rxjs": "~6.3.3",
     "serialize-javascript": "^3.1.0",
-    "set-value": "^3.0.1",
+    "set-value": "^4.0.1",
     "zone.js": "~0.8.29"
   },
   "devDependencies": {
